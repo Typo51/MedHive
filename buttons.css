@@ -1,0 +1,54 @@
+/*buttons*/
+
+.buttons {
+  text-align: center;
+  border-radius: 10px;
+  background-color: #fff;
+  color: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+ 
+}
+
+@media screen and (max-width:600px)
+{
+  .buttons
+  {
+    
+    flex-direction: column;
+    width: 100%;
+  }
+}
+
+.buttons:hover
+{
+  background-color: #16d5be;
+}
+
+.buttons#appoint
+{
+  margin-left: 200px;
+}
+
+.buttons#conference
+{
+  margin-left: 146px;
+}
+
+.buttons#sched
+{
+  margin-left: 130px;
+}
+
+
+.buttons#approvalBtn
+{
+  margin-left: 146px;
+}
+
+
+.buttons#approvalCancel
+{
+  margin-left: 0px;
+}
