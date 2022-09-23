@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Doctor's Dashboard</title>
+	<link rel="stylesheet" href="doctorDB.css">
+	<link rel="stylesheet" type="text/css" href="iframe.css">
+	<script src="events.js"></script>
+
+	<!-- BOOTSTRAP -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <script src="https://kit.fontawesome.com/42135a69b7.js" crossorigin="anonymous"></script>
+
+
+</head>
+<body>
+
+
+	<!-- NAVBAR	 -->
+  <nav>
+    <div class="nav-wrapper">
+      <a href="#" class="brand-logo"><h4 class="medhive"> Medhive </h4></a>
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <li><a href="sass.html">Sass</a></li>
+        <li><a href="badges.html">Components</a></li>
+        <li><a href="collapsible.html">JavaScript</a></li>
+      </ul>
+    </div>
+  </nav>
+
+
+<div class="wrapper">
+
+	<!-- SIDE BAR -->
+    <div class="sidebar">
+        <ul>
+            <li><a href="#"><i class="fa-solid fa-table-columns"></i> Dashboard </a></li>
+            <li><a href="#"><i class="fa-solid fa-user"></i> Profile </a></li>
+            <li><a href="#"><i class="fa-solid fa-sliders"></i> Logout </a></li>
+        </ul> 
+    </div>
+
+
+    <!-- ABOVE BUTTONS TO OPEN MODALS -->
+
+    <div class="main_content">
+        <div class="header">
+        	<br>
+        	<div>
+        		<a href="#" onclick="appointment()"> <button class="waves-effect waves-light btn">Accept appointment</button></a> 
+        	</div>
+	
+        	<div>
+				<a href="#" onclick="conference()"> <button class="waves-effect waves-light btn">Create a conference</button></a> 
+        	</div>
+        	</a> 
+        	<div>
+				<a href="#" onclick="logs()"> <button class="waves-effect waves-light btn">Appointment Logs</button></a> 
+        	</div>
+        	</a>
+        </div>
+
+        <!-- PATIENT LISTS -->
+        
+        <center>
+        <div class="patient-list-container">
+			<table class="list">
+				<thead>
+					<tr>
+						<th style="width: 70px;"> </th>
+						<th>Name</th>
+						<th>Appointment Schedule</th>
+						<th>Status</th>
+					</tr>
+				</thead>
+	
+				<tbody>
+					<div>
+						<tr class="clickable">
+							<td><img src="./images/profile.webp"  width="40px" height="40px"></a></td>
+							<td>Jasper Panzo</a></td>
+							<td>11:35 AM</a></td>
+							<td>Online</a></td>
+						</tr>
+					</div>	
+						<tr class="clickable">
+							<td><img src="./images/profile.webp" width="40px" height="40px"></a></td>
+							<td>Jasper Panzo</a></td>
+							<td>11:35 AM</a></td>
+							<td>Online</a></td>
+						</tr>
+						<tr class="clickable">
+							<td><img src="./images/profile.webp" width="40px" height="40px"></td>
+							<td>Jasper Panzo</td>
+							<td>11:35 AM</td>
+							<td>Online</td>
+						</tr>
+						<tr class="clickable">
+							<td><img src="./images/profile.webp" width="40px" height="40px"></td>
+							<td>Jasper Panzo</td>
+							<td>11:35 AM</td>
+							<td>Online</td>
+						</tr>
+						<tr class="clickable">
+							<td><img src="./images/profile.webp" width="40px" height="40px"></td>
+							<td>Jasper Panzo</td>
+							<td>11:35 AM</td>
+							<td>Online</td>
+						</tr>
+						<tr class="clickable">
+							<td><img src="./images/profile.webp" width="40px" height="40px"></td>
+							<td>Jasper Panzo</td>
+							<td>11:35 AM</td>
+							<td>Online</td>
+						</tr>
+						<tr class="clickable">
+							<td><img src="./images/profile.webp" width="40px" height="40px"></td>
+							<td>Jasper Panzo</td>
+							<td>11:35 AM</td>
+							<td>Online</td>
+						</tr>
+						<tr class="clickable">
+							<td><img src="./images/profile.webp" width="40px" height="40px"></td>
+							<td>Jasper Panzo</td>
+							<td>11:35 AM</td>
+							<td>Online</td>
+						</tr>
+						<tr class="clickable">
+							<td><img src="./images/profile.webp" width="40px" height="40px"></td>
+							<td>Jasper Panzo</td>
+							<td>11:35 AM</td>
+							<td>Online</td>
+						</tr>
+					
+				</tbody>
+	
+	
+			</table>
+	</div>
+
+        </div> 
+        </center>
+    </div>
+</div>
+
+			<!-- MODALS -->
+
+			<!-- APPOINTMENT MODAL -->
+<div class="popup" id="modal1" >
+	<div class="container">
+		<h5>Please select a patient</h5>
+		<center>
+			<div class="patient-list-container">
+				<table class="list">
+					<thead>
+						<tr>
+							<th style="width: 70px;"> </th>
+							<th>Name</th>
+							<th>Appointment Schedule</th>
+							<th>Status</th>
+						</tr>
+					</thead>
+		
+					<tbody>
+							<tr class="clickable">
+								<td><a data-toggle="#" onclick="patientModal1()"><img src="./images/profile.webp"  width="40px" height="40px"></a></td>
+								<td><a href="#" onclick="patientModal1()">Jasper Panzo</a></td>
+								<td><a href="#" onclick="patientModal1()">11:35 AM</a></td>
+								<td><a href="#" onclick="patientModal1()">Online</a></td>
+							</tr>
+							
+							<tr class="clickable">
+								<td><a data-toggle="#" onclick="patientModal2()"><img src="./images/profile.webp"  width="40px" height="40px"></a></td>
+								<td><a href="#" onclick="patientModal2()">Jasper Panzo</a></td>
+								<td><a href="#" onclick="patientModal2()">11:35 AM</a></td>
+								<td><a href="#" onclick="patientModal2()">Online</a></td>
+							</tr>
+							<tr class="clickable">
+								<td><img src="./images/profile.webp" width="40px" height="40px"></td>
+								<td>Jasper Panzo</td>
+								<td>11:35 AM</td>
+								<td>Online</td>
+							</tr>
+							<tr class="clickable">
+								<td><img src="./images/profile.webp" width="40px" height="40px"></td>
+								<td>Jasper Panzo</td>
+								<td>11:35 AM</td>
+								<td>Online</td>
+							</tr>
+							<tr class="clickable">
+								<td><img src="./images/profile.webp" width="40px" height="40px"></td>
+								<td>Jasper Panzo</td>
+								<td>11:35 AM</td>
+								<td>Online</td>
+							</tr>
+							<tr class="clickable">
+								<td><img src="./images/profile.webp" width="40px" height="40px"></td>
+								<td>Jasper Panzo</td>
+								<td>11:35 AM</td>
+								<td>Online</td>
+							</tr>
+							<tr class="clickable">
+								<td><img src="./images/profile.webp" width="40px" height="40px"></td>
+								<td>Jasper Panzo</td>
+								<td>11:35 AM</td>
+								<td>Online</td>
+							</tr>
+							<tr class="clickable">
+								<td><img src="./images/profile.webp" width="40px" height="40px"></td>
+								<td>Jasper Panzo</td>
+								<td>11:35 AM</td>
+								<td>Online</td>
+							</tr>
+							<tr class="clickable">
+								<td><img src="./images/profile.webp" width="40px" height="40px"></td>
+								<td>Jasper Panzo</td>
+								<td>11:35 AM</td>
+								<td>Online</td>
+							</tr>
+						
+					</tbody>
+		
+		
+				</table>
+		</center>
+		<div class="blurbg">
+			<a href="#" onclick="appointment()"> <button class="buttons" id="cancel">Cancel</button></a> 
+		</div>
+	</div>
+</div>
+
+
+	<!-- CONFERENCE MODAL -->
+<div class="popup2" id="modal2" >
+		<div class="card-container">
+			<div class="profile-box">
+				<label>Please input the Conference ID or Link</label>
+				<input type="link" name="url">
+				<a href="#"> 
+					<button class="buttons" id="conference">Enter</button>
+				</a>
+			</div>
+
+	</div>
+
+
+	</div>
+</div>
+
+
+	<!-- APPOINTMENT LOG MODAL -->
+<div class="popup3" id="modal3" >
+	<div class="container">
+		<h4>Appointment Logs</h4>
+		<table class="striped">
+			<thead>
+				<tr>
+					<th>Date</th>
+					<th>Time</th>
+					<th>Doctor's Name</th>
+					<th>Clinic Address</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>09-25-22</td>
+					<td>3:15 PM</td>
+					<td>Jasper L. Panzo</td>
+					<td>Alunan Avenue, City of Koroandal</td>
+				</tr>
+				<tr>
+					<td>09-25-22</td>
+					<td>3:15 PM</td>
+					<td>Jasper L. Panzo</td>
+					<td>Alunan Avenue, City of Koroandal</td>
+				</tr>
+				<tr>
+					<td>09-25-22</td>
+					<td>3:15 PM</td>
+					<td>Jasper L. Panzo</td>
+					<td>Alunan Avenue, City of Koroandal</td>
+				</tr>
+			</tbody>
+		</table>
+		<a href="#" onclick="logs()"> <button class="buttons" id="cancel">Cancel</button></a> <a href="#" onclick="logs()">
+	</div>
+</div>
+
+		<!-- DOCTOR CARDS MODAL -->
+<div class="docpop" id="modaldoc" >
+
+
+	<div class="card-container">
+			<div class="profile-box">
+				<img src="./images/profile.webp" class="profile-pic">
+				<h4>Insert Name Here</h4>
+				<h6>Insert Speciality Here</h6>
+				<h6>Insert Clinic and Address</h6>
+				<a href="#" onclick="appointment()"> <button class="buttons" id="cancel">Cancel</button></a> <a href="#" onclick="appointment()"> <button class="buttons" id="appoint">Appoint</button></a> 
+			</div>
+
+	</div>
+	
+
+	</div>
+
+	<!--Patients list modals-->
+
+	<div class="patientA" id="patient1" >
+
+
+		<div class="card-container">
+				<div class="profile-box">
+					<img src="./images/profile.webp" class="profile-pic">
+					<h4>Insert Name Here</h4>
+					<h6>Insert Speciality Here</h6>
+					<h6>Insert Clinic and Address</h6>
+					<a href="#" onclick="patientModal1()"> 
+						<button class="buttons" id="approvalCancel">Cancel</button>
+					</a>
+					<a href="#" onclick="patientModal1()"> 
+						<button class="buttons" id="approvalBtn">Appoint</button>
+					</a>
+				</div>
+	
+		</div>
+		
+	
+		</div>
+	</div>
+
+	<div class="patientB" id="patient2" >
+
+
+		<div class="card-container">
+				<div class="profile-box">
+					<img src="./images/profile.webp" class="profile-pic">
+					<h4>Insert Name Here</h4>
+					<h6>Insert Speciality Here</h6>
+					<h6>Insert Clinic and Address</h6>
+					<a href="#" onclick="patientModal2()"> 
+						<button class="buttons" id="approvalCancel">Cancel</button>
+					</a>
+					<a href="#" onclick="patientModal2()"> 
+						<button class="buttons" id="approvalBtn">Appoint</button>
+					</a>
+				</div>
+	
+		</div>
+		
+	
+		</div>
+	</div>
+
+
+</div>
+</body>
+</html>
+
+
+
