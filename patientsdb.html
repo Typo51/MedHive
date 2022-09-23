@@ -262,6 +262,7 @@
 			</tbody>
 		</table>
 		<a href="#" onclick=""> <button class="buttons" id="cancel">Cancel</button></a> <a href="#" onclick="">
+			</a>
 	</div>
 </div>
 
@@ -283,25 +284,22 @@
                         <option>Virtual</option>
                     </select>
                 <br>
-                    <a href="#" onclick="doctorsModal1()"> <button class="buttons" id="cancel">Cancel</button></a> <a href="#" onclick="doctorsModal1()"> <button class="buttons" id="appoint">Appoint</button></a> 
+				<div class="profile-btn">
+						
+					<a href="#" onclick="patientModal1()"> 
+						<button class="buttons" id="approvalCancel">Cancel</button>
+					</a>
+					<a href="#" onclick="patientModal1()"> 
+						<button class="buttons" id="approvalBtn">Appoint</button>
+					</a>
+				</div>
             </div>
         </form>
 	</div>
 
 	<div class="doctorB" id="doctor2" >
-
-
-		
         <form method="POST">
             <div>
-                <label>Please select a doctor</label>
-                    <select class="dropdown-trigger btn">
-                        <option>Doctor 1</option>
-                        <option>Doctor 2</option>
-                        <option>Doctor 3</option>
-                    </select>
-    
-                <br>
                 <label>Select a schedule</label>
                     <input type="date" name="schedule">
                     <input type="time" name="time">
@@ -312,11 +310,19 @@
                         <option>Virtual</option>
                     </select>
                 <br>
-                    <a href="#" onclick="doctorsModal2()"> <button class="buttons" id="cancel">Cancel</button></a> <a href="#" onclick="doctorsModal2()"> <button class="buttons" id="appoint">Appoint</button></a> 
+				<div class="profile-btn">
+
+					<a href="#" onclick="patientModal2()"> 
+						<button class="buttons" id="approvalCancel">Cancel</button>
+					</a>
+					<a href="#" onclick="patientModal2()"> 
+						<button class="buttons" id="approvalBtn">Appoint</button>
+					</a>
+				</div>
             </div>
         </form>
 	</div>
-	</div>
+	
 
 
 </div>

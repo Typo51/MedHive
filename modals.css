@@ -278,25 +278,25 @@
  
  .card-container
  {
-   border-radius: 50px;
+   border-radius: 15px;
    align-content: center;
    justify-content: center;
    display: flex;
    background-color: #f3f5f9;
    width: 500px;
-   margin: 100px 0px 0px 550px;
+
  }
  
  .profile-box
  {
-   text-align: center;
-   padding-top: 20px;
+   display: flex;
+   align-items: center;
+   flex-direction: column;
+   justify-content: center;
+   padding-bottom: 10px ;
  }
  
- .profile-box a button
- {
-   margin: 20px 0px 20px 0px;
- }
+
  
  .profile-pic
  {
@@ -306,50 +306,25 @@
  
  }
  
- 
- 
- /*buttons*/
- 
- .buttons {
-   text-align: center;
-   padding:5px 20px;
-   border-radius: 10px;
-   background-color: #fff;
-   color: black;
- }
- 
- .buttons:hover
+ .profile-btn
  {
-   background-color: #16d5be;
+  min-width: 100%;
+  display: flex;
+  flex-direction:row;
+  align-items: center;
  }
- 
- .buttons#appoint
- {
-   margin-left: 200px;
+
+ .profile-btn a{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width:50%;
  }
+
  
- .buttons#conference
- {
-   margin-left: 146px;
- }
  
- .buttons#sched
- {
-   margin-left: 130px;
- }
  
- .buttons#cancel
- {
-   display: flex;
-   justify-content: center;
-   align-items: center;
- }
- 
- .buttons#approvalBtn
- {
-   margin-left: 146px;
- }
- 
+
  
  .buttons#approvalCancel
  {
@@ -547,5 +522,227 @@
    height: 100%;
  }
  
+/*list of patients modals*/
+/*first patient*/
+.doctorA form
+{
+  width: 600px;
+  height: 467.1px;
+  background-color: #fff;
+  padding: 1em;
+  border-radius: 5px;
+}
+
+.doctorA form div
+{
+  height: 100%;
+  width: 100%;
+}
+
+.doctorA
+{
+  height: 100%;
+  width: 100%;
+}
+
+.doctorA.active
+{
+  top: 50%;
+  visibility: visible;
+  opacity: 1;
+  transition: 0.5s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0,0,0,0.5);
+}
+
+
+
+.doctorA
+{
+  position: fixed;
+  top: 40%;
+  left:50%;
+  transform: translate(-50%, -50%);
+  width: 600px;
+  padding:50px;
+  box-shadow: 0 5px 30px rgba(0,0,0,0.30);
+  background: #fff;
+  visibility: hidden;
+  opacity: 0;
+  transition: 0.5s;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+}
+
+/*doctors modal 2 */
+
+
+.patientA form
+{
+  width: 600px;
+  height: 467.1px;
+  background-color: #fff;
+  padding: 1em;
+  border-radius: 5px;
+}
+
+.patientA form div
+{
+  height: 100%;
+  width: 100%;
+}
+
+.patientA
+{
+  height: 100%;
+  width: 100%;
+}
+
+.patientA.active
+{
+  top: 50%;
+  visibility: visible;
+  opacity: 1;
+  transition: 0.5s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0,0,0,0.5);
+}
+
+
+.patientA
+{
+  position: fixed;
+  top: 40%;
+  left:50%;
+  transform: translate(-50%, -50%);
+  width: 600px;
+  padding:50px;
+  box-shadow: 0 5px 30px rgba(0,0,0,0.30);
+  background: #fff;
+  visibility: hidden;
+  opacity: 0;
+  transition: 0.5s;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+}
+
+/*2nd patient*/
+
+.doctorA form
+{
+  width: 600px;
+  height: 467.1px;
+  background-color: #fff;
+  padding: 1em;
+  border-radius: 5px;
+}
+
+.doctorA form div
+{
+  height: 100%;
+  width: 100%;
+}
+
+.doctorA
+{
+  height: 100%;
+  width: 100%;
+}
+
+.doctorA.active
+{
+  top: 50%;
+  visibility: visible;
+  opacity: 1;
+  transition: 0.5s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0,0,0,0.5);
+}
+
+
+
+.doctorA
+{
+  position: fixed;
+  top: 40%;
+  left:50%;
+  transform: translate(-50%, -50%);
+  width: 600px;
+  padding:50px;
+  box-shadow: 0 5px 30px rgba(0,0,0,0.30);
+  background: #fff;
+  visibility: hidden;
+  opacity: 0;
+  transition: 0.5s;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+}
+
+/*doctors modal 2 */
+
+
+.patientB form
+{
+  width: 600px;
+  height: 467.1px;
+  background-color: #fff;
+  padding: 1em;
+  border-radius: 5px;
+}
+
+.patientB form div
+{
+  height: 100%;
+  width: 100%;
+}
+
+.patientB
+{
+  height: 100%;
+  width: 100%;
+}
+
+.patientB.active
+{
+  top: 50%;
+  visibility: visible;
+  opacity: 1;
+  transition: 0.5s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0,0,0,0.5);
+}
+
+
+.patientB
+{
+  position: fixed;
+  top: 40%;
+  left:50%;
+  transform: translate(-50%, -50%);
+  width: 600px;
+  padding:50px;
+  box-shadow: 0 5px 30px rgba(0,0,0,0.30);
+  background: #fff;
+  visibility: hidden;
+  opacity: 0;
+  transition: 0.5s;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+}
+
+
+
  
   

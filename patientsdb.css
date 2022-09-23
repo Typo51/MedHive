@@ -34,34 +34,6 @@ body{
   
  
   
-  @media screen and (max-width:600px)
-  {
-    .patient-list-container-outside
-    {
-        width: 95%;
-    }
-  }
-  
-  @media screen and (max-width:600px)
-  {
-    .header
-    {
-  
-        flex-direction: column;
-        width: 100%;
-       
-    }
-    .header div
-    {
-        width: 100%;
-        margin-top: 10px;
-    }
-    .header div button
-    {
-        width:100%;
-        
-    }
-  }
  /*SIDEBAR CSS*/
  
  .sidebar{
@@ -253,4 +225,32 @@ body{
  }
  
  
+ @media screen and (max-width:730px)
+ {
+   .patient-list-container-outside
+   {
+       width: 95%;
+   }
+ }
+ 
+ @media screen and (max-width:730px)
+ {
+   .header
+   {
+ 
+       flex-direction: column;
+       width: 100%;
+      
+   }
+   .header div
+   {
+       width: 100%;
+       margin-top: 10px;
+   }
+   .header div button
+   {
+       width:100%;
+       
+   }
+ }
  

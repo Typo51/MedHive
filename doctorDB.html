@@ -1,9 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Doctor's Dashboard</title>
-	<link rel="stylesheet" href="doctorDB.css">
+	<link rel="stylesheet" href="doctordb.css">
+	<link rel="stylesheet" href="buttons.css">
+	<link rel="stylesheet" href="modals.css">
 	<link rel="stylesheet" type="text/css" href="iframe.css">
 	<script src="events.js"></script>
 
@@ -17,41 +21,21 @@
 
 
 	<!-- NAVBAR	 -->
-  <nav>
-    <div class="nav-wrapper">
-      <a href="#" class="brand-logo"><h4 class="medhive"> Medhive </h4></a>
-      <ul id="nav-mobile" class="right hide-on-med-and-down">
-        <li><a href="sass.html">Sass</a></li>
-        <li><a href="badges.html">Components</a></li>
-        <li><a href="collapsible.html">JavaScript</a></li>
-      </ul>
-    </div>
-  </nav>
 
 
-<div class="wrapper">
 
-	<!-- SIDE BAR -->
-    <div class="sidebar">
-        <ul>
-            <li><a href="#"><i class="fa-solid fa-table-columns"></i> Dashboard </a></li>
-            <li><a href="#"><i class="fa-solid fa-user"></i> Profile </a></li>
-            <li><a href="#"><i class="fa-solid fa-sliders"></i> Logout </a></li>
-        </ul> 
-    </div>
 
 
     <!-- ABOVE BUTTONS TO OPEN MODALS -->
 
     <div class="main_content">
         <div class="header">
-        	<br>
         	<div>
-        		<a href="#" onclick="appointment()"> <button class="waves-effect waves-light btn">Accept appointment</button></a> 
+        		<a href="#" onclick="appointment()"> <button class="waves-effect waves-light btn">Accept an Appointment</button></a> 
         	</div>
 	
         	<div>
-				<a href="#" onclick="conference()"> <button class="waves-effect waves-light btn">Create a conference</button></a> 
+				<a href="#" onclick="conference()"> <button class="waves-effect waves-light btn">Create a Conference</button></a> 
         	</div>
         	</a> 
         	<div>
@@ -62,8 +46,8 @@
 
         <!-- PATIENT LISTS -->
         
-        <center>
-        <div class="patient-list-container">
+    
+        <div class="patient-list-container-outside">
 			<table class="list">
 				<thead>
 					<tr>
@@ -75,14 +59,13 @@
 				</thead>
 	
 				<tbody>
-					<div>
 						<tr class="clickable">
 							<td><img src="./images/profile.webp"  width="40px" height="40px"></a></td>
 							<td>Jasper Panzo</a></td>
 							<td>11:35 AM</a></td>
 							<td>Online</a></td>
 						</tr>
-					</div>	
+						
 						<tr class="clickable">
 							<td><img src="./images/profile.webp" width="40px" height="40px"></a></td>
 							<td>Jasper Panzo</a></td>
@@ -139,7 +122,7 @@
 	</div>
 
         </div> 
-        </center>
+    
     </div>
 </div>
 
@@ -148,9 +131,8 @@
 			<!-- APPOINTMENT MODAL -->
 <div class="popup" id="modal1" >
 	<div class="container">
-		<h5>Please select a patient</h5>
-		<center>
-			<div class="patient-list-container">
+		<h5>Please select a Doctor</h5>
+			<div class="patient-list-container-inside">
 				<table class="list">
 					<thead>
 						<tr>
@@ -166,7 +148,7 @@
 								<td><a data-toggle="#" onclick="patientModal1()"><img src="./images/profile.webp"  width="40px" height="40px"></a></td>
 								<td><a href="#" onclick="patientModal1()">Jasper Panzo</a></td>
 								<td><a href="#" onclick="patientModal1()">11:35 AM</a></td>
-								<td><a href="#" onclick="patientModal1()">Online</a></td>
+								<td><a href="#" onclick="patientsModal1()">Online</a></td>
 							</tr>
 							
 							<tr class="clickable">
@@ -219,13 +201,10 @@
 							</tr>
 						
 					</tbody>
-		
-		
 				</table>
-		</center>
-		<div class="blurbg">
-			<a href="#" onclick="appointment()"> <button class="buttons" id="cancel">Cancel</button></a> 
-		</div>
+	</div>
+	<div class="blurbg">
+		<a href="#" onclick="appointment()"> <button class="buttons" id="cancel">Cancel</button></a> 
 	</div>
 </div>
 
@@ -236,7 +215,7 @@
 			<div class="profile-box">
 				<label>Please input the Conference ID or Link</label>
 				<input type="link" name="url">
-				<a href="#"> 
+				<a href="#" onclick="conference()"> 
 					<button class="buttons" id="conference">Enter</button>
 				</a>
 			</div>
@@ -282,27 +261,11 @@
 				</tr>
 			</tbody>
 		</table>
-		<a href="#" onclick="logs()"> <button class="buttons" id="cancel">Cancel</button></a> <a href="#" onclick="logs()">
+		<a href="#" onclick=""> <button class="buttons" id="cancel">Cancel</button></a> <a href="#" onclick="">
+		</a>
 	</div>
 </div>
 
-		<!-- DOCTOR CARDS MODAL -->
-<div class="docpop" id="modaldoc" >
-
-
-	<div class="card-container">
-			<div class="profile-box">
-				<img src="./images/profile.webp" class="profile-pic">
-				<h4>Insert Name Here</h4>
-				<h6>Insert Speciality Here</h6>
-				<h6>Insert Clinic and Address</h6>
-				<a href="#" onclick="appointment()"> <button class="buttons" id="cancel">Cancel</button></a> <a href="#" onclick="appointment()"> <button class="buttons" id="appoint">Appoint</button></a> 
-			</div>
-
-	</div>
-	
-
-	</div>
 
 	<!--Patients list modals-->
 
@@ -315,12 +278,15 @@
 					<h4>Insert Name Here</h4>
 					<h6>Insert Speciality Here</h6>
 					<h6>Insert Clinic and Address</h6>
-					<a href="#" onclick="patientModal1()"> 
-						<button class="buttons" id="approvalCancel">Cancel</button>
-					</a>
-					<a href="#" onclick="patientModal1()"> 
-						<button class="buttons" id="approvalBtn">Appoint</button>
-					</a>
+					<div class="profile-btn">
+						
+						<a href="#" onclick="patientModal1()"> 
+							<button class="buttons" id="approvalCancel">Cancel</button>
+						</a>
+						<a href="#" onclick="patientModal1()"> 
+							<button class="buttons" id="approvalBtn">Appoint</button>
+						</a>
+					</div>
 				</div>
 	
 		</div>
@@ -338,18 +304,22 @@
 					<h4>Insert Name Here</h4>
 					<h6>Insert Speciality Here</h6>
 					<h6>Insert Clinic and Address</h6>
-					<a href="#" onclick="patientModal2()"> 
-						<button class="buttons" id="approvalCancel">Cancel</button>
-					</a>
-					<a href="#" onclick="patientModal2()"> 
-						<button class="buttons" id="approvalBtn">Appoint</button>
-					</a>
+					<div class="profile-btn">
+						<a href="#" onclick="patientModal2()"> 
+							<button class="buttons" id="approvalCancel">Cancel</button>
+						</a>
+						<a href="#" onclick="patientModal2()"> 
+							<button class="buttons" id="approvalBtn">Appoint</button>
+						</a>
+					</div>
 				</div>
+		
+			</div>
 	
 		</div>
 		
 	
-		</div>
+		
 	</div>
 
 
