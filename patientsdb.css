@@ -2,25 +2,7 @@ body{
     background-color: #f3f5f9;
  }
  
- /*NAVBAR CSS*/
- 
- .nav-wrapper
- {
-   background-color: #0f8d7f;
- }
 
- 
- .nav-links
- {
-    float: right;
- }
- 
- 
- .wrapper{
-   display: flex;
-   position: relative;
-
- }
  /*PATIENT LIST CSS*/
 
 .patient-list-container-outside{
@@ -62,39 +44,6 @@ body{
         
     }
   }
- /*SIDEBAR CSS*/
- 
- .sidebar{
-   width: 200px;
-   height: 100%;
-   background: #0f8d7f;
-   padding: 30px 0px;
-   position: fixed;
-   border-radius: 0px 0px;
- }
- 
- .sidebar h3{
-   color: #fff;
-   text-transform: uppercase;
-   text-align: center;
-   margin-bottom: 30px;
-   text-shadow: 5px;
- }
- 
- .sidebar ul li{
-   padding: 10px;
-   list-style: none;
- }    
- 
- .sidebar ul li a{
-   color: #fff;
-   display: block;
-   text-decoration: none;
- }
- 
- .sidebar ul li:hover{
-   background-color: teal;
- }
      
  /*MAIN CONTENT CSS*/
  .main_content{
@@ -112,6 +61,23 @@ body{
    position: fixed;
  }
  
+/*WELCOME BUBBLE*/
+
+.welcome-bubble
+{
+  padding: 50px;
+  background-color: #fff;
+  border-radius: 80px;
+  margin-top: 20px;
+  width: 34%;
+  margin-left: 33%;
+  height: 150px;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+
+
+}
  /*BUTTONS ABOVE CSS*/
  
  .header{
@@ -252,5 +218,8 @@ body{
   padding-right:5px; 
  }
  
- 
+ .appointment-form
+ {
+  padding: 60px 10px 0px 10px;
+ }
  
