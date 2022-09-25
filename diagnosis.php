@@ -1,12 +1,31 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Prescription</title>
-<link rel="stylesheet" type="text/css" href="css/dropdown.css">
+	<title>Diagnosis</title>
+
+	<link rel="stylesheet" type="text/css" href="css/dropdown.css"> 
+
+	<!-- BOOTSTRAP -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <script src="https://kit.fontawesome.com/42135a69b7.js" crossorigin="anonymous">
+    </script>
 </head>
 <body>
 
-
+	<div class="main_content">
+        <div class="header">
+        	<div>
+        		<a href="#" > <button class="waves-effect waves-light btn">Upload</button></a> 
+        	</div>
+	
+        	<div>
+				<a href="#" > <button class="waves-effect waves-light btn">Update</button></a> 
+        	</div>
+        	<div>
+				<a href="#"> <button class="waves-effect waves-light btn">Delete</button></a> 
+    		</div>
+    	</div>
+	</div>
 
 
 <!-- FIRST DROPDOWN -->

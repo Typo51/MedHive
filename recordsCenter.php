@@ -1,5 +1,22 @@
 <?php 
- include('connect.php');
+ 	include('connect.php');
+
+	if(isset($_GET['id']))
+	{
+		$id = $_GET['id'];
+		$select_query="Select * from `patient` WHERE id = $id";
+		$result=mysqli_query($con,$select_query);
+
+	   while ($row=mysqli_fetch_assoc($result)) 
+		   {
+
+	 	$id=$row['id'];
+		$firstname=$row['first_name'];
+		 }
+
+
+	}
+
 
 
  ?>
@@ -9,8 +26,8 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title>Record's Center</title>
-	<link rel="stylesheet" type="text/css" href="recordsCenter.css">
+	<title> <?php echo "$firstname's" ?> Profile</title>
+	<link rel="stylesheet" type="text/css" href="css/recordsCenter.css">
 
 	<!-- BOOTSTRAP -->
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
@@ -24,12 +41,12 @@
 
 <?php 
 
-$select_query="Select * from `patient` WHERE id LIKE 3";
+$select_query="Select * from `patient` WHERE id LIKE $id";
 $result=mysqli_query($con,$select_query);
 
    while ($row=mysqli_fetch_assoc($result)) 
    {
-    $id=$row['id'];
+     $id=$row['id'];
      $surname=$row['last_name'];
      $firstname=$row['first_name'];
      $age=$row['age'];

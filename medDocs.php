@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Prescription</title>
+	<title>Medical Documents</title>
 <link rel="stylesheet" type="text/css" href="css/dropdown.css">
 </head>
 <body>
@@ -11,7 +11,7 @@
 
 <!-- FIRST DROPDOWN -->
 <div class="wrapper">
-	<button class="collapsible">Dr. Jasper Panzo</button>
+	<button class="collapsible">Medical Certificate</button>
 		<div class="content">
 			<button class="collapsible"><h4>09-10-22</h4></button>
 			  <div class="content">
@@ -31,7 +31,7 @@
 
 <!-- SECOND DROP DOWN -->
 <div class="wrapper">
-	<button class="collapsible">Dr. Earl Jake Mahilum</button>
+	<button class="collapsible">History Records</button>
 		<div class="content">
 			<button class="collapsible"><h4>09-10-22</h4></button>
 			  <div class="content">
@@ -51,7 +51,7 @@
 
 <!-- THIRD DROPDOWN -->
 <div class="wrapper">
-	<button class="collapsible">Dr. Kernel Fritz Paulo</button>
+	<button class="collapsible">Letters</button>
 		<div class="content">
 			<button class="collapsible"><h4>09-10-22</h4></button>
 			  <div class="content">
