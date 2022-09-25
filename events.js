@@ -64,3 +64,6 @@ function doctorsModal2()
    var blur = document.getElementById('blur');
    blur.classList.toggle('active');
 }
+
+
+
