@@ -2,6 +2,8 @@
  include('connect.php');
  ?>
 
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,10 +11,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Patient's Dashboard</title>
-	<link rel="stylesheet" href="patientsdb.css">
-	<link rel="stylesheet" href="buttons.css">
-	<link rel="stylesheet" href="modals.css">
-	<script src="events.js"></script>
+	<link rel="stylesheet" href="./css/patientsdb.css">
+	<link rel="stylesheet" href="./css/buttons.css">
+	<link rel="stylesheet" href="./css/modals.css">
 
 	<!-- BOOTSTRAP -->
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
@@ -57,61 +58,59 @@
         	<div>
 				<a href="#" onclick="conference()"> <button class="waves-effect waves-light btn">Join a conference</button></a> 
         	</div>
-        	</a> 
+        	
         	<div>
 				<a href="#" onclick="logs()"> <button class="waves-effect waves-light btn">Appointment Logs</button></a> 
         	</div>
         	</a>
         </div>
 
+        <!-- DOCTORS LIST -->
+        
+        <div class="patient-list-container-outside">
+			<table class="list">
+				<thead>
+					<tr>
+						<th style="width: 70px;"> </th>
+						<th>Name</th>
+						<th>Appointment Schedule</th>
+						<th>Status</th>
+					</tr>
+				</thead>
+	
+				<tbody>
+					<?php 
 
-        <!-- PATIENT LISTS -->
+						$select_query="Select * from `doctor` WHERE status = 1";
+						$result=mysqli_query($con,$select_query);
+					$i=1;
+					if($result)
+					{
+					   while ($row=mysqli_fetch_assoc($result)) 
+					   {
+					    $id=$row['id'];
+					     $surname=$row['last_name'];
+					     $firstname=$row['first_name'];
+					     $status=$row['status'];
+					     
+					     echo " 
+					     
+							<tr class='clickable'>
+							<td><img src='./images/profile.webp'  width='40px' height='40px'></a></td>
+							<td>$firstname $surname</a></td>
+							<td>11:35 AM</a></td>
+							<td>Online</a></td>
+							</tr>";
 
-    <div class="patient-list-container-outside">
-		<table class="list">
-			<thead>
-				<tr>
-					<th style="width: 70px;"> </th>
-					<th>Name</th>
-					<th>Appointment Schedule</th>
-					<th>Status</th>
-				</tr>
-			</thead>
+					    $i++;
+					   }
+					}
 
-			<tbody>
-<?php 
+					else{
+					    die(mysqli_error($con));
+					   }
 
-	$select_query="Select * from `doctor` WHERE status = 1";
-	$result=mysqli_query($con,$select_query);
-$i=1;
-if($result)
-{
-   while ($row=mysqli_fetch_assoc($result)) 
-   {
-    $id=$row['id'];
-     $surname=$row['last_name'];
-     $firstname=$row['first_name'];
-     $status=$row['status'];
-     
-     echo " 
-     
-		<tr class='clickable'>
-		<td><img src='./images/profile.webp'  width='40px' height='40px'></a></td>
-		<td>$firstname $surname</a></td>
-		<td>11:35 AM</a></td>
-		<td>Online</a></td>
-		</tr>";
-
-    $i++;
-   }
-}
-
-else{
-    die(mysqli_error($con));
-   }
-
-?>
-						
+					?>					
 				</tbody>
 	
 	
@@ -125,9 +124,7 @@ else{
 
 			<!-- MODALS -->
 
-
-			<!-- APPOINTMENT MODAL -->
-
+			<!-- SELECT DOCTOR MODAL -->
 <div class="popup" id="modal1" >
 	<div class="container">
 		<h5>Please select a Doctor</h5>
@@ -143,69 +140,71 @@ else{
 					</thead>
 		
 					<tbody>
+							
+							<?php 
 
-<?php 
+								$select_query="Select * from `doctor` WHERE status = 1";
+								$result=mysqli_query($con,$select_query);
 
-	$select_query="Select * from `doctor` WHERE status = 1";
-	$result=mysqli_query($con,$select_query);
+							$i=1;
+							if($result)
+							{
+							   while ($row=mysqli_fetch_assoc($result)) 
+							   {
+							    $id=$row['id'];
+							     $surname=$row['last_name'];
+							     $firstname=$row['first_name'];
+							     $status=$row['status'];
+							     
+							     echo " 
+							     
+									<tr class='clickable'>
+										<td><a data-toggle='#' onclick='doctorsModal1()'><img src='./images/profile.webp'  width='40px' height='40px'></a></td>
+										<td><a href='#' onclick='doctorsModal1()''>$firstname $surname</a></td>
+										<td><a href='#' onclick='doctorsModal1()'>11:35 AM</a></td>
+										<td><a href='#' onclick='doctorsModal1()'>Online</a></td>
+									</tr>";
 
-$i=1;
-if($result)
-{
-   while ($row=mysqli_fetch_assoc($result)) 
-   {
-    $id=$row['id'];
-     $surname=$row['last_name'];
-     $firstname=$row['first_name'];
-     $status=$row['status'];
-     
-     echo " 
-     
-		<tr class='clickable'>
-			<td><a data-toggle='#' onclick='doctorsModal1()'><img src='./images/profile.webp'  width='40px' height='40px'></a></td>
-			<td><a href='#' onclick='doctorsModal1()''>$firstname $surname</a></td>
-			<td><a href='#' onclick='doctorsModal1()'>11:35 AM</a></td>
-			<td><a href='#' onclick='doctorsModal1()'>Online</a></td>
-		</tr>";
+							    $i++;
+							   }
+							}
 
-    $i++;
-   }
-}
+							else{
+							    die(mysqli_error($con));
+							   }
 
-else{
-    die(mysqli_error($con));
-   }
-
-?>
-				</tbody>
+							?>
+						
+					</tbody>
 				</table>
 	</div>
 	<div class="blurbg">
 		<a href="#" onclick="appointment()"> <button class="buttons" id="cancel">Cancel</button></a> 
 	</div>
+	</div>
 </div>
 
 
 	<!-- CONFERENCE MODAL -->
-<div class="popup2" id="modal2" >
-		<div class="card-container">
-			<div class="profile-box">
-				<label>Please input the Conference ID or Link</label>
+ <div class="popup2" id="modal2">
+		<div class="conference-container">
+			<div class = "conference-box">
+				<label class="labeling">Please input the Conference ID or Link</label>
 				<input type="link" name="url">
 				<a href="#" onclick="conference()"> 
 					<button class="buttons" id="conference">Enter</button>
 				</a>
+			
 			</div>
+			
 
-	</div>
+		</div>
 
 
-	</div>
-</div>
+	</div> 
 
 
 	<!-- APPOINTMENT LOG MODAL -->
-
 <div class="popup3" id="modal3" >
 	<div class="container">
 		<h4>Appointment Logs</h4>
@@ -239,65 +238,45 @@ else{
 				</tr>
 			</tbody>
 		</table>
-		<a href="#" onclick="logs()"> <button class="buttons" id="cancel">Cancel</button></a> <a href="#" onclick="">
+		<a href="#" onclick="logs()"> <button class="buttons" id="cancel">Cancel</button></a> 
 	</div>
 </div>
 
 
-	<!--Patients list modals-->
+	<!--SET APPOINTMENT MODAL-->
 
 	<div class="doctorA" id="doctor1" >
-
-
-        <form method="POST" >
-            <div class="appointment-form">
-                <label>Select a schedule</label>
-                    <input type="date" name="schedule">
-                    <input type="time" name="time">
-                <br>
-                <label>Type of consulation</label>
-                    <select class="dropdown-trigger btn">
-                        <option>Face to face</option>
-                        <option>Virtual</option>
-                    </select>
-                <br>
-                    <a href="#" onclick="doctorsModal1()"> <button class="buttons" id="cancel">Cancel</button></a> <a href="#" onclick="doctorsModal1()"> <button class="buttons" id="appoint">Appoint</button></a> 
-            </div>
-        </form>
-	</div>
-
-	<div class="doctorB" id="doctor2" >
-
-
-		
         <form method="POST">
-            <div>
-                <label>Please select a doctor</label>
-                    <select class="dropdown-trigger btn">
-                        <option>Doctor 1</option>
-                        <option>Doctor 2</option>
-                        <option>Doctor 3</option>
-                    </select>
-    
-                <br>
+            <div class="appointment-wrapper">
                 <label>Select a schedule</label>
                     <input type="date" name="schedule">
                     <input type="time" name="time">
                 <br>
-                <label>Type of consulation</label>
+                <label>Type of consultation</label>
                     <select class="dropdown-trigger btn">
                         <option>Face to face</option>
                         <option>Virtual</option>
                     </select>
                 <br>
-                    <a href="#" onclick="doctorsModal2()"> <button class="buttons" id="cancel">Cancel</button></a> <a href="#" onclick="doctorsModal2()"> <button class="buttons" id="appoint">Appoint</button></a> 
+				<div class="profile-btn">
+						
+					<a href="#" onclick="doctorsModal1()"> 
+						<button class="buttons" id="approvalCancel">Cancel</button>
+					</a>
+					<a href="#" onclick="doctorsModal1()"> 
+						<button class="buttons" id="approvalBtn">Appoint</button>
+					</a>
+				</div>
             </div>
         </form>
 	</div>
-	</div>
 
 
-</div>
+
+
+
+
+	<script src="./js/events.js"></script>
 </body>
 </html>
 

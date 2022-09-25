@@ -98,7 +98,7 @@
    background: #fff;
    visibility: hidden;
    opacity: 0;
-   transition: 0.5s;
+   transition: 0.5s ease-out;
    z-index: 1;
    width: 100%;
    height: 100%;
@@ -111,7 +111,7 @@
    top: 50%;
    visibility: visible;
    opacity: 1;
-   transition: 0.5s;
+   transition: 0.5s ease-out;
    justify-content: center;
    align-items: center;
    background-color: rgba(0,0,0,0.5);
@@ -129,7 +129,7 @@
    background: #fff;
    visibility: hidden;
    opacity: 0;
-   transition: 0.5s;
+   transition: 0.5s ease-out;
    z-index: 1;
    width: 100%;
    height: 100%;
@@ -143,7 +143,7 @@
    top: 50%;
    visibility: visible;
    opacity: 1;
-   transition: 0.5s;
+   transition: 0.5s ease-out;
    display: flex;
    justify-content: center;
    align-items: center;
@@ -203,7 +203,7 @@
    top: 50%;
    visibility: visible;
    opacity: 1;
-   transition: 0.5s;
+   transition: 0.5s ease-out;
    display: flex;
    justify-content: center;
    align-items: center;
@@ -223,7 +223,7 @@
    background: #fff;
    visibility: hidden;
    opacity: 0;
-   transition: 0.5s;
+   transition: 0.5s ease-out;
    z-index: 1;
    width: 100%;
    height: 100%;
@@ -261,7 +261,7 @@
    top: 50%;
    visibility: visible;
    opacity: 1;
-   transition: 0.5s;
+   transition: 0.5s ease-out;
    justify-content: center;
    align-items: center;
    background-color: rgba(0,0,0,0.5);
@@ -279,7 +279,7 @@
    background: #fff;
    visibility: hidden;
    opacity: 0;
-   transition: 0.5s;
+   transition: 0.5s ease-out;
    z-index: 3;
    width: 100%;
    height: 100%;
@@ -324,6 +324,7 @@
   display: flex;
   flex-direction:row;
   align-items: center;
+  margin-top: -100px;
  }
 
  .profile-btn a{
@@ -368,6 +369,8 @@
  {
    height: 100%;
    width: 100%;
+   padding: 100px;
+
  }
  
  .doctorA.active
@@ -375,7 +378,7 @@
    top: 50%;
    visibility: visible;
    opacity: 1;
-   transition: 0.5s;
+   transition: 0.5s ease-out;
    display: flex;
    justify-content: center;
    align-items: center;
@@ -401,11 +404,18 @@
    background: #fff;
    visibility: hidden;
    opacity: 0;
-   transition: 0.5s;
+   transition: 0.5s ease-out;
    z-index: 1;
    width: 100%;
    height: 100%;
  }
+
+.appointment-wrapper
+{
+  margin-top: 50px;
+   padding: 30px;
+}
+
  
  /*doctors modal 2 */
  
@@ -436,7 +446,7 @@
    top: 50%;
    visibility: visible;
    opacity: 1;
-   transition: 0.5s;
+   transition: 0.5s ease-out;
    display: flex;
    justify-content: center;
    align-items: center;
@@ -462,7 +472,7 @@
    background: #fff;
    visibility: hidden;
    opacity: 0;
-   transition: 0.5s;
+   transition: 0.5s ease-out;
    z-index: 1;
    width: 100%;
    height: 100%;
@@ -499,7 +509,7 @@
   top: 50%;
   visibility: visible;
   opacity: 1;
-  transition: 0.5s;
+  transition: 0.5s ease-out;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -520,7 +530,7 @@
   background: #fff;
   visibility: hidden;
   opacity: 0;
-  transition: 0.5s;
+  transition: 0.5s ease-out;
   z-index: 1;
   width: 100%;
   height: 100%;
@@ -558,7 +568,7 @@
   top: 50%;
   visibility: visible;
   opacity: 1;
-  transition: 0.1s;
+  transition: 0.5s ease-out;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -578,7 +588,7 @@
   background: #fff;
   visibility: hidden;
   opacity: 0;
-  transition: 0.1s;
+  transition: 0.5s ease-out;
   z-index: 1;
   width: 100%;
   height: 100%;
@@ -671,7 +681,7 @@
   top: 50%;
   visibility: visible;
   opacity: 1;
-  transition: 0.5s;
+  transition: 0.5s ease-out;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -691,7 +701,7 @@
   background: #fff;
   visibility: hidden;
   opacity: 0;
-  transition: 0.5s;
+  transition: 0.5s ease-out;
   z-index: 1;
   width: 100%;
   height: 100%;
