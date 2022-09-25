@@ -42,13 +42,12 @@
 
 .buttons#approvalBtn
 {
-  
-  margin: 0;
+  margin-bottom: -280px;
 }
 
 
 .buttons#approvalCancel
 {
   
-  margin: 0;
+  margin-bottom: -280px;
 }

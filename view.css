@@ -1,0 +1,43 @@
+.patientA form
+{
+  width: 600px;
+  height: 467.1px;
+  background-color: #fff;
+  padding: 1em;
+  border-radius: 5px;
+}
+
+.patientA form div
+{
+  height: 100%;
+  width: 100%;
+}
+
+.patientA img
+{
+  height: 30px;
+  width: 30px;
+}
+
+
+.patientA
+{
+  position: fixed;
+  top: 40%;
+  left:50%;
+  transform: translate(-50%, -50%);
+  width: 600px;
+  padding:50px;
+  box-shadow: 0 5px 30px rgba(0,0,0,0.30);
+  background: #fff;
+  visibility: visible;
+  opacity: 1  ;
+  transition: 0.5s ease-out;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+

@@ -286,7 +286,7 @@
  }
  
  
- /*DOCTOR CARD CSS*/
+ /*PATIENT PROFILE CARD CSS*/
  
  .card-container
  {
@@ -296,6 +296,7 @@
    display: flex;
    background-color: #f3f5f9;
    width: 500px;
+   height: 450px;
 
  }
  
@@ -305,7 +306,8 @@
    align-items: center;
    flex-direction: column;
    justify-content: center;
-   padding-bottom: 10px ;
+   margin-bottom: 150px; 
+
  }
  
 
