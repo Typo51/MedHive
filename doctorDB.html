@@ -5,11 +5,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Doctor's Dashboard</title>
-	<link rel="stylesheet" href="doctordb.css">
-	<link rel="stylesheet" href="buttons.css">
-	<link rel="stylesheet" href="modals.css">
-	<link rel="stylesheet" type="text/css" href="iframe.css">
-	<script src="events.js"></script>
+	<link rel="stylesheet" href="./CSS/doctordb.css">
+	<link rel="stylesheet" href="./CSS/buttons.css">
+	<link rel="stylesheet" href="./CSS/modals.css">
+	<script src="./javascript/events.js"></script>
 
 	<!-- BOOTSTRAP -->
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
@@ -33,11 +32,6 @@
         	<div>
         		<a href="#" onclick="appointment()"> <button class="waves-effect waves-light btn">Accept an Appointment</button></a> 
         	</div>
-	
-        	<div>
-				<a href="#" onclick="conference()"> <button class="waves-effect waves-light btn">Create a Conference</button></a> 
-        	</div>
-        	</a> 
         	<div>
 				<a href="#" onclick="logs()"> <button class="waves-effect waves-light btn">Appointment Logs</button></a> 
         	</div>
@@ -207,25 +201,7 @@
 		<a href="#" onclick="appointment()"> <button class="buttons" id="cancel">Cancel</button></a> 
 	</div>
 </div>
-
-
-	<!-- CONFERENCE MODAL -->
-<div class="popup2" id="modal2" >
-		<div class="card-container">
-			<div class="profile-box">
-				<label>Please input the Conference ID or Link</label>
-				<input type="link" name="url">
-				<a href="#" onclick="conference()"> 
-					<button class="buttons" id="conference">Enter</button>
-				</a>
-			</div>
-
-	</div>
-
-
-	</div>
 </div>
-
 
 	<!-- APPOINTMENT LOG MODAL -->
 <div class="popup3" id="modal3" >
@@ -261,7 +237,8 @@
 				</tr>
 			</tbody>
 		</table>
-		<a href="#" onclick=""> <button class="buttons" id="cancel">Cancel</button></a> <a href="#" onclick="">
+		<div></div>
+		<a href="#" onclick="logs()"> <button class="buttons" id="cancel">Cancel</button></a> 
 		</a>
 	</div>
 </div>

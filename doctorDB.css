@@ -100,7 +100,7 @@ display: flex;
 }
 .header div
 {
-  width:calc(100% / 3 - 10px)
+  width:calc(100% / 2 - 10px)
 }
 .header div button
 {
