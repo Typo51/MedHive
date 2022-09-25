@@ -5,11 +5,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Patient's Dashboard</title>
-	<link rel="stylesheet" href="patientsdb.css">
-	<link rel="stylesheet" href="buttons.css">
-	<link rel="stylesheet" href="modals.css">
-	<link rel="stylesheet" type="text/css" href="iframe.css">
-	<script src="events.js"></script>
+	<link rel="stylesheet" href="./CSS/patientsdb.css">
+	<link rel="stylesheet" href="./CSS/buttons.css">
+	<link rel="stylesheet" href="./CSS/modals.css">
+	<script src="./javascript/events.js"></script>
 
 	<!-- BOOTSTRAP -->
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
@@ -37,7 +36,7 @@
         	<div>
 				<a href="#" onclick="conference()"> <button class="waves-effect waves-light btn">Join a conference</button></a> 
         	</div>
-        	</a> 
+        	
         	<div>
 				<a href="#" onclick="logs()"> <button class="waves-effect waves-light btn">Appointment Logs</button></a> 
         	</div>
@@ -206,25 +205,30 @@
 	<div class="blurbg">
 		<a href="#" onclick="appointment()"> <button class="buttons" id="cancel">Cancel</button></a> 
 	</div>
+	</div>
 </div>
 
 
 	<!-- CONFERENCE MODAL -->
-<div class="popup2" id="modal2" >
-		<div class="card-container">
-			<div class="profile-box">
-				<label>Please input the Conference ID or Link</label>
+ <div class="popup2" id="modal2">
+		<div class="conference-container">
+			<div class = "conference-box">
+				<label class="labeling">Please input the Conference ID or Link</label>
 				<input type="link" name="url">
 				<a href="#" onclick="conference()"> 
 					<button class="buttons" id="conference">Enter</button>
 				</a>
+			
 			</div>
+			
 
-	</div>
+		</div>
 
 
-	</div>
-</div>
+	</div> 
+
+
+
 
 
 	<!-- APPOINTMENT LOG MODAL -->
@@ -261,8 +265,7 @@
 				</tr>
 			</tbody>
 		</table>
-		<a href="#" onclick=""> <button class="buttons" id="cancel">Cancel</button></a> <a href="#" onclick="">
-			</a>
+		<a href="#" onclick="logs()"> <button class="buttons" id="cancel">Cancel</button></a> 
 	</div>
 </div>
 
@@ -286,10 +289,10 @@
                 <br>
 				<div class="profile-btn">
 						
-					<a href="#" onclick="patientModal1()"> 
+					<a href="#" onclick="doctorsModal1()"> 
 						<button class="buttons" id="approvalCancel">Cancel</button>
 					</a>
-					<a href="#" onclick="patientModal1()"> 
+					<a href="#" onclick="doctorsModal1()"> 
 						<button class="buttons" id="approvalBtn">Appoint</button>
 					</a>
 				</div>
@@ -312,10 +315,10 @@
                 <br>
 				<div class="profile-btn">
 
-					<a href="#" onclick="patientModal2()"> 
-						<button class="buttons" id="approvalCancel">Cancel</button>
+					<a href="#" onclick="doctorsModal2()"> 
+						<button class="buttons" id="approvalCancel" data-toggle="doctorB" data-target="doctor2">Cancel</button>
 					</a>
-					<a href="#" onclick="patientModal2()"> 
+					<a href="#" onclick="doctorsModal2()"> 
 						<button class="buttons" id="approvalBtn">Appoint</button>
 					</a>
 				</div>

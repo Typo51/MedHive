@@ -95,7 +95,7 @@ body{
    max-width: 95%;
    min-width: 60%;
    align-items: center;
-   justify-content: space-between;
+   justify-content:space-between;
  }
 .header div
 {
