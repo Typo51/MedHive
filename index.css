@@ -10,7 +10,7 @@ body
 }
 
 
-.container
+.dashboard-container
 {
     display: flex;
     flex-direction: row;
@@ -21,7 +21,7 @@ body
 
 
 
-.container .container-body
+.dashboard-container .container-body
 {
     height: 100%;
     width: calc(100% - 75px);
@@ -227,27 +227,27 @@ body
 
 
 
-.container.active .sidebar
+.dashboard-container.active .sidebar
 {
   width: 280px;
 }
 
-.container.active .container-body
+.dashboard-container.active .container-body
 {
   width: calc(100%-75px);
 }
 
-.container .sidebar li span
+.dashboard-container .sidebar li span
 {
     display: none;
     
 }
-.container.active .sidebar li span
+.dashboard-container.active .sidebar li span
 {
   display: block;
 }
 
-.container.active .hover-container{
+.dashboard-container.active .hover-container{
    
    
     display: none;
