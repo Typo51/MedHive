@@ -3,7 +3,7 @@ A web application for our thesis
 
 
   MILESTONES: 
-    -add calendar availability feature
-    -admin dashboard feature
-    -emphasize the security and confidentiality
-    -add state the privacy notice or consent notice
+    1.) add calendar availability feature
+    2.) admin dashboard feature
+    3.) emphasize the security and confidentiality
+    4.) add state the privacy notice or consent notice
