@@ -1,0 +1,227 @@
+body{
+    background-color: #f3f5f9;
+ }
+ 
+ 
+ /*PATIENT LIST CSS*/
+
+.patient-list-container-outside{
+  max-width: 100%;
+  min-width: 60%;
+  max-height: 400px;
+  overflow-y: scroll;
+  border: 5px solid teal;
+  display: flex;
+  }
+  
+ .welcome-bubble
+{
+  padding-top: 50px;
+  background-color: #fff;
+  border-radius: 80px;
+  margin-top: 100px;
+  width: 35%;
+  margin-left: 30%;
+  height: 150px;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+
+}
+
+     
+ /*MAIN CONTENT CSS*/
+ .main_content{
+   width:100%;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   height: 100vh;
+   flex-direction: column;
+   margin-top: -80px;
+ }
+ 
+ .main_content#blur.active
+ {
+   filter:blur(20px);
+   position: fixed;
+ }
+ 
+ /*BUTTONS ABOVE CSS*/
+ 
+ .header{
+ 
+   padding-bottom: 20px;
+   background: #f3f5f9;
+   display: flex; 
+   border-radius:0px 50px 50px 0px;
+   max-width: 95%;
+   min-width: 60%;
+   align-items: center;
+   justify-content:space-between;
+ }
+.header div
+{
+    width:calc(100% / 3 - 10px)
+}
+.header div button
+{
+    width: 100%;
+    margin:0;
+    padding: 0;
+}
+
+ .waves-effect
+ {
+   margin-right: 10px;
+ }
+
+ 
+ .doctor-bubble
+ {
+   padding: 10px;
+   background-color: #fff;
+   margin-top: 20px;
+   width: 90%;
+   border-radius: 100px;
+ }
+ 
+ .doctor-bubble img
+ {
+   border-radius: 80px;
+   float: left;
+   height: 100px;
+   width: 100px;
+   margin-right: 20px;
+ }
+ 
+ 
+ .list-header{
+   padding: 5px;
+   display: flex;
+   z-index: 3;
+   
+ }
+ 
+ .list-header h2
+ {
+   
+   position: relative;
+   font-size: 2vw;
+   color: white;
+   -webkit-text-stroke: 0.1vw black;
+   font-family: 'Poppins', sans-serif;
+   z-index: 4;
+   
+   
+ }
+
+
+   .doctor-bubble
+   {
+     padding: 10px;
+     background-color: #fff;
+     margin-top: 20px;
+     width: 90%;
+     border-radius: 100px;
+   }
+   
+   .doctor-bubble img
+   {
+     border-radius: 80px;
+     float: left;
+     height: 100px;
+     width: 100px;
+     margin-right: 20px;
+   }
+   
+   
+   .list-header{
+     padding: 5px;
+     display: flex;
+     z-index: 3;
+     
+   }
+   
+   .list-header h2
+   {
+     
+     position: relative;
+     font-size: 2vw;
+     color: white;
+     -webkit-text-stroke: 0.1vw black;
+     font-family: 'Poppins', sans-serif;
+     z-index: 4;
+     
+     
+   }
+ 
+ .blurbg
+ {
+    
+     background: #fff;
+     border-bottom: 1px solid #e0e4e8;
+     padding: 7px;
+     height: 110px; 
+     opacity: 0.8;
+     border-radius: 10px;
+  
+ 
+ }
+ 
+ .doctor-card div
+ {
+   padding: 10px;
+   width: 95%;
+   height: 100px;
+   border: solid;
+   border-radius: 10px;
+   margin: 10px 0px 0px 0px;
+   background-color: #f3f5f9;
+ }
+ 
+ 
+ .doc-status
+ {
+  float:right;
+  padding-right:5px; 
+ }
+
+ .appointment-wrapper
+ {
+   display: flex;
+   flex-direction: column;
+    width: 100%;
+ }
+
+ 
+ 
+ @media screen and (max-width:730px)
+ {
+   .patient-list-container-outside
+   {
+       width: 95%;
+   }
+ }
+ 
+ @media screen and (max-width:730px)
+ {
+   .header
+   {
+ 
+       flex-direction: column;
+       width: 100%;
+      
+   }
+   .header div
+   {
+       width: 100%;
+       margin-top: 10px;
+   }
+   .header div button
+   {
+       width:100%;
+       
+   }
+ }
+ 

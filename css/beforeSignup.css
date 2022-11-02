@@ -1,0 +1,47 @@
+.container
+{
+	display: grid;
+	justify-content: center;
+	align-content: center;
+	padding-top: 35vh;
+
+}
+
+
+.wrapper
+{
+	display: flex;
+	padding-top: 50px;
+}
+
+.box1 
+{ 
+	padding: 50px;
+	border: solid 1px black; 
+	color: black; 
+	margin-right: 100px; 
+}
+
+.box2
+{
+	padding: 50px;
+	border: solid 1px black;
+	color: black;
+}
+
+.button-container
+{
+	margin-top: 40px;
+	border: solid 1px black;
+	border-radius: 70px;
+	padding: -100px;
+	color: black;
+}
+
+.button
+{
+	padding: 46px;
+	margin-left: 150px;
+	text-decoration: none;
+	color: black;
+}

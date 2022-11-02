@@ -1,0 +1,15 @@
+body{
+	background-color: #f3f5f9;
+}
+
+.answerable{
+	position: relative;
+}
+
+.answerable::placeholder{
+	color: gray;
+}
+
+.center{
+	height: 50em;
+}
