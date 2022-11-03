@@ -18,21 +18,24 @@
 
 	<!-- BOOTSTRAP -->
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-	<link rel = "stylesheet" href="./css/verification.css">
+	<link rel = "stylesheet" href="./css/accountsMonitoring.css">
     <script src="https://kit.fontawesome.com/42135a69b7.js" crossorigin="anonymous"></script>
  </head>
  <body>
  	<div class="container">
  		<!-- DOCTOR APPLICANTS -->
  		<div class="doctor-container">
+            <div class= searchContainer>
+            <i class="fa-solid fa-magnifying-glass"></i>
+                        <input type="text" placeholder="Search...">   
+                    </div>
  			<table class="list">
-					<thead>
+					<thead>              
 						<tr>
-							
 							<th>Name</th>
 							<th>Specialization</th>
-							
-						
+                            <th>Account ID</th>
+                            <th>operations</th>
 						</tr>
 					</thead>
 		
