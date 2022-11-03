@@ -6,6 +6,7 @@
       $last_name=$_POST['last_name'];
       $gender=$_POST['gender'];
       $email=$_POST['email'];
+      $address=$_POST['address'];
       $username=$_POST['username'];
       $password=$_POST['password'];
       $specialization=$_POST['specialization'];
@@ -15,8 +16,9 @@
       $target = "ids/".basename($image);
 
 
-    $sql= "Select * From `account` Where first_name= '$first_name' and last_name= '$last_name'";
+    $sql= "Select * From `screening` Where first_name= '$first_name' and last_name= '$last_name'";
     $selectresult=mysqli_query($con, $sql);
+    $number = mysqli_num_rows($selectresult);
 
     if ($number>0)
     {
@@ -24,7 +26,7 @@
     }
     else
     {
-      $sql = "insert into `account` (first_name, last_name, gender, email,specialization, username, password, status, acc_type, pic_img) values ( '$first_name', '$last_name', '$gender','$email','$specialization','$username','$password', '$status', '$acc_type', '$image')";
+      $sql = "insert into `screening` (first_name, last_name, gender, email, address, specialization, username, password, status, acc_type, pic_img) values ( '$first_name', '$last_name', '$gender','$email', ' $address','$specialization','$username','$password', '$status', '$acc_type', '$image')";
       $result = mysqli_query($con, $sql);
       if($result)
       {
@@ -74,6 +76,11 @@
         <div class="txt_field">
           <input type="text" required="required" name="email">
           <label>Email</label>
+        </div>
+
+        <div class="txt_field">
+          <input type="text" required="required" name="address">
+          <label>Clinic Address</label>
         </div>
         
                <div class="gender">
