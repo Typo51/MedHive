@@ -4,6 +4,7 @@
      
       $first_name=$_POST['first_name'];
       $last_name=$_POST['last_name'];
+      $age=$_POST['age'];
       $gender=$_POST['gender'];
       $email=$_POST['email'];
       $username=$_POST['username'];
@@ -24,9 +25,9 @@
     }
     else
     {
-      $sql = "insert into `account` (first_name, last_name, gender, email, username, password, status, acc_type, pic_img) values ( '$first_name', '$last_name', '$gender','$email','$username','$password', '$status', '$acc_type', '$image')";
-      $result = mysqli_query($con, $sql);
-      if($result)
+      $sql1 = "insert into `screening` (first_name, last_name, age, gender, email, username, password, status, acc_type, pic_img) values ( '$first_name', '$last_name', '$age', '$gender','$email','$username','$password', '$status', '$acc_type', '$image')";
+      $result1 = mysqli_query($con, $sql1);
+      if($result1)
       {
         if (move_uploaded_file($_FILES['image']['tmp_name'], $target)) {
         echo "<script>alert('Upload Successful')</script>";
@@ -52,14 +53,14 @@
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
-    <title>Doctor Signup</title>
+    <title>Patient Signup</title>
   </head>
   <body>
   <div class="center">
 
     <div class="container my-5">
         <div class="header">
-          <h3>Doctor Registration</h3>
+          <h3>Patient Registration</h3>
         </div>
       <form method="post" enctype="multipart/form-data">
         <div class="txt_field">
@@ -70,6 +71,11 @@
         <div class="txt_field">
           <input type="text" required="required" name="last_name">
           <label>Last Name</label>
+        </div>
+
+        <div class="txt_field">
+          <input type="text" required="required" name="age">
+          <label>Age</label>
         </div>
       
         <div class="txt_field">

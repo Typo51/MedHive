@@ -3,7 +3,7 @@
 	include ('connect.php');
   include ('side.php');
 
-  $doctorID= $_SESSION['doctorID'];
+  $doctorID= $_SESSION['user_id'];
 	if(isset($_GET['acct_id']))
 	{
 		$id = $_GET['acct_id'];

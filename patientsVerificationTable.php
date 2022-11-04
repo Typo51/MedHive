@@ -28,9 +28,8 @@
  			<table class="list">
 					<thead>
 						<tr>
-							
+							<th>ID</th>
 							<th>Name</th>
-							<th>Specialization</th>
 							
 						
 						</tr>
@@ -40,9 +39,7 @@
 							
 							<?php 
 
-								
-							     
-								 $select_query="Select * from `screening`";
+								 $select_query="Select * from `screening` WHERE acc_type = '0'";
 						
 						$result=mysqli_query($con,$select_query);
 					$i=1;
@@ -54,16 +51,14 @@
 					    $id=$row['screen_acct_id'];
 					     $surname=$row['last_name'];
 					     $firstname=$row['first_name'];
-					     $specialty=$row['specialization'];
 						?>
 
 							   
 							     	
 									<tr class='clickable'>
-										<td><a data-toggle='#'><img src='./images/icon.png'  width='40px' height='40px'></a> </td>
-									<td><a href='doctorVerification.php?screen_acct_id=<?php echo $row['screen_acct_id']?>' onclick='doctorsModal1()''><?php echo " $firstname $surname"?></a></td>
-										<td><a href='doctorProfile.php?acct_id=<?php echo $row['acct_id']?>' onclick='doctorsModal1()'><?php echo "$specialty" ?></a></td>
-										
+										<td><a href='patientVerification.php?screen_acct_id=<?php echo $row['screen_acct_id']?>'><?php echo "$id"?></a></td>
+
+									<td><a href='patientVerification.php?screen_acct_id=<?php echo $row['screen_acct_id']?>' onclick='doctorsModal1()'><?php echo " $firstname $surname"?></a></td>
 									</tr>
 							<?php
 							    $i++;
@@ -77,13 +72,12 @@
 							?>
 						
 					</tbody>
+					
 				</table>
+				<a href="admindb.php" style="color: black;">Go Back</a>
 			</div>
 
- 		<!-- PATIENT APPLICANTS -->
- 		<div>
- 			
- 		</div>
+
 
  	</div>
  </body>

@@ -1,11 +1,10 @@
 <?php 
 
 	include('connect.php');
+
+
+
  ?>
-
-
-
-
 
  <!DOCTYPE html>
  <html>
@@ -23,18 +22,25 @@
  </head>
  <body>
  	<div class="container">
- 		<!-- DOCTOR APPLICANTS -->
  		<div class="doctor-container">
+
             <div class= searchContainer>
+            	<form method="GET">
             <i class="fa-solid fa-magnifying-glass"></i>
-                        <input type="text" placeholder="Search...">   
-                    </div>
+                <input type="text" placeholder="Search" name="search">
+                 <button type="submt" name="submit">Search</button>
+             </form>
+               
+            </div>
+
+
  			<table class="list">
 					<thead>              
 						<tr>
-							<th>Name</th>
-							<th>Specialization</th>
                             <th>Account ID</th>
+							<th>Last Name</th>
+							<th> First Name</th>
+							<th>Account Type</th>
                             <th>operations</th>
 						</tr>
 					</thead>
@@ -43,9 +49,40 @@
 							
 							<?php 
 
-								
-							     
-								 $select_query="Select * from `screening`";
+							/*IF MAY GI SEARCH AMO LANG NI MAG APPEAR*/	
+					
+					  $id = "";
+					  if(isset($_GET['submit']))
+					  {
+
+					    $id = $_GET['search'];
+
+					    $sql = "SELECT * from `account` WHERE last_name = '$id' OR acct_id = '$id'";
+					    $result = mysqli_query($con, $sql);
+
+					    if($result){
+					    	while($row = mysqli_fetch_array($result)){
+					    		$id = $row['acct_id'];
+					    		$surname = $row['last_name'];
+					    		$fname = $row['first_name'];
+					    		$type = $row['acc_type'];
+
+					    		echo '<tr>
+									    <th scope="row">'.$id.'</th>
+									    <td>'.$surname.'</td>
+									    <td>'.$fname.'</td>
+									    <td>'.$type.'</td>
+									    <td>UPDATE</td>';
+
+					    	}
+					    }
+
+					  }
+
+					  /*IF WALA MAY GI SEARCH AMO NI MAG APPEAR BY DEFAULT*/
+					  
+					else{
+					$select_query="Select * from `account`";
 						
 						$result=mysqli_query($con,$select_query);
 					$i=1;
@@ -54,18 +91,24 @@
 					{
 					   while ($row=mysqli_fetch_assoc($result)) 
 					   {
-					    $id=$row['screen_acct_id'];
+					    $id=$row['acct_id'];
 					     $surname=$row['last_name'];
 					     $firstname=$row['first_name'];
-					     $specialty=$row['specialization'];
+					     $type=$row['acc_type'];
 						?>
 
 							   
 							     	
 									<tr class='clickable'>
-										<td><a data-toggle='#'><img src='./images/icon.png'  width='40px' height='40px'></a> </td>
-									<td><a href='doctorVerification.php?screen_acct_id=<?php echo $row['screen_acct_id']?>' onclick='doctorsModal1()''><?php echo " $firstname $surname"?></a></td>
-										<td><a href='doctorProfile.php?acct_id=<?php echo $row['acct_id']?>' onclick='doctorsModal1()'><?php echo "$specialty" ?></a></td>
+										<td><a href='#.php?screen_acct_id=<?php echo $row['screen_acct_id']?>'><?php echo "$id"?></a></td>
+
+										<td><a href='doctorVerification.php?screen_acct_id=<?php echo $row['screen_acct_id']?>'><?php echo "$surname"?></a></td>
+
+										<td><a href='doctorVerification.php?screen_acct_id=<?php echo $row['screen_acct_id']?>'><?php echo "$firstname"?></a></td>
+
+										<td><a href='doctorVerification.php?screen_acct_id=<?php echo $row['screen_acct_id']?>'><?php echo "$type"?></a></td>
+
+										<td><a href='doctorVerification.php?screen_acct_id=<?php echo $row['screen_acct_id']?>' type="button">Update</a></td>
 										
 									</tr>
 							<?php
@@ -77,16 +120,28 @@
 							    die(mysqli_error($con));
 							   }
 
+
+							     if(isset($_GET['submit'])){
+
+
+
+
+
+							     }
+							 }
+
 							?>
 						
+
+
+
+
+
 					</tbody>
 				</table>
+				<a href="admindb.php" style="color: black;">Go Back</a>
+				<a href="accountsMonitoring.php" style="color: black; margin-left: 30px;">Cancel</a>
 			</div>
-
- 		<!-- PATIENT APPLICANTS -->
- 		<div>
- 			
- 		</div>
 
  	</div>
  </body>

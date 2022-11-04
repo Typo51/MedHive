@@ -69,7 +69,7 @@
 						
 					<?php 
 
-						$doctorID = $_SESSION['doctorID'];
+						$doctorID = $_SESSION['user_id'];
 						$select_query="Select * from `appointment`, `account` WHERE `doc_id` = '$doctorID' AND pat_id =acct_id ORDER BY `sched_date`";
 						$result=mysqli_query($con,$select_query);
 					$i=1;
@@ -153,7 +153,7 @@
 							
 						<?php 
 
-						$doctorID = $_SESSION['doctorID'];
+						$doctorID = $_SESSION['user_id'];
 						$select_query="Select * from `appointment`, `account` WHERE `doc_id` = '$doctorID' AND pat_id =acct_id ORDER BY `sched_date`";
 							$result=mysqli_query($con,$select_query);
 						$i=1;
