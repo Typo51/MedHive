@@ -35,7 +35,7 @@
 <?php 
 
 	
-	$select_query="Select * from `account`, `image` WHERE '$user_id' = pat_img_id AND doc_img_id = $id";
+	$select_query="Select * from `image` WHERE '$user_id' = pat_img_id AND doc_img_id = $id";
 
      $result=mysqli_query($con,$select_query);
      $i=1;
