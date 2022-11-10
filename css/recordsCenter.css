@@ -2,6 +2,24 @@ body{
    background-color: #f3f5f9;
 }
 
+/*NAVBAR CSS*/
+
+.nav{
+  padding: 30px;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  height: 80px;
+}
+
+.nav button{
+  margin-right: 10px;
+  background-color: #f3f5f9;
+  border: none;
+  cursor: pointer;
+  font-size: 15px;
+}
+
 /*PROFILE BUBBLE CSS*/
 
 .container-profile
@@ -47,9 +65,27 @@ body{
   padding-left: 20px;
 }
 
+/*ABOUT CSS*/
+
+.container-about
+{
+  padding: 50px;
+  background-color: #fff;
+  border-radius: 30px;
+  margin-top: 70px;
+  margin-left: 8%;
+  width: 85%;
+  height: 50vh;
+  display: flex;
+
+}
+
+.container-about a{
+  left: 288%;
+  top: 95%;
+}
 
 /*MENU BUTTONS CSS*/
-
 .container-menu
 {
   display: flex;
@@ -76,3 +112,28 @@ body{
   background-color: gray;
 }
 
+/*DOCS DOCTORS LIST CSS*/
+
+.folder-container{
+  display: flex;
+  margin: 20px;
+}
+
+.folder-container a{
+  margin: 20px;
+}
+
+/*DOCUMENTS WATCHER FILE CONTAINER*/
+
+.file-container{
+  
+  height: 10px;
+  width: 30%;
+  margin-left: 33vw;
+  margin-top: 50px;
+}
+
+
+.docu:hover{
+   background-color: gray;
+}
