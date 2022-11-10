@@ -18,6 +18,10 @@
 
 	}
 
+
+ 
+
+
   // If upload button is clicked ...
   if (isset($_POST['upload'])) {
   	// Get image name
@@ -50,7 +54,6 @@
  	<title> <?php echo "$firstname's" ?> Profile </title>
 	<link rel="stylesheet" type="text/css" href="./css/recordsCenter.css">
 	<link rel="stylesheet" type="text/css" href="./css/dropdown.css">
-  <link rel="stylesheet" type="text/css" href="patientProfile.css">
 
 
 
@@ -98,7 +101,11 @@ $result=mysqli_query($con,$select_query);
    }
  ?>
 
-
+<div class='container-about'>
+      <div>
+          <a class="waves-effect waves-light btn" type="button" href="documentsCenter.php?acct_id=<?php echo $user_id;?>">Documents Center</a>
+      </div>
+  </div>"
 
     <!-- DOCUMENT AREAS -->
 
@@ -106,51 +113,6 @@ $result=mysqli_query($con,$select_query);
       <center>
       <a href="symptomsForm.php?acct_id=<?php echo $user_id;?>">Symptoms Form</a>
       </center>
-      <!-- BUTTONS FOR DOCUMENTS-->
-   		
-		<form  method="POST" enctype="multipart/form-data">
-			<div class="header">
-	   			<div>
-	        		<input type="file" name="image" class="waves-effect waves-light btn" value="Upload" style="margin-right: 30px;">
-	        	</div>
-		
-	        	<div>
-	        		<button class="waves-effect waves-light btn" type="submit" name="upload">Upload</button>
-	        	</div>
-	        	<div>
-					<a href="#"> <button class="waves-effect waves-light btn">Delete</button></a> 
-	    		</div>
-    		</div>
-    	</form>
-   		
-
-      <!-- COLLAPSIBLES OF DOCUMENTS -->
-
-
-<div class="file-container">
-        <?php
-          $select_query="Select * from `account`, `image` WHERE pat_img_id = $id AND acct_id = doc_img_id GROUP BY doc_img_id";
-          $result=mysqli_query($con,$select_query);
-          $i=1;
-           if($result){
-             while ($row=mysqli_fetch_assoc($result)){
-              $firstname=$row['first_name'];
-              $lastname= $row['last_name'];
-
-              ?>
-             <a href='documentsCenter.php?acct_id=<?php echo $row['acct_id']?>' class='doctor-file'>
-              <?php echo " Dr. $firstname $lastname </a>";
-              }
-              }
-              $i++;
-          ?>
-
-          
-</div>
-
-
-
-
 
 <script type="text/javascript" src="js/dropdown.js"></script>
 </body>

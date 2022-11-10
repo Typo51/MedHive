@@ -2,6 +2,7 @@
 
 	include ('connect.php');
 	include ('side.php');
+
   	$user_id = $_SESSION['user_id'];
 
 	if(isset($_GET['acct_id']))
@@ -36,44 +37,27 @@
     </script>
 
 </head>
-<body style="margin-left: 65px;">
+<body>
 
 
-<div class="doc-container">
-	<div class="nav">
-		<button>Doctors</button>
-
-		<button>Medical Documents</button>
-	</div>
-
-
+		      <!-- BUTTONS FOR DOCUMENTS-->
    		
+		<form  method="POST" enctype="multipart/form-data">
+			<div class="header">
+	   			<div>
+	        		<input type="file" name="image" class="waves-effect waves-light btn" value="Upload" style="margin-right: 30px;">
+	        	</div>
+		
+	        	<div>
+	        		<button class="waves-effect waves-light btn" type="submit" name="upload">Upload</button>
+	        	</div>
+	        	<div>
+					<a href="#"> <button class="waves-effect waves-light btn">Delete</button></a> 
+	    		</div>
+    		</div>
+    	</form>
 
-      <!-- LISTS OF DOCTOR DOCUMENTS -->
-
-
-<div class="folder-container">
-        <?php
-          $select_query="Select * from `account`, `image` WHERE pat_img_id = $id AND acct_id = doc_img_id GROUP BY doc_img_id";
-          $result=mysqli_query($con,$select_query);
-          $i=1;
-           if($result){
-             while ($row=mysqli_fetch_assoc($result)){
-              $firstname=$row['first_name'];
-              $lastname= $row['last_name'];
-
-              ?>
-             <a href='documentsWatcher.php?acct_id=<?php echo $row['acct_id']?>' class='waves-effect waves-light btn'>
-              <?php echo " Dr. $firstname $lastname </a> <br>";
-              }
-              }
-              $i++;
-          ?>
-
-          
-</div>
-
-	
+<div class="file-container">
 <?php 
 
 	
@@ -87,14 +71,19 @@
 
        		echo "
        		<div class='docu'>
-       		<a href='./images/".$file_name."' target='_blank'> $file_name </a> <br><hr>";
+       		<a href='./images/".$file_name."' target='_blank'> $file_name </a> <br><hr>
+       		</div>";
         }
     	$i++;
     }
 
 
  ?>
- 	</div>
+ 	
+
+
+</div>
+
 
 </body>
 </html>
