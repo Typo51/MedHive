@@ -3,10 +3,10 @@
 	include ('connect.php');
   include ('side.php');
   $user_id = $_SESSION['user_id'];
-	if(isset($_GET['acct_id']))
+  
+	if(isset($_SESSION['user_id']))
 	{
-		$id = $_GET['acct_id'];
-		$select_query="Select * from `account` WHERE acct_id = $id";
+		$select_query="Select * from `account` WHERE acct_id = $user_id";
 		$result=mysqli_query($con,$select_query);
 
 	   while ($row=mysqli_fetch_assoc($result)) 

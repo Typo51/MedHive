@@ -4,10 +4,13 @@
     session_start();
 
     $user_id = $_SESSION['user_id'];
+    $type = $_SESSION['acc_type'];
+
+
     if(isset($_GET['acct_id']))
     {
         $id = $_GET['acct_id'];
-        $select_query="Select * from `account` WHERE acct_id = $id";
+        $select_query="Select * from `account` WHERE acct_id = $user_id";
         $result=mysqli_query($con,$select_query);
 
        while ($row=mysqli_fetch_assoc($result)) 
@@ -15,6 +18,7 @@
 
             $id=$row['acct_id'];
             $firstname=$row['first_name'];
+
          }
 
     }
@@ -58,14 +62,47 @@
 
                 <ul class="menu-links">
                     <li class="nav-link">
-                        <a href="doctorDB.php">
+                        <a 
+<?php 
+
+                            
+
+                            if ($_SESSION['acc_type'] == 0){
+                                echo "href='patientsDB.php?acct_id=$user_id'";
+                            }
+                            else{
+                            
+                                echo "href='doctorDB.php?acct_id=$user_id'";
+                            }
+
+ ?>
+
+
+
+
+                        >
                             <i class='bx bx-home-alt icon' ></i>
                             <span class="text nav-text">Dashboard</span>
                         </a>
                     </li>
 
                     <li class="nav-link">
-                        <a href='patientProfile.php?acct_id=<?php echo $user_id;?>'>
+                        <a 
+
+                        <?php 
+
+                            if($type == 1){
+
+
+                                echo "href='doctorProfile.php?acct_id=$user_id'";
+
+                            }
+
+                            elseif($type == 0){
+                                echo "href='patientProfile.php?acct_id=$user_id'";
+                            }
+                         ?>
+                        >
                             <i class='bx bx-bar-chart-alt-2 icon' ></i>
                             <span class="text nav-text">Profile</span>
                         </a>

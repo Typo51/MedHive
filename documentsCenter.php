@@ -41,9 +41,7 @@
 
 <div class="doc-container">
 	<div class="nav">
-		<button>Doctors</button>
-
-		<button>Medical Documents</button>
+		<h4><?php echo "$firstname"; ?>'s Documents</h4>
 	</div>
 
 

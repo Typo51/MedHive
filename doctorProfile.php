@@ -1,10 +1,7 @@
 <?php
   include('connect.php');
+  include('side.php');
   
-
-
-
-session_start();
 
 if(isset($_SESSION['user']) && $_SESSION['user'] != ''){
 
@@ -31,7 +28,7 @@ if(isset($_GET['acct_id']))
 
 
   if (isset($_POST['submit'])) {
-    $patientID  =$_SESSION['acc_id'];
+    $patientID  =$_SESSION['user_id'];
     $sqlpatient="Select * from `account` WHERE acct_id = $patientID";
     $resultpatient=mysqli_query($con,$sqlpatient);
     $rowpatient = mysqli_fetch_assoc($resultpatient);
@@ -79,6 +76,9 @@ if(isset($_GET['acct_id']))
 	<!-- BOOTSTRAP -->
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <script src="https://kit.fontawesome.com/42135a69b7.js" crossorigin="anonymous"></script>
+
+
+
 
 
  </head>
@@ -131,10 +131,15 @@ $result=mysqli_query($con,$select_query);
 <!-- SETUP FOR APPOINTMENT -->
 
 	<div class="appointment">
-
+      <fieldset>
+        <legend>APPOINTMENT</legend>
 	      <form method="POST">
 
 	      <input id="surtext" type="date" name="date" >
+
+
+
+
 	      <input id="firtext" type="time" name="time">
 
 	      <select class="dropdown-trigger btn" name="type">
@@ -150,7 +155,7 @@ $result=mysqli_query($con,$select_query);
 
 
 
-
+      </fieldset>
 </div>
 
 

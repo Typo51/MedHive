@@ -19,6 +19,28 @@
 		 }
 
 	}
+
+	 // If upload button is clicked ...
+  if (isset($_POST['upload'])) {
+  	// Get image name
+  	$image = $_FILES['image']['name'];
+
+  	// image file directory
+  	$target = "images/".basename($image);
+
+  	$sql = "INSERT INTO image (doc_img_id, pat_img_id, image) VALUES ('$id', '$user_id', '$image')";
+  	// execute query
+  	mysqli_query($con, $sql);
+
+  	if (move_uploaded_file($_FILES['image']['tmp_name'], $target)) {
+  		echo "<script>alert('Upload Successful')</script>";
+      echo "<script>window.open('documentsWatcher.php?acct_id=$id','_self')</script>";
+  	}
+
+  }
+
+
+
 ?>
 
 <!DOCTYPE html>
@@ -38,7 +60,10 @@
 
 </head>
 <body>
-
+<div class="doc-container">
+	<div class="nav">
+		<h4>Files from Dr. <?php echo "$firstname"; ?></h4>
+	</div>
 
 		      <!-- BUTTONS FOR DOCUMENTS-->
    		
@@ -52,7 +77,7 @@
 	        		<button class="waves-effect waves-light btn" type="submit" name="upload">Upload</button>
 	        	</div>
 	        	<div>
-					<a href="#"> <button class="waves-effect waves-light btn">Delete</button></a> 
+					<a href="#" > <button class="waves-effect waves-light btn">Delete</button></a> 
 	    		</div>
     		</div>
     	</form>
@@ -68,9 +93,11 @@
    	if($result){
    		while ($row=mysqli_fetch_assoc($result)){
        		$file_name = $row['image'];
+       		$img_id = $row['img_id'];
 
        		echo "
        		<div class='docu'>
+       		<a href='deleteFunction.php?img_id=$img_id'>Delete | </a>
        		<a href='./images/".$file_name."' target='_blank'> $file_name </a> <br><hr>
        		</div>";
         }
