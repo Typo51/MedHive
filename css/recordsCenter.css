@@ -18,7 +18,10 @@ body{
   border: none;
   cursor: pointer;
   font-size: 15px;
+  margin-bottom: 50px;
 }
+
+
 
 /*PROFILE BUBBLE CSS*/
 
@@ -115,12 +118,14 @@ body{
 /*DOCS DOCTORS LIST CSS*/
 
 .folder-container{
-  display: flex;
-  margin: 20px;
+  display: inline-block;
+  margin: 80px
 }
 
 .folder-container a{
-  margin: 20px;
+  margin: 10px;
+  width: 83vw;
+
 }
 
 /*DOCUMENTS WATCHER FILE CONTAINER*/
@@ -132,8 +137,12 @@ body{
   margin-left: 33vw;
   margin-top: 50px;
 }
+.file-container a{
 
+  color: black;
+}
 
 .docu:hover{
    background-color: gray;
+
 }
