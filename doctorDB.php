@@ -23,7 +23,8 @@
 	<link rel="stylesheet" href="./css/modals.css">
 
 	<!-- BOOTSTRAP -->
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+	<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"> -->
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
     <script src="https://kit.fontawesome.com/42135a69b7.js" crossorigin="anonymous"></script>
 
 
@@ -41,37 +42,43 @@
 
     <div class="main_content">
         <div class="header">
-        	<div>
-        		<a href="#" onclick="appointment()"> <button class="waves-effect waves-light btn">Accept an Appointment</button></a> 
-        	</div>
-        	<div>
-				<a href="#" onclick="logs()"> <button class="waves-effect waves-light btn">Appointment Logs</button></a> 
-        	</div>
-        	</a>
-        </div>
+        
+        		<a href="#" onclick="appointment()"> <button class="btn btn-primary">Accept an Appointment</button></a> 
+        	
+
+			
+        		<a href="#" onclick="appointment()"> <button class="btn btn-primary">List of Appointment </button></a> 
+        	
+				
+				<a href="#" onclick="logs()"> <button class="btn btn-primary">Appointment Logs</button></a> 
+        	
+			<a href="#" onclick="sched()"> <button class="btn btn-primary">Set Schedule</button></a> 
+        	
+	</div>
 
         <!-- PATIENT LISTS -->
         
     
-        <div class="patient-list-container-outside">
-			<table class="list">
+        <div class="patient-list-container-outside1">
+			<table class="table table-striped">
 				<thead>
-					<tr>
+					
 						<th style="width: 70px;"> </th>
 						<th>Name</th>
 						<th>Appointment Date</th>
 						<th>Time</th>
-						<th>Status</th>
+						<th>Type</th>
 					</tr>
 				</thead>
 	
 				<tbody>
 						
 					<?php 
-
+						date_default_timezone_set('Asia/Manila');
+   					    $date = date("Y/m/d");
 						$doctorID = $_SESSION['user_id'];
-						$select_query="Select * from `appointment`, `account` WHERE `doc_id` = '$doctorID' AND pat_id =acct_id ORDER BY `sched_date`";
-						$result=mysqli_query($con,$select_query);
+						$select_query="Select * from `appointment`, `account` WHERE `doc_id` = '$doctorID' AND pat_id =acct_id and `sched_date`='$date' ORDER BY `sched_time`";
+						$result=mysqli_query($con,$select_query); 
 					$i=1;
 					if($result)
 					{
@@ -85,7 +92,7 @@
 					     
 					     echo " 
 					     
-							<tr class='clickable'>
+							<tr class=''>
 							<td><img src='./images/icon.png'  width='40px' height='40px'></a></td>
 							<td>$fullname</a></td>
 							<td>$date</a></td>
@@ -115,6 +122,7 @@
 					}
 
 					else{
+						echo $date;
 					    die(mysqli_error($con));
 					   }
 
@@ -138,13 +146,13 @@
 	<div class="container">
 		<h5>Please select a Patient</h5>
 			<div class="patient-list-container-inside">
-				<table class="list">
+				<table class="table table-striped">
 					<thead>
 						<tr>
 							<th style="width: 70px;"> </th>
 							<th>Name</th>
 							<th>Appointment Schedule</th>
-							<th>Status</th>
+							<th>Accept/Decline</th>
 						</tr>
 					</thead>
 		
@@ -173,11 +181,11 @@
 						      
 						     	?>
 
-								<tr class='clickable'>
+								<tr class='table'>
 								<td><a data-toggle='#'><img src='./images/icon.png'  width='40px' height='40px'></a></td>
 
 
-								<td><a href='doctorViewToPatient.php?acct_id=<?php echo $row['acct_id'];?>'> <?php echo "$firstname $surname"; ?></a></td>
+								<td><a href='doctorViewToPatient.php?acct_id=<?php echo $row['acct_id'];?>&&date_id=<?php echo $row['sched_date'];?>'> <?php echo "$firstname $surname"; ?></a></td>
 
 								<td><a href='#' onclick='patientModal1()'><?php echo"$date $time";?></a></td>
 								<td><a href='#' onclick='patientsModal1()'><?php 
@@ -260,7 +268,106 @@
 	</div>
 </div>
 
+						
 
+				<!-- Set Schedule -->
+				<div class="popup4" id="modal4" >
+				<div class="container4">
+					<br>
+				<h3>Set Schedule</h3>
+				<div class="button-group">
+					
+					
+
+	
+	
+		<form method="POST">
+ 			<?php 
+
+ 				if(isset($_POST['pass']))
+ 				{ 	$doctorID = $_SESSION['user_id'];
+ 					$dater = $_POST['dater'];
+ 					$timer = $_POST['timer'];
+
+
+ 					foreach ($timer as $time_sched) {
+ 						$sql2 = "INSERT INTO `doctors_availability` (doctor_id,avail_date, avail_time) VALUES ('$doctorID','$dater', '$time_sched')";
+ 					$resultar=mysqli_query($con,$sql2);
+ 					}
+
+					
+    
+					 if($resultar){
+					   echo "<script>alert ('Schedule Added!')  </script>";
+					   echo "<script>window.open('doctorDB.php','_self')</script>";
+				 
+				 
+					 }else{
+					   die(mysqli_error($con));
+					 }
+				 
+ 				
+
+ 				}
+ 					
+ 						 
+			?>
+
+			<br>
+			<label>Select Date</label>
+			<br>
+			<input type="date" name="dater">
+			
+			<br>
+			<br>
+			<label>Select Time:</label>
+			<br>
+			<div class="time">
+			<input type="checkbox" checked="checked" name="timer[]" value="8:00">
+ 			 <label>8:00am</label>
+			 <br>
+			 <input type="checkbox" checked="checked" name="timer[]" value="9:00">
+ 			 <label>9:00am</label>
+ 			 <br>
+ 			 <input type="checkbox"  checked="checked" name="timer[]" value="10:00">
+ 			 <label>10:00am</label>
+ 			 <br>
+ 			 <input type="checkbox" checked="checked" name="timer[]" value="11:00">
+ 			 <label>11:00am</label>
+ 			 <br>
+ 			 <input type="checkbox" checked="checked" name="timer[]" value="12:00pm">
+ 			 <label>12:00pm</label>
+ 			 <br>
+			  </div>
+			  <div class="time2">
+			<input type="checkbox" checked="checked" name="timer[]" value="1:00">
+ 			 <label>1:00pm</label>
+			 <br>
+			 <input type="checkbox" checked="checked" name="timer[]" value="2:00">
+ 			 <label>2:00pm</label>
+ 			 <br>
+ 			 <input type="checkbox"  checked="checked" name="timer[]" value="3:00">
+ 			 <label>3:00pm</label>
+ 			 <br>
+ 			 <input type="checkbox" checked="checked" name="timer[]" value="4:00">
+ 			 <label>4:00pm</label>
+ 			 <br>
+ 			 <input type="checkbox" checked="checked" name="timer[]" value="5:00pm">
+ 			 <label>5:00pm</label>
+ 			 <br>
+			  </div>
+			<input type="submit" name="pass" >
+	</form>
+	
+
+
+
+
+</div>
+						</div>
+						</div>
+			
+			
 	<!--PATIENT PROFILE CARD-->
 
 	<div class="patientA" id="patient1" >

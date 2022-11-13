@@ -83,26 +83,29 @@
     	</form>
 
 <div class="file-container">
+	<div class='docu'></div>
+
 <?php 
 
-	
-	$select_query="Select * from `image` WHERE '$user_id' = pat_img_id AND doc_img_id = $id";
+		$select_query="Select * from `account`, `document_sessions` WHERE acct_id = sess_doc_id AND $user_id = sess_pat_id";
+		$result=mysqli_query($con,$select_query);
 
-     $result=mysqli_query($con,$select_query);
-     $i=1;
-   	if($result){
-   		while ($row=mysqli_fetch_assoc($result)){
-       		$file_name = $row['image'];
-       		$img_id = $row['img_id'];
+	   while ($row=mysqli_fetch_assoc($result)) 
+		   {
 
-       		echo "
-       		<div class='docu'>
-       		<a href='deleteFunction.php?img_id=$img_id'>Delete | </a>
-       		<a href='./images/".$file_name."' target='_blank'> $file_name </a> <br><hr>
-       		</div>";
-        }
-    	$i++;
-    }
+		   	$dates = $row['sess_sched_date'];
+
+		 	echo"
+
+		 		<a style='margin-left: 20px;' class='waves-effect waves-light btn' type='button' href='prescriptionWatcher.php?acct_id=$id&&date_id=$dates'>$dates</a>
+
+
+
+		 	";
+		 }
+
+
+
 
 
  ?>

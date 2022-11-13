@@ -52,7 +52,10 @@
 
 <div class="folder-container">
         <?php
-          $select_query="Select * from `account`, `image` WHERE pat_img_id = $id AND acct_id = doc_img_id GROUP BY doc_img_id";
+          /*$select_query="Select * from `account`, `image` WHERE pat_img_id = $id AND acct_id = doc_img_id GROUP BY doc_img_id";*/
+
+          $select_query="Select * from `account`, `diagnosisPrescription` WHERE pres_pat_id = $id AND acct_id = pres_doc_id GROUP BY pres_doc_id";
+
           $result=mysqli_query($con,$select_query);
           $i=1;
            if($result){
@@ -70,28 +73,6 @@
 
           
 </div>
-
-	
-<?php 
-
-	
-	$select_query="Select * from `image` WHERE '$user_id' = pat_img_id AND doc_img_id = $id";
-
-     $result=mysqli_query($con,$select_query);
-     $i=1;
-   	if($result){
-   		while ($row=mysqli_fetch_assoc($result)){
-       		$file_name = $row['image'];
-
-       		echo "
-       		<div class='docu'>
-       		<a href='./images/".$file_name."' target='_blank'> $file_name </a> <br><hr>";
-        }
-    	$i++;
-    }
-
-
- ?>
  	</div>
 
 </body>

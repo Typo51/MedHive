@@ -19,28 +19,10 @@
 
 	}
 
-  // If upload button is clicked ...
-  if (isset($_POST['upload'])) {
-  	// Get image name
-  	$image = $_FILES['image']['name'];
-
-  	// image file directory
-  	$target = "images/".basename($image);
-
-  	$sql = "INSERT INTO image (doc_img_id, pat_img_id, image) VALUES ('$doctorID', '$id', '$image')";
-  	// execute query
-  	mysqli_query($con, $sql);
-
-  	if (move_uploaded_file($_FILES['image']['tmp_name'], $target)) {
-  		echo "<script>alert('Upload Successful')</script>";
-      echo "<script>window.open('doctorViewToPatient.php?acct_id=$id','_self')</script>";
-  	}
-
+  if(isset($_GET['date_id']))
+  {
+    $date_id = $_GET['date_id'];
   }
-
-  
-  $resultar = mysqli_query($con, "SELECT * FROM `image` where doc_img_id = $doctorID AND pat_img_id = $id");
-
  ?>
 
 
@@ -98,80 +80,13 @@ $result=mysqli_query($con,$select_query);
    }
  ?>
 
+<div class='container-about'>
+      <div>
+          <a style="margin-left: 20px;" class="waves-effect waves-light btn" type="button" href="diagnosisPrescriptionForm.php?acct_id=<?php echo $id;?>&&date_id=<?php echo $date_id;?>">Appoint Patient</a>
+      </div>
+  </div>"
 
-    <!-- DOCUMENT AREAS -->
-
-   	<div class="docs-container">
-      <center>
-      <a href="symptomsFormView.php?acct_id=<?ph  echo $user_id;?>">Symptoms Form</a>
-      </center>
-      <!-- BUTTONS FOR DOCUMENTS-->
-   		
-		<form  method="POST" method="uploadFunction.php?acct_id=<?php echo $_GET['acct_id']?>" enctype="multipart/form-data">
-			<div class="header">
-	   			<div>
-	        		<input type="file" name="image" class="waves-effect waves-light btn" value="Upload" style="margin-right: 30px;">
-	        	</div>
-		
-	        	<div>
-	        		<button class="waves-effect waves-light btn" type="submit" name="upload">Upload</button>
-	        	</div>
-	        	<div>
-					<a href="#"> <button class="waves-effect waves-light btn">Delete</button></a> 
-	    		</div>
-    		</div>
-    	</form>
-   		
-
-      <!-- COLLAPSIBLES OF DOCUMENTS -->
-
-
-		<div class="wrapper">
-			<button class="collapsible">
-        <?php   
-
-          $select_query="Select * from `account` WHERE acct_id = $doctorID";
-          $result=mysqli_query($con,$select_query);
-
-          $i=1;
-          if($result)
-          {
-             while ($row=mysqli_fetch_assoc($result)) 
-             {
-              $firstname=$row['first_name'];
-              $lastname= $row['last_name'];
-        echo "Dr. $firstname $lastname"; 
-              }
-          $i++;
-          }
-        
-          ?>
-        </button>
-				<div class="content">         
-            <?php
-                $i=1;
-              if($resultar)
-              {
-                while ($row = mysqli_fetch_array($resultar)) 
-                {
-                  $file_name = $row['image'];
-
-
-                    echo "<a href='./images/".$row['image']."' target='_blank'> $file_name </a> <br>";
-                    $i++;
-                }
-
-
-              }
-              else
-              {
-              die(mysqli_error($con));
-             } 
-            ?>
-            <div class="anchor"></div>  
-				</div>
-		</div>
-
+  
 
 
 
