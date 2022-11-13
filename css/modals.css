@@ -2,13 +2,14 @@
 .patient-list-container-inside
 {
   max-width: 100%;
-  min-width: 50%;
+  min-width: 100%;
   max-height: 300px;
   overflow-y: scroll;
-  border: 5px solid teal;
+  border: 1px solid rgb(119, 182, 255);
   display: flex;
 }
    
+
    .patient-list
    {
      width: 80%;
@@ -27,7 +28,7 @@
    {
      .patient-list-container-inside
      {
-         width: 100%;
+         width: 50%;
      }
    }
 
@@ -35,11 +36,25 @@
 /*modals container*/
 .container
   {
-    background-color: #fff;
-    max-width: 100%;
-    min-width: 60%;
+   background-color: #fff;
+   height: 60%;
+   width:50%;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   flex-direction: column;
+   gap: 10px;
   }
 
+  .container4{
+    background-color: #fff;
+   width:50%;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   flex-direction: column;
+   gap: 10px;
+  }
   .container h5
   {
         display: flex;
@@ -51,7 +66,7 @@
   {
     .container
     {
-      width: 95%;
+      width: 25%;
     }
    
   }
@@ -179,7 +194,7 @@
  
  .popup3 form
  {
-   width: 600px;
+   width: 50%;
    height: 467.1px;
    background-color: #fff;
    padding: 1em;
@@ -232,6 +247,69 @@
    align-items: center;
  }
  
+.time{
+  width: 300px; 
+  float: left;
+}
+
+ .time2{
+  margin-left: 90px;
+ }
+
+ .popup4 form
+ {
+   width: 50%;
+   height: 467.1px;
+   background-color: #fff;
+   padding: 1em;
+   border-radius: 5px;
+ }
+ 
+ .popup4 form div
+ {
+   height: 30%;
+   width: 100px;
+ }
+ 
+ .popup4#sched
+ {
+   height: 100%;
+   width: 100%;
+ }
+ 
+ .popup4.active
+ {
+   top: 50%;
+   visibility: visible;
+   opacity: 1;
+   transition: 0.5s ease-out;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   background-color: rgba(0,0,0,0.5);
+ }
+ 
+
+ .popup4
+ {
+   position: fixed;
+   top: 40%;
+   left:50%;
+   transform: translate(-50%, -50%);
+   width: 600px;
+   padding:50px;
+   box-shadow: 0 5px 30px rgba(0,0,0,0.30);
+   background: #fff;
+   visibility: hidden;
+   opacity: 0;
+   transition: 0.5s ease-out;
+   z-index: 1;
+   width: 100%;
+   height: 100%;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+ }
  
  /*DOCTOR CARD MODAL*/
  
@@ -336,7 +414,48 @@
   width:50%;
  }
 
- 
+ .button-group{
+  width: 650px;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+  margin-top: 50px;
+  border: 1px;
+  overflow: hidden;
+  display: flex;
+  background-color: #ffffff;
+  margin-bottom: 20px;
+  padding: 25px;
+  box-sizing: border-box;
+  -webkit-column-break-inside: avoid;
+  border: 1px solid #d2d2d3;
+  border-radius: 5px;
+  box-shadow: 0 6px 7px -4px rgba(0, 0, 0, 0.2);
+
+  }
+  
+
+  .times{
+  
+      border: 0;
+      border-radius: 5px;
+      width: 140px;
+      height: 40px;
+      font-size: 14px;
+      background-color: rgb(127, 208, 255)
+  }
+  
+  .grp{
+    
+    background-color: #ffffff;
+    margin-bottom: 20px;
+    padding: 25px;
+    box-sizing: border-box;
+    -webkit-column-break-inside: avoid;
+    border: 1px solid #d2d2d3;
+    border-radius: 5px;
+    box-shadow: 0 6px 7px -4px rgba(0, 0, 0, 0.2);
+  }
  
  /*patients list css*/
  
@@ -455,12 +574,7 @@
    background-color: rgba(0,0,0,0.5);
  }
  
- .container
- {
-   background-color: #fff;
-   padding: 50px;
-   margin-right: 50px;
- }
+
  
  .doctorB
  {

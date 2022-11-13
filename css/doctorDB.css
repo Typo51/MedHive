@@ -1,5 +1,5 @@
 body{
-  background-color: #f3f5f9;
+  background-color: #000000;
 }
 
 /*NAVBAR CSS*/
@@ -9,15 +9,17 @@ body{
  background-color: #0f8d7f;
 }
 
+
+
 .welcome-bubble
 {
   padding-top: 50px;
-  background-color: #fff;
+  background-color: rgb(117, 200, 255);
   border-radius: 80px;
   margin-top: 100px;
   width: 35%;
   margin-left: 30%;
-  height: 150px;
+  height: 120px;
   display: flex;
   justify-content: center;
   align-content: center;
@@ -59,7 +61,7 @@ display: flex;
  display: flex;
  justify-content: center;
  align-items: center;
- height: 100vh;
+ height: 500px;
  flex-direction: column;
  margin-top: -70px;
 }
@@ -70,17 +72,30 @@ display: flex;
  position: fixed;
 }
 
+
+.patient-list-container-outside1{
+  width: 41%;
+  max-height: 400px;
+  border: 1px solid rgb(218, 218, 218);
+  display: flex;
+  border-radius: 9px;
+  box-sizing: border-box;
+  box-shadow: 0 6px 7px -4px rgba(0, 0, 0, 0.2);
+  border: 3px;
+  padding-top: 20px;
+  }
 /*BUTTONS ABOVE CSS*/
 
 .header{
 
- padding-bottom: 20px;
- display: flex; 
- border-radius:0px 0px 0px 0px;
- max-width: 95%;
- min-width: 60%;
- align-items: center;
- justify-content: space-between;
+  padding-bottom: 20px;
+  background: #ffffff;
+  display: flex; 
+  border-radius:0px 50px 50px 0px;
+  width: 60%;
+  align-items: center;
+  justify-content:center;
+  gap: 10px;
 }
 .header div
 {
@@ -138,11 +153,10 @@ display: flex;
  
 }
 
-
  .doctor-bubble
  {
    padding: 10px;
-   background-color: #fff;
+   background-color: rgb(255, 255, 255);
    margin-top: 20px;
    width: 90%;
    border-radius: 100px;
@@ -190,6 +204,11 @@ display: flex;
 
 
 }
+.table td a{
+  text-decoration:none;
+  color:black;
+}
+
 
 .doctor-card div
 {
@@ -201,7 +220,11 @@ display: flex;
  margin: 10px 0px 0px 0px;
  background-color: #f3f5f9;
 }
-
+.check{
+position: relative;
+opacity: 1;
+pointer-events: fill;
+}
 
 .doc-status
 {
