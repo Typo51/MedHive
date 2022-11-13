@@ -8,6 +8,14 @@
     blur.classList.toggle('active');
  
  } 
+ function sched()
+ {
+    var modal1 = document.getElementById('modal4');
+    modal1.classList.toggle('active');
+    var blur = document.getElementById('blur');
+    blur.classList.toggle('active');
+ 
+ } 
  
  function conference()
  {
