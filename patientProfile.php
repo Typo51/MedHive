@@ -53,7 +53,7 @@
  <head>
  	<title> <?php echo "$firstname's" ?> Profile </title>
 	<link rel="stylesheet" type="text/css" href="./css/recordsCenter.css">
-	<link rel="stylesheet" type="text/css" href="./css/dropdown.css">
+	<link rel="stylesheet" type="text/css" href="./css/patientProfile.css">
 
 
 
@@ -101,10 +101,26 @@ $result=mysqli_query($con,$select_query);
    }
  ?>
 
+
+<div class="edit-profile">
+ <a href="profileEdit.php">Edit Profile</a>
+</div>
+
+
+
 <div class='container-about'>
-      <div>
+
+        <label>Height</label>
+        <?php echo "169cm"; ?>
+        <label>Weight</label>
+        <?php echo "169cm"; ?>
+        <label>Heart Rate</label>
+        <?php echo "169cm"; ?>
+        <label>Blood Pressure</label>
+        <?php echo "169cm"; ?>
+
+
           <a class="waves-effect waves-light btn" type="button" href="documentsCenter.php?acct_id=<?php echo $user_id;?>">Documents Center</a>
-      </div>
   </div>"
 
     <!-- DOCUMENT AREAS -->

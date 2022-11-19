@@ -31,8 +31,8 @@
  <html>
  <head>
  	<title> <?php echo "$firstname's" ?> Profile </title>
-	<link rel="stylesheet" type="text/css" href="./css/recordsCenter.css">
-	<link rel="stylesheet" type="text/css" href="./css/dropdown.css">
+  <link rel="stylesheet" type="text/css" href="./css/recordsCenter.css">
+	<link rel="stylesheet" type="text/css" href="./css/doctorViewToPatient.css">
 
 
 
@@ -82,12 +82,87 @@ $result=mysqli_query($con,$select_query);
 
 <div class='container-about'>
       <div>
-          <a style="margin-left: 20px;" class="waves-effect waves-light btn" type="button" href="diagnosisPrescriptionForm.php?acct_id=<?php echo $id;?>&&date_id=<?php echo $date_id;?>">Appoint Patient</a>
+          <a style="margin-left: 20px;" class="waves-effect waves-light btn" target="_blank" type="button" href="diagnosisPrescriptionForm.php?acct_id=<?php echo $id;?>&&date_id=<?php echo $date_id;?>">Appoint Patient</a>
       </div>
-  </div>"
-
+  </div>
   
 
+  <!-- DOCUMENTS SHARING PART -->
+<div class="doc-wrapper">
+  
+      <center>
+        <h4><?php echo "$firstname"; ?>'s files from you</h4>
+      </center>
+
+  <!-- FILES FROM DOCTORS -->
+  <div class="doctors-docs">
+
+  <?php 
+
+    $select_query="Select * from `document_sessions` WHERE $doctorID = sess_doc_id AND $id = sess_pat_id";
+    $result=mysqli_query($con,$select_query);
+
+     while ($row=mysqli_fetch_assoc($result)) 
+       {
+
+        $dates = $row['sess_sched_date'];
+
+      echo"
+
+        <a style='margin-left: 20px;' class='waves-effect waves-light btn' type='button' target='_blank' href='prescriptionWatcherDoctor.php?acct_id=$id&&date_id=$dates'>$dates</a>
+
+
+
+      ";
+     }
+
+
+
+
+   ?>
+</div>
+
+<!-- PERSONAL FILES -->
+       <center>
+        <h4 class="shared-header"><?php echo "$firstname"; ?>'s shared files</h4>
+      </center>
+
+<div class="personal-docs">
+  
+ <?php 
+
+    $select_query="Select * from `document_sessions` WHERE $doctorID = sess_doc_id AND $id = sess_pat_id";
+    $result=mysqli_query($con,$select_query);
+
+     while ($row=mysqli_fetch_assoc($result)) 
+       {
+
+        $dates = $row['sess_sched_date'];
+
+      echo"
+
+        <a style='margin-left: 20px;' class='waves-effect waves-light btn' type='button' target='_blank' href='prescriptionWatcherDoctor.php?acct_id=$id&&date_id=$dates'>$dates</a>
+
+
+
+      ";
+     }
+
+
+
+
+   ?>
+
+
+
+
+
+
+
+</div>
+
+
+</div>
 
 
 <script type="text/javascript" src="js/dropdown.js"></script>
