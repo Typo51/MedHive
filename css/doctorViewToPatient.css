@@ -1,0 +1,29 @@
+.doc-wrapper{
+
+	border: 1px solid black;
+
+	position: relative;
+	left: 15%;
+	top: 50px;
+	width: 70%;
+}
+
+
+.doctors-docs{
+	display: flex;
+	justify-content: center;
+	align-content: center;
+}
+
+
+.personal-docs{
+	display: flex;
+	justify-content: center;
+	align-content: center;
+}
+
+.shared-header{
+
+	margin-top: 100px;
+}
+

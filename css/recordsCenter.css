@@ -68,10 +68,20 @@ body{
   padding-left: 20px;
 }
 
+
+/*EDIT PROFILE BUTTON CSS*/
+
+.edit-profile{
+  margin-left: 80em;
+  margin-top: ;
+}
+
+
 /*ABOUT CSS*/
 
 .container-about
 {
+
   padding: 50px;
   background-color: #fff;
   border-radius: 30px;
@@ -79,14 +89,27 @@ body{
   margin-left: 8%;
   width: 85%;
   height: 50vh;
-  display: flex;
+  display: block;
+
+}
+
+
+
+
+
+.container-about label:nth-child(1){
+  margin-top: 100px;
 
 }
 
 .container-about a{
-  left: 288%;
-  top: 95%;
+  margin: 19em 36em;
+  position: relative;
 }
+
+
+
+
 
 /*MENU BUTTONS CSS*/
 .container-menu
@@ -123,6 +146,18 @@ body{
 }
 
 .folder-container a{
+  margin: 10px;
+  width: 83vw;
+
+}
+
+.medRec-container{
+  display: inline-block;
+  margin: 80px;
+  margin-top: 180px;
+}
+
+.medRec-container a{
   margin: 10px;
   width: 83vw;
 
