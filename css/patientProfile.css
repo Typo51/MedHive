@@ -3,7 +3,49 @@ body
 	background-color: #f3f5f9;
 }
 
-.docu 
-{
+.vitals{
+ display: flex;
+ justify-content: space-between;
+ border: 1px solid black;
+
+
 }
 
+.height{
+ aspect-ratio: 16/9;
+ height: 50px;
+ width: 70ox;
+
+ margin-left: 100px;
+
+}
+
+.weight{
+ aspect-ratio: 16/9;
+ height: 50px;
+ width: 70ox;
+
+position: relative;
+left: 8%;
+top: 40%;
+}
+
+.rate{
+ aspect-ratio: 16/9;
+ height: 50px;
+ width: 70ox;
+
+  position: relative;
+  top: -28%;
+  left: 50%;
+}
+
+.bp{
+ aspect-ratio: 16/9;
+ height: 50px;
+ width: 70ox;
+
+ position: relative;
+ top: 8%;
+ left: 50%;
+}
