@@ -103,25 +103,58 @@ $result=mysqli_query($con,$select_query);
 
 
 <div class="edit-profile">
- <a href="profileEdit.php">Edit Profile</a>
+ <a href="patientsInfoForm.php?acct_id=<?php echo "$user_id";?>">Edit Profile</a>
 </div>
 
 
 
 <div class='container-about'>
 
-        <label>Height</label>
-        <?php echo "169cm"; ?>
-        <label>Weight</label>
-        <?php echo "169cm"; ?>
-        <label>Heart Rate</label>
-        <?php echo "169cm"; ?>
-        <label>Blood Pressure</label>
-        <?php echo "169cm"; ?>
+        <?php 
 
 
+        $select_query = "SELECT * FROM `vital_signs` WHERE vit_pat_id = $user_id";
+        $result = mysqli_query($con, $select_query);
+
+        
+
+
+          while($row=mysqli_fetch_assoc($result)){
+
+            $height = $row['height'];
+            $weight = $row['weight'];
+            $heart_rate = $row['heart_rate'];
+            $bp = $row['blood_pressure'];
+
+
+            echo "
+
+    
+                <div class='height'>
+                  <label>Height</label>
+                  $height
+                </div>
+
+                <div class='weight'>
+                  <label>Weight</label>
+                  $weight
+                </div>
+
+                <div class='rate'>
+                  <label>Heart Rate</label>
+                  $heart_rate
+                </div>
+
+                <div class='bp'>
+                  <label>Latest Blood Pressure</label>
+                  $bp
+                </div>
+            ";
+        }
+         ?>
+         
           <a class="waves-effect waves-light btn" type="button" href="documentsCenter.php?acct_id=<?php echo $user_id;?>">Documents Center</a>
-  </div>"
+  </div>
 
     <!-- DOCUMENT AREAS -->
 
