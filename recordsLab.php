@@ -49,7 +49,7 @@
 	<title>
 		Documents Center
 	</title>
-	<link rel="stylesheet" type="text/css" href="./css/dropdown.css">
+	<link rel="stylesheet" type="text/css" href="./css/modals.css">
 	<link rel="stylesheet" type="text/css" href="css/recordsCenter.css">
 
 
@@ -72,6 +72,7 @@
 	        		<input type="file" name="image" class="waves-effect waves-light btn" value="Upload" style="margin-right: 30px;">
 
 	        		<button class="waves-effect waves-light btn" type="submit" name="upload">Upload</button>
+	        		<a  onclick="share()"> <button class="btn btn-primary">Share</button></a> 
 
 					<a href="#" > <button class="waves-effect waves-light btn">Delete</button></a> 
 	    
@@ -106,5 +107,48 @@
 </div>
 
 
+<!-- SHARE DOCUMENT AREA -->
+
+
+<div class="popup-share" id="popup-share" >
+	<div class="container">
+		<h4>Appointment Logs</h4>
+		<table class="striped">
+			<thead>
+				<tr>
+					<th>Date</th>
+					<th>Time</th>
+					<th>Doctor's Name</th>
+					<th>Clinic Address</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>09-25-22</td>
+					<td>3:15 PM</td>
+					<td>Jasper L. Panzo</td>
+					<td>Alunan Avenue, City of Koroandal</td>
+				</tr>
+				<tr>
+					<td>09-25-22</td>
+					<td>3:15 PM</td>
+					<td>Jasper L. Panzo</td>
+					<td>Alunan Avenue, City of Koroandal</td>
+				</tr>
+				<tr>
+					<td>09-25-22</td>
+					<td>3:15 PM</td>
+					<td>Jasper L. Panzo</td>
+					<td>Alunan Avenue, City of Koroandal</td>
+				</tr>
+			</tbody>
+		</table>
+		<div></div>
+		<a href="#" onclick="share()"> <button class="buttons" id="cancel">Cancel</button></a> 
+		</a>
+	</div>
+</div>
+
+<script type="text/javascript" src="js/events.js"></script>
 </body>
 </html>
