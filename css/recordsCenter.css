@@ -103,7 +103,8 @@ body{
 }
 
 .container-about a{
-  margin: 19em 36em;
+  margin-top: 5em;
+  margin-left: 10em;
   position: relative;
 }
 
@@ -180,4 +181,8 @@ body{
 .docu:hover{
    background-color: gray;
 
+}
+
+.records-header{
+  margin: 5em 35em;
 }
