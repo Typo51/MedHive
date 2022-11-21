@@ -17,7 +17,7 @@ if(isset($_GET['screen_acct_id']))
       $email=$_POST['email'];
       $username=$_POST['username'];
       $password=$_POST['password'];
-      $acc_type='1';
+      $acc_type='0';
       $status = '0';
 
 

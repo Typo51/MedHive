@@ -52,9 +52,8 @@
 
 <div class="folder-container">
         <?php
-          /*$select_query="Select * from `account`, `image` WHERE pat_img_id = $id AND acct_id = doc_img_id GROUP BY doc_img_id";*/
 
-          $select_query="Select * from `account`, `diagnosisPrescription` WHERE pres_pat_id = $id AND acct_id = pres_doc_id GROUP BY pres_doc_id";
+          $select_query="Select * from `account`, `prescription` WHERE pres_pat_id = $id AND acct_id = pres_doc_id GROUP BY pres_doc_id";
 
           $result=mysqli_query($con,$select_query);
           $i=1;
@@ -72,6 +71,35 @@
           ?>
 
           
+</div>
+
+
+<div class="medRec-container">
+  
+<?php 
+
+    $select_query="Select * from `account`, `image` WHERE pat_img_id = $id AND acct_id = doc_img_id GROUP BY doc_img_id";
+
+
+ if($result){
+             while ($row=mysqli_fetch_assoc($result)){
+
+
+
+
+             }
+           }
+ 
+
+
+echo "
+  <a href='recordsLab.php?acct_id=$user_id' class='waves-effect waves-light btn'> Lab Results </a> <br>
+  <a href='recordsMedCert.php?acct_id=$user_id' class='waves-effect waves-light btn'> Medical Certificates </a> <br>
+  <a href='recordsOthers.php?acct_id=$user_id' class='waves-effect waves-light btn'> Other Records </a> <br>
+
+";
+?>
+
 </div>
  	</div>
 

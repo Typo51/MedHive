@@ -228,7 +228,7 @@ $id=$row['acct_id'];
 				<tbody>
 
 		<?php 
-$patID = $_SESSION['acc_id'];
+$patID = $_SESSION['user_id'];
 $select_query="Select * from `appointment` WHERE pat_id = '$patID'";
 $result=mysqli_query($con,$select_query);
 

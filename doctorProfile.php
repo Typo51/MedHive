@@ -134,17 +134,9 @@ $result=mysqli_query($con,$select_query);
 
 	      <form method="POST">
 
-	     <!-- <input id="surtext" type="date" name="date" > -->
-
-	      <!-- <input id="firtext" type="time" name="time"> -->
-
 	     
      <br>
      <br>
-  
-	    <!-- <center>	<button type="submit" class="btn waves-effect waves-light" name="submit"> Appoint </button></center> -->
-	    <!-- </form>
-    </div> -->
 
 
 
@@ -155,10 +147,12 @@ $result=mysqli_query($con,$select_query);
  			
 		 <?php 
  				if(isset($_POST['pick']))
- 				{ 	$formaccid = $_GET['acct_id'];
+ 				{ 	
+          $formaccid = $_GET['acct_id'];
  					$date = $_POST['date'];
+
  					$sql = "SELECT * FROM `doctors_availability` WHERE doctor_id ='$formaccid' AND avail_date = '$date' AND status = 1";
- 					 $resultpick=$con->query($sql);
+ 					 $resultpick= $con->query($sql);
  				 if($resultpick->num_rows > 0){
 					echo "<select class= 'dropdown-trigger btn'name='time'>";
 
@@ -221,14 +215,12 @@ $result=mysqli_query($con,$select_query);
 		 </select> 
 
 </center>
+
+
+
+
  </fieldset>
-    
-
-
 </div>
-
-
-
 </div>
 
 
