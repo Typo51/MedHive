@@ -30,7 +30,7 @@ if(isset($_GET['acct_id']))
     $every_hour = $_POST['every_hour'];
 
 
-    $sql1 = "INSERT INTO `diagnosisprescription`(`pres_doc_id`, `pres_pat_id`, `pres_sched_date`, `diagnosis`) VALUES ('$doctorID','$id', '$date_id', '$diagnosis')";
+    $sql1 = "INSERT INTO `diagnosis`(`diag_doc_id`, `diag_pat_id`, `diag_sched_date`, `diagnosis`) VALUES ('$doctorID','$id', '$date_id', '$diagnosis')";
 
     $sql2 = "INSERT INTO `document_sessions`(`sess_doc_id`, `sess_pat_id`, `sess_sched_date`) VALUES ('$doctorID','$id', '$date_id')";
 
@@ -49,13 +49,22 @@ if(isset($_GET['acct_id']))
 			$hour = $every_hour[$i];
 			
 
-				$sql = "INSERT INTO `diagnosisprescription`(`pres_doc_id`, `pres_pat_id`, `pres_sched_date`, `med_name`, `milligrams`, `every_hour`) VALUES ('$doctorID','$id', '$date_id', '$medicine', '$milligrams', '$hour')";
+				$sql = "INSERT INTO `prescription`(`pres_doc_id`, `pres_pat_id`, `pres_sched_date`, `med_name`, `milligrams`, `every_hour`) VALUES ('$doctorID','$id', '$date_id', '$medicine', '$milligrams', '$hour')";
 				$result=mysqli_query($con,$sql);
 			}
 		
 
 	if ($result) {
+
+			$delete_sql = "DELETE FROM `appointment` WHERE pat_id = $id AND sched_date = '$date_id'";
+			$result_del=mysqli_query($con,$delete_sql);
+
+			if ($result_del) {
   		echo "<script>alert('Upload Successful')</script>";
+  		echo "<script>window.open('doctorDB.php','_self')</script>";
+
+			}
+  		
 		
 	}
 }

@@ -27,14 +27,14 @@
 
   	// image file directory
   	$target = "images/".basename($image);
+  	$type = '3';
 
-  	$sql = "INSERT INTO image (doc_img_id, pat_img_id, image) VALUES ('$id', '$user_id', '$image')";
+  	$sql = "INSERT INTO image (doc_img_id, pat_img_id, image, type) VALUES ('$id', '$user_id', '$image', '$type')";
   	// execute query
   	mysqli_query($con, $sql);
 
   	if (move_uploaded_file($_FILES['image']['tmp_name'], $target)) {
   		echo "<script>alert('Upload Successful')</script>";
-      echo "<script>window.open('documentsWatcher.php?acct_id=$id','_self')</script>";
   	}
 
   }
@@ -49,6 +49,7 @@
 	<title>
 		Documents Center
 	</title>
+	<link rel="stylesheet" type="text/css" href="./css/dropdown.css">
 	<link rel="stylesheet" type="text/css" href="css/recordsCenter.css">
 
 
@@ -67,36 +68,36 @@
 		      <!-- BUTTONS FOR DOCUMENTS-->
    		
 		<form  method="POST" enctype="multipart/form-data">
-			<div class="header">
-	        	<div>
+			<div class="records-header">
+	        		<input type="file" name="image" class="waves-effect waves-light btn" value="Upload" style="margin-right: 30px;">
+
 	        		<button class="waves-effect waves-light btn" type="submit" name="upload">Upload</button>
-	        	</div>
-	        	<div>
+
 					<a href="#" > <button class="waves-effect waves-light btn">Delete</button></a> 
-	    		</div>
+	    
     		</div>
     	</form>
 
 <div class="file-container">
+	<div class='docu'></div>
+
 <?php 
+  		$type = '3';
+		$select_query="Select * from `image` WHERE '$user_id' = pat_img_id AND type = $type";
+		
+     $result=mysqli_query($con,$select_query);
+     $i=1;
+   	if($result){
+   		while ($row=mysqli_fetch_assoc($result)){
+       		$file_name = $row['image'];
 
-		$select_query="Select * from `account`, `document_sessions` WHERE acct_id = sess_doc_id AND $user_id = sess_pat_id";
-		$result=mysqli_query($con,$select_query);
+       		echo "
+       		<div class='docu'>
+       		<a href='./images/".$file_name."' target='_blank'> $file_name </a> <br><hr>";
+        }
+    	$i++;
+    }
 
-	   while ($row=mysqli_fetch_assoc($result)) 
-		   {
-
-		   	$dates = $row['sess_sched_date'];
-
-		 	echo"
-
-		 		<a style='margin-left: 20px;' class='waves-effect waves-light btn' type='button' target='_blank' href='prescriptionWatcher.php?acct_id=$id&&date_id=$dates'>$dates Prescription </a>
-		 		<a style='margin-left: 20px;' class='waves-effect waves-light btn' type='button' target='_blank' href='diagnosisWatcher.php?acct_id=$id&&date_id=$dates'>$dates Diagnosis </a>
-
-
-
-		 	";
-		 }
 
 
 

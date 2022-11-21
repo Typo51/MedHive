@@ -33,6 +33,8 @@
  	<title> <?php echo "$firstname's" ?> Profile </title>
   <link rel="stylesheet" type="text/css" href="./css/recordsCenter.css">
 	<link rel="stylesheet" type="text/css" href="./css/doctorViewToPatient.css">
+  <link rel="stylesheet" type="text/css" href="./css/patientProfile.css">
+
 
 
 
@@ -81,10 +83,58 @@ $result=mysqli_query($con,$select_query);
  ?>
 
 <div class='container-about'>
-      <div>
-          <a style="margin-left: 20px;" class="waves-effect waves-light btn" target="_blank" type="button" href="diagnosisPrescriptionForm.php?acct_id=<?php echo $id;?>&&date_id=<?php echo $date_id;?>">Appoint Patient</a>
-      </div>
-  </div>
+      
+
+
+
+        <?php 
+
+
+        $select_query = "SELECT * FROM `vital_signs` WHERE vit_pat_id = $id";
+        $result = mysqli_query($con, $select_query);
+
+        
+
+
+          while($row=mysqli_fetch_assoc($result)){
+
+            $height = $row['height'];
+            $weight = $row['weight'];
+            $heart_rate = $row['heart_rate'];
+            $bp = $row['blood_pressure'];
+
+
+            echo "
+
+    
+                <div class='height'>
+                  <label>Height</label>
+                  $height
+                </div>
+
+                <div class='weight'>
+                  <label>Weight</label>
+                  $weight
+                </div>
+
+                <div class='rate'>
+                  <label>Heart Rate</label>
+                  $heart_rate
+                </div>
+
+                <div class='bp'>
+                  <label>Latest Blood Pressure</label>
+                  $bp
+                </div>
+            ";
+        }
+         ?>
+     
+         <a style="margin-left: 20px;" class="waves-effect waves-light btn" target="_blank" type="button" href="diagnosisPrescriptionForm.php?acct_id=<?php echo $id;?>&&date_id=<?php echo $date_id;?>">Appoint Patient</a>
+  
+        </div>        
+      
+
   
 
   <!-- DOCUMENTS SHARING PART -->
@@ -140,9 +190,6 @@ $result=mysqli_query($con,$select_query);
         $dates = $row['sess_sched_date'];
 
       echo"
-
-        <a style='margin-left: 20px;' class='waves-effect waves-light btn' type='button' target='_blank' href='prescriptionWatcherDoctor.php?acct_id=$id&&date_id=$dates'>$dates</a>
-
 
 
       ";
