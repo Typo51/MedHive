@@ -1,8 +1,8 @@
 Records Center Features:
 
-	-Lab Results, Med Certs and Other Recs.
-	-Allows the patients to share specific documents to doctors
-	-Delete Button Feature
+	-Lab Results, Med Certs and Other Recs. ✓
+	-Allows the patients to share specific documents to doctors ✓
+	-Delete Button Feature.
 
 Security Features:
 
@@ -15,8 +15,9 @@ Polish:
 	-redesign Database (optional)
 	-redesign UI
 	-Terms and conditions Declaration
-	-Vital Stats of Patients
+	-Vital Stats of Patients ✓
 	-Email Confirmation and Notifications
+	-Redo Registration Form
 
 Testing:
 
