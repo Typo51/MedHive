@@ -181,19 +181,21 @@ $result=mysqli_query($con,$select_query);
   
  <?php 
 
-    $select_query="Select * from `document_sessions` WHERE $doctorID = sess_doc_id AND $id = sess_pat_id";
-    $result=mysqli_query($con,$select_query);
+    $select_query="Select * from `shared_docs` WHERE '$user_id' = share_doc_id AND share_pat_id = $id";
 
-     while ($row=mysqli_fetch_assoc($result)) 
-       {
+     $result=mysqli_query($con,$select_query);
+     $i=1;
+    if($result){
+      while ($row=mysqli_fetch_assoc($result)){
+          $file_name = $row['image'];
 
-        $dates = $row['sess_sched_date'];
+          echo "
+          <div class='docu'>
+          <a href='./images/".$file_name."' target='_blank'> $file_name </a> <br><hr>";
+        }
+      $i++;
+    }
 
-      echo"
-
-
-      ";
-     }
 
 
 

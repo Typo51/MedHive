@@ -23,12 +23,16 @@
         $last_name = $_POST['last_name'];
         $birthday = $_POST['birthday'];
         $religion = $_POST['religion'];
-        $about = $_POST['about'];
         $height = $_POST['height'];
         $weight = $_POST['weight'];
         $heart_rate = $_POST['heart_rate'];
         $bp = $_POST['bp'];
 
+
+    $sql_checker = "SELECT * FROM vital_signs WHERE vit_pat_id = $user_id";
+    $checker = mysqli_query($con, $sql_checker);
+
+    if (mysqli_num_rows($checker) > 0) {
 
         $update_query = "UPDATE `vital_signs` SET `height`='$height',`weight`='$weight',`heart_rate`='$heart_rate',`blood_pressure`='$bp' WHERE vit_pat_id = $user_id";
 
@@ -39,6 +43,20 @@
         }
     
     }
+    else{
+        $insert_query = "INSERT INTO `vital_signs`(`vit_pat_id`, `height`, `weight`, `heart_rate`, `blood_pressure`) VALUES ('$user_id','$height','$weight','$heart_rate','bp')";
+
+        $resultar = mysqli_query($con, $insert_query);
+
+        if ($resultar) {
+            echo "<script> alert ('Updated!') </script>";
+        }
+    }
+        
+    }
+
+
+        
 
  ?>
 

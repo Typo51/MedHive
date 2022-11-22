@@ -72,7 +72,7 @@
 	        		<input type="file" name="image" class="waves-effect waves-light btn" value="Upload" style="margin-right: 30px;">
 
 	        		<button class="waves-effect waves-light btn" type="submit" name="upload">Upload</button>
-
+	        		<a onclick="share()"> <button class="btn btn-primary">Share</button></a> 
 					<a href="#" > <button class="waves-effect waves-light btn">Delete</button></a> 
 	    
     		</div>
@@ -109,6 +109,102 @@
 
 </div>
 
+
+
+
+
+
+<!-- SHARE DOCUMENT AREA -->
+	<!-- PAKI MODAL SINI SA SHARE NGA BUTTON JAS TQ TQ -->
+
+<?php 
+
+	$show_doctor = "SELECT * FROM `appointment` WHERE pat_id = $user_id";
+	$showDoctor_query = mysqli_query($con, $show_doctor);
+
+	$show_documents = "SELECT * FROM `image` WHERE pat_img_id = $user_id AND type ='3'";
+	$showDocs_query = mysqli_query($con, $show_documents);
+
+
+	
+
+ ?>
+
+
+<div class="popup-share" id="popup-share" >
+	<div class="container">
+		<form method="POST">
+		<h4>Select A Doctor to Share With</h4>
+				<div>
+					<select class='waves-effect btn'>
+					<?php 
+						
+							while($row=mysqli_fetch_assoc($showDoctor_query)){
+
+								$doc_id = $row['doc_id'];
+								$docName = $row['docfullname'];
+
+								echo "
+										<option>$docName</option>
+								";
+								
+						}
+
+
+					 ?>
+
+					</select>
+				</div>
+
+					<h4>Select A File To Share</h4>
+
+				<div>
+					<select class="waves-effect btn">
+					<?php 
+						
+							while($row=mysqli_fetch_assoc($showDocs_query)){
+
+								$docuName = $row['image'];
+
+								echo "
+									
+										<option>$docuName</option>
+
+								";
+								
+						}
+
+
+					 ?>
+					</select>
+				</div>
+				<br>
+			<a href="#" onclick="share()"> <button class="waves-effect btn" id="cancel">Cancel</button></a>
+
+			<input type="submit" name="share" class="waves-effect btn" value="share">
+
+<?php 
+
+	if(isset($_POST['share'])){
+
+	
+
+		$insert_share = "INSERT INTO `shared_docs`(`share_doc_id`, `share_pat_id`, `image`) VALUES ('$doc_id','$user_id','$docuName')";
+		$insert_query = mysqli_query($con, $insert_share);
+
+	}
+
+
+ ?>
+
+		</form>
+	</div>
+</div>
+
+<!-- ASTA DIRI ANG IMODAL -->
+
+
+<script type="text/javascript" src="js/events.js"></script>
 
 </body>
 </html>
