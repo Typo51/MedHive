@@ -1,10 +1,28 @@
-# MedHive
-A web application for our thesis
+Records Center Features:
 
+	-Lab Results, Med Certs and Other Recs.
+	-Allows the patients to share specific documents to doctors
+	-Delete Button Feature
 
-  MILESTONES: 
-    1.) add booking calendar feature
-    2.) admin dashboard feature
-    3.) add notifications via text or email feature
-    4.) emphasize the security and confidentiality
-    5.) add state the privacy notice or consent notice
+Security Features:
+
+	-Asks passwords when opening Docs Center.
+	-Asks passwords when sharing a specific document.
+	-Anti X-site, sql-injection and phishing sites.
+
+Polish:
+
+	-redesign Database (optional)
+	-redesign UI
+	-Terms and conditions Declaration
+	-Vital Stats of Patients
+	-Email Confirmation and Notifications
+
+Testing:
+
+	-Find 3 doctors.
+	-Find Patients
+	-Test the UI using the testing guide.
+	-Record user's feedbacks and comments.
+  
+Papers:
