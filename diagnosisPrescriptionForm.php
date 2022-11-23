@@ -24,10 +24,10 @@ if(isset($_GET['acct_id']))
 
    if(isset($_POST['upload']))
   {
-    $diagnosis = $_POST['diagnosis'];
+    $diagnosis = htmlspecialchars($_POST['diagnosis']) ;
     $med_name = $_POST['med_name'];
     $mg = $_POST['mg'];
-    $every_hour = $_POST['every_hour'];
+    $every_hour = $_POST['every_hour'] ;
 
 
     $sql1 = "INSERT INTO `diagnosis`(`diag_doc_id`, `diag_pat_id`, `diag_sched_date`, `diagnosis`) VALUES ('$doctorID','$id', '$date_id', '$diagnosis')";
@@ -44,9 +44,9 @@ if(isset($_GET['acct_id']))
 	$counter = sizeof($med_name);
 
 		for ($i=0; $i<$counter; $i++) {
-			$medicine = $med_name[$i];
-			$milligrams = $mg[$i];
-			$hour = $every_hour[$i];
+			$medicine = htmlspecialchars($med_name[$i]);
+			$milligrams = htmlspecialchars($mg[$i]);
+			$hour = htmlspecialchars($every_hour[$i]);
 			
 
 				$sql = "INSERT INTO `prescription`(`pres_doc_id`, `pres_pat_id`, `pres_sched_date`, `med_name`, `milligrams`, `every_hour`) VALUES ('$doctorID','$id', '$date_id', '$medicine', '$milligrams', '$hour')";
@@ -112,9 +112,9 @@ if(isset($_GET['acct_id']))
 				<tbody id="table_body">
 			<tr>
 				<td class="inputRows">
-				<input class="input1" name="med_name[]" placeholder="Medicine Name">  </input>
-				<input class="input2" name="mg[]" placeholder="Ex. 50"> <span> Mg per</span>  </input>
-				<input class="input2" name="every_hour[]" placeholder="4hrs."> </input>
+				<input type="text" class="input1" name="med_name[]" placeholder="Medicine Name">  </input>
+				<input type="number" class="input2" name="mg[]" placeholder="Ex. 50"> <span> Mg per</span>  </input>
+				<input type="number" class="input2" name="every_hour[]" placeholder="4hrs."> </input>
 				<span> hours. </span>
 			</td>
 		</tr>

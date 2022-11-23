@@ -1,15 +1,16 @@
 <?php
   include('connect.php');
+
   if (isset($_POST['submit'])) {
      
-      $first_name=$_POST['first_name'];
-      $last_name=$_POST['last_name'];
-      $gender=$_POST['gender'];
-      $email=$_POST['email'];
-      $address=$_POST['address'];
-      $username=$_POST['username'];
-      $password=$_POST['password'];
-      $specialization=$_POST['specialization'];
+      $first_name=htmlspecialchars($_POST['first_name']);
+      $last_name=htmlspecialchars($_POST['last_name']);
+      $gender=htmlspecialchars($_POST['gender']);
+      $email=htmlspecialchars($_POST['email']);
+      $address=htmlspecialchars($_POST['address']);
+      $username=htmlspecialchars($_POST['username']);
+      $password=htmlspecialchars($_POST['password']);
+      $specialization=htmlspecialchars($_POST['specialization']);
       $acc_type='1';
       $status = '0';
       $image = $_FILES['image']['name'];
