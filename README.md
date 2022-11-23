@@ -3,6 +3,7 @@ Records Center Features:
 	-Lab Results, Med Certs and Other Recs. ✓
 	-Allows the patients to share specific documents to doctors ✓
 	-Delete Button Feature.
+	-Share button Modal.
 
 Security Features:
 
