@@ -18,7 +18,9 @@ $user_id = $_SESSION['user_id'];
  <head>
  	<title></title>
  </head>
+ 	<link rel="stylesheet" type="text/css" href="css/prescriptionWatcher.css">
  	<link rel="stylesheet" type="text/css" href="css/diagnosisPrescriptionForm.css">
+
 
 
  <body>
@@ -28,17 +30,48 @@ $user_id = $_SESSION['user_id'];
 
 
 
-<div class="prescriptionContainer">
+<div class="watcher-container">
+
+<?php 
+
+	$select_query="SELECT * FROM `doctor`, `prescription` WHERE doc_acc_id = '$id'";
+	$result=mysqli_query($con,$select_query);
+
+	$row=mysqli_fetch_assoc($result);
+	$address = $row['address'];
+	$doctor = $row['last_name'];
+	$firstname = $row['first_name'];
+	echo "
+
+	<div class='header'>
+	<h4>
+	$address
+	</h4>
+	</div>
+
+	<div class='header'>
+	<h4>
+	Dr. $firstname $doctor
+	</h4>
+	</div>";
 
 
+ ?>
 
-
+<hr width="100%">
 		<h4>Prescription</h4>
-			<div class="prescription">
+			<div class="presc-table-contain">
 			
-			<table class="prescTable" id="presc_id">
+			<table class="table-watcher" id="presc_id">
 				<tbody id="table_body">
 			<tr>
+				<td><b>Medicine Name</b></td>
+				<td><b>Milligrams</b></td>
+				<td><b>Every hour</b></td>
+
+			</tr>
+
+			
 <?php 
 
 
@@ -54,12 +87,18 @@ $user_id = $_SESSION['user_id'];
 			$every_hour=$row['every_hour'];
 		
 					echo "
+					<tr>
 						<td class='inputRows'>
 							$med_name
-							$mg <span> Mg per</span>  </input>
-							$every_hour
-							<span> hours. </span>
 						</td>
+						<td>
+							$mg Mg per
+						</td>
+						<td>	
+							$every_hour
+							hours.
+						</td>						
+						
 
 
 
