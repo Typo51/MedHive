@@ -96,11 +96,13 @@ else{
 }
 
 
-function share()
+
+ function shareBtn()
  {
-    var share = document.getElementById('popup-share');
-    share.classList.toggle('active');
+    var popup_share = document.getElementById('popup_share');
+    popup_share.classList.toggle('active');
     var blur = document.getElementById('blur');
     blur.classList.toggle('active');
- 
- } 
+
+    
+ }
