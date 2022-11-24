@@ -29,7 +29,7 @@
   	$target = "images/".basename($image);
   	$type = '2';
 
-  	$sql = "INSERT INTO image (doc_img_id, pat_img_id, image, type) VALUES ('$id', '$user_id', '$image', '$type')";
+  	$sql = "INSERT INTO `image` ( pat_img_id, image, type) VALUES ('$user_id', '$image', '$type')";
   	// execute query
   	mysqli_query($con, $sql);
 
@@ -49,7 +49,7 @@
 	<title>
 		Documents Center
 	</title>
-	<link rel="stylesheet" type="text/css" href="./css/dropdown.css">
+	<link rel="stylesheet" type="text/css" href="css/modals.css">
 	<link rel="stylesheet" type="text/css" href="css/recordsCenter.css">
 
 
@@ -66,25 +66,30 @@
 	</div>
 
 		      <!-- BUTTONS FOR DOCUMENTS-->
-   		
-		<form  method="POST" enctype="multipart/form-data">
 			<div class="records-header">
-	        		<input type="file" name="image" class="waves-effect waves-light btn" value="Upload" style="margin-right: 30px;">
+				<button onclick="shareBtn()" class="btn btn-primary">Share</button>
+
+		<form  method="POST" enctype="multipart/form-data">
+	        		<input required="required" type="file" name="image" class="waves-effect waves-light btn" value="Upload" style="margin-right: 30px;">
 
 	        		<button class="waves-effect waves-light btn" type="submit" name="upload">Upload</button>
-	        		<a onclick="share()"> <button class="btn btn-primary">Share</button></a> 
-					<a href="#" > <button class="waves-effect waves-light btn">Delete</button></a> 
+	    </form>
+	        		
+	        <form method="POST">
+	        		<input type="submit" name="stop" class="waves-effect btn" value="STOP SHARING">
+					<a href="#" > <button class="waves-effect waves-light btn">Delete</button></a>
 	    
-    		</div>    	
+    		</div>
     	</form>
 
 <div class="file-container">
 	<div class='docu'></div>
 
 <?php 
-  		$type = '2';
-		$select_query="Select * from `image` WHERE '$user_id' = pat_img_id AND type = $type";
-		
+
+  	$type = '2';
+		$select_query="Select * from `image` WHERE '$user_id' = pat_img_id AND type = '$type'";
+
      $result=mysqli_query($con,$select_query);
      $i=1;
    	if($result){
@@ -98,17 +103,18 @@
     	$i++;
     }
 
+    if (isset($_POST['stop'])) {
+			
+    	$delete_share = "DELETE FROM `shared_docs` WHERE  share_pat_id = $user_id";
+    	$delete_sql =  mysqli_query($con, $delete_share);
 
-
-
-
-
+			}
  ?>
  	
 
 
 </div>
-
+</div>
 
 
 <!-- SHARE DOCUMENT AREA -->
@@ -123,70 +129,71 @@
 	$showDocs_query = mysqli_query($con, $show_documents);
 
 
-	
+
 
  ?>
 
 
-<div class="popup-share" id="popup-share" >
+
+
+<div class="popup-share" id="popup_share">
 	<div class="container">
 		<form method="POST">
-		<h4>Select A Doctor to Share With</h4>
-				<div>
-					<select class='waves-effect btn'>
-					<?php 
+			<h4> Select a Doctor to Share With </h4>
+			<div>
+				<select class="waves-effect btn" name="doctor-share">
+				<?php 
 						
-							while($row=mysqli_fetch_assoc($showDoctor_query)){
+						while($row=mysqli_fetch_assoc($showDoctor_query)){
 
-								$doc_id = $row['doc_id'];
-								$docName = $row['docfullname'];
+							$doc_id = $row['doc_id'];
+							$docName = $row['docfullname'];
 
-								echo "
-										<option>$docName</option>
-								";
-								
-						}
+							echo "
+									<option value='$doc_id'>$docName</option>
+							";
+							
+					}
 
 
-					 ?>
-
-					</select>
-				</div>
-
-					<h4>Select A File To Share</h4>
-
-				<div>
-					<select class="waves-effect btn">
-					<?php 
+				 ?>
+				</select>
+ 			</div>
+			<h4> Select A file to share </h4>
+			<div>
+				<select  class="waves-effect btn" name="file-share">
+				<?php 
 						
-							while($row=mysqli_fetch_assoc($showDocs_query)){
+						while($row=mysqli_fetch_assoc($showDocs_query)){
 
-								$docuName = $row['image'];
+							$docuName = $row['image'];
 
-								echo "
-									
-										<option>$docuName</option>
-
-								";
+				echo "
 								
-						}
+									<option value='$docuName'> $docuName </option>
+
+				
+						";	
+					}
 
 
-					 ?>
-					</select>
-				</div>
-				<br>
+				 ?>
+
+				</select>
+
+			</div>
 			<a href="#" onclick="share()"> <button class="waves-effect btn" id="cancel">Cancel</button></a>
 
 			<input type="submit" name="share" class="waves-effect btn" value="share">
 
 <?php 
 
-	if(isset($_POST['share'])){
-
+		if(isset($_POST['share'])){
+		$imageName = $_POST['file-share'];
+		$doctorName = $_POST['doctor-share'];
 	
 
-		$insert_share = "INSERT INTO `shared_docs`(`share_doc_id`, `share_pat_id`, `image`) VALUES ('$doc_id','$user_id','$docuName')";
+		$insert_share = "INSERT INTO `shared_docs`(`share_doc_id`, `share_pat_id`, `image`) VALUES ('$doctorName','$user_id','$imageName')";
 		$insert_query = mysqli_query($con, $insert_share);
 
 	}
@@ -194,14 +201,14 @@
 
  ?>
 
-		</form>
+</form>
 	</div>
 </div>
+
 
 <!-- ASTA DIRI ANG IMODAL -->
 
 
 <script type="text/javascript" src="js/events.js"></script>
-
 </body>
 </html>

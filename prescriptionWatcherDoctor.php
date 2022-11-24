@@ -33,7 +33,7 @@ $user_id = $_SESSION['user_id'];
 
 
  
-	$select_query="SELECT * FROM `account`, `diagnosis` WHERE diag_doc_id = '$user_id' AND acct_id = diag_pat_id AND '$date_id' = diag_sched_date";
+	$select_query="SELECT * FROM `diagnosis` WHERE diag_doc_id = '$user_id' AND $id = diag_pat_id AND '$date_id' = diag_sched_date";
 	$result=mysqli_query($con,$select_query);
 
 				while ($row=mysqli_fetch_assoc($result)) 
@@ -71,7 +71,7 @@ $user_id = $_SESSION['user_id'];
 
 
  
-	$select_query="SELECT `med_name`, `milligrams`, `every_hour` FROM `account`, `prescription` WHERE pres_pat_id = '$id' AND $user_id = pres_doc_id AND '$date_id' = pres_sched_date";
+	$select_query="SELECT `med_name`, `milligrams`, `every_hour` FROM `prescription` WHERE pres_pat_id = '$id' AND $user_id = pres_doc_id AND '$date_id' = pres_sched_date";
 	$result=mysqli_query($con,$select_query);
 
 				while ($row=mysqli_fetch_assoc($result)) 

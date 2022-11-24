@@ -178,30 +178,31 @@ $result=mysqli_query($con,$select_query);
       </center>
 
 <div class="personal-docs">
-  
- <?php 
-
-    $select_query="Select * from `shared_docs` WHERE '$user_id' = share_doc_id AND share_pat_id = $id";
-
-     $result=mysqli_query($con,$select_query);
-     $i=1;
-    if($result){
-      while ($row=mysqli_fetch_assoc($result)){
-          $file_name = $row['image'];
-
-          echo "
-          <div class='docu'>
-          <a href='./images/".$file_name."' target='_blank'> $file_name </a> <br><hr>";
-        }
-      $i++;
-    }
+    <div class='docu'>
 
 
+<?php 
+
+  $select_share = "SELECT * FROM `shared_docs` WHERE share_doc_id = '$user_id' AND share_pat_id = $id";
+  $run_share = mysqli_query($con, $select_share);
+
+  while ($row=mysqli_fetch_assoc($run_share)) {
+    $file_name = $row['image'];
+
+
+    echo "
+
+     
+          <a class='waves-effect btn' href='./images/".$file_name."' target='_blank'> $file_name </a> <hr>
+
+
+    ";
+  }
 
 
 
-   ?>
 
+ ?>
 
 
 

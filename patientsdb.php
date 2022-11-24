@@ -269,9 +269,9 @@ while ($row=mysqli_fetch_assoc($result))
 	</div><br>
 	<a href="#" onclick="logs()"> <button class="buttons" id="cancel">Cancel</button></a> 
 					</div>
-
-
 	
+
+
 </body>
 <script src="js/events.js">
 	
