@@ -3,12 +3,13 @@ Records Center Features:
 	-Lab Results, Med Certs and Other Recs. ✓
 	-Allows the patients to share specific documents to doctors ✓
 	-Delete Button Feature.
+	-Back button.
 	-Share button Modal. ✓
 
 Security Features:
 
 	-Asks password when opening Docs Center. ✓
-	-Asks password when sharing a specific document.
+	-Asks password when sharing a specific document. ✓
 	-Anti X-site, sql-injection and phishing sites. ✓
 
 Polish:
