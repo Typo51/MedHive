@@ -106,3 +106,13 @@ else{
 
     
  }
+
+  function confirmPw()
+ {
+    var popup_share = document.getElementById('confirm');
+    popup_share.classList.toggle('active');
+    var blur = document.getElementById('blur');
+    blur.classList.toggle('active');
+
+    
+ }
