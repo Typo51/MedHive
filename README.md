@@ -7,7 +7,7 @@ Records Center Features:
 
 Security Features:
 
-	-Asks passwords when opening Docs Center.
+	-Asks passwords when opening Docs Center. ✓
 	-Asks passwords when sharing a specific document.
 	-Anti X-site, sql-injection and phishing sites. ✓
 
