@@ -19,7 +19,6 @@ Polish:
 	-Terms and conditions Declaration
 	-Vital Stats of Patients ✓
 	-Email Confirmation and Notifications
-	-Redo Registration Form
 	-Move Doctor Availability to Doctors Profile
 	-User Info Redesign (Signup and Patients Profile)
 
