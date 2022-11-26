@@ -2,6 +2,8 @@
 
 	include ('connect.php');
   include ('side.php');
+
+  ob_start();
   $user_id = $_SESSION['user_id'];
   
 	if(isset($_SESSION['user_id']))
@@ -153,16 +155,70 @@ $result=mysqli_query($con,$select_query);
         }
          ?>
          
-          <a class="waves-effect waves-light btn" type="button" href="documentsCenter.php?acct_id=<?php echo $user_id;?>">Documents Center</a>
+        <button class="waves-effect btn" onclick="confirmPw()">Documents Center</button>
+      
   </div>
 
-    <!-- DOCUMENT AREAS -->
+<?php 
 
-   	<div class="docs-container">
-      <center>
-      <a href="symptomsForm.php?acct_id=<?php echo $user_id;?>">Symptoms Form</a>
-      </center>
 
-<script type="text/javascript" src="js/dropdown.js"></script>
+if (isset($_POST['confirm'])) {
+  
+  $password = $_POST['password'];
+
+
+   $sql = "SELECT * FROM account WHERE acct_id = $user_id AND password ='$password'";
+  $result = mysqli_query($con, $sql);
+
+  if ($result->num_rows > 0) {
+
+    header ("Location: documentsCenter.php?acct_id=$user_id");
+    ob_end_flush();
+
+
+  }
+
+  else {
+            echo "<script>alert('Woops! Username or Password is Wrong.')</script>";
+        }
+
+}
+
+ 
+
+
+ ?>
+
+
+<div class="confirm" id="confirm">
+  
+  <div class="confirmation">
+    <h4>Enter your Password</h4>
+    <form method="POST">
+    <input type="password" required="required" name="password">
+    <div>
+      <button class="waves-effect btn" onclick="confirmPw()">Cancel</button>
+      
+        <input type="submit" name="confirm" value="Confirm" class="waves-effect btn">
+      </form>
+    </div>
+    </div>
+
+
+</div>
+
+
+  
+
+<script type="text/javascript" src="js/events.js"></script>
 </body>
  </html>
+
+<!-- 
+
+
+    <a class="waves-effect waves-light btn" type="button" href="documentsCenter.php?acct_id=<?php echo $user_id;?>">Documents Center</a>
+
+ -->
+
+

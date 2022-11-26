@@ -60,6 +60,8 @@
 
 </head>
 <body>
+
+
 <div class="doc-container">
 	<div class="nav">
 		<h4>Files from Dr. <?php echo "$firstname"; ?></h4>
@@ -67,20 +69,23 @@
 
 		      <!-- BUTTONS FOR DOCUMENTS-->
 			<div class="records-header">
-				<button onclick="shareBtn()" class="btn btn-primary">Share</button>
+				
 
 		<form  method="POST" enctype="multipart/form-data">
 	        		<input required="required" type="file" name="image" class="waves-effect waves-light btn" value="Upload" style="margin-right: 30px;">
 
 	        		<button class="waves-effect waves-light btn" type="submit" name="upload">Upload</button>
+	        		<a href="#" > <button class="waves-effect waves-light btn">Delete</button></a>
 	    </form>
 	        		
-	        <form method="POST">
+	    		<button onclick="shareBtn()" class="btn btn-primary">Share</button>
+
+	    		<form method="POST">
 	        		<input type="submit" name="stop" class="waves-effect btn" value="STOP SHARING">
-					<a href="#" > <button class="waves-effect waves-light btn">Delete</button></a>
-	    
+					
+	    		</form>
     		</div>
-    	</form>
+    	
 
     	<!-- END FOR BUTTONS FOR DOCUMENTS -->
 
@@ -118,6 +123,8 @@
 
 </div>
 </div>
+
+
 
 
 <!-- SHARE DOCUMENT AREA -->
@@ -185,32 +192,78 @@
 				</select>
 
 			</div>
-			<a href="#" onclick="share()"> <button class="waves-effect btn" id="cancel">Cancel</button></a>
+			
 
-			<input type="submit" name="share" class="waves-effect btn" value="share">
+			<button  onclick="confirmPw()" class="waves-effect btn">Share</button>
+		
+			<button onclick="shareBtn()" class="waves-effect btn" id="cancel">Cancel</button>
+	
+
 
 <?php 
 
-		if(isset($_POST['share'])){
-		$imageName = $_POST['file-share'];
+
+
+
+
+
+
+if (isset($_POST['confirm'])) {
+  
+  $password = $_POST['password'];
+
+
+   $sql = "SELECT * FROM account WHERE acct_id = $user_id AND password ='$password'";
+  $result = mysqli_query($con, $sql);
+
+  if ($result->num_rows > 0) {
+
+  		$imageName = $_POST['file-share'];
 		$doctorName = $_POST['doctor-share'];
 	
 
 		$insert_share = "INSERT INTO `shared_docs`(`share_doc_id`, `share_pat_id`, `image`) VALUES ('$doctorName','$user_id','$imageName')";
 		$insert_query = mysqli_query($con, $insert_share);
 
-	}
+   
+
+  }
+
+  else {
+            echo "<script>alert('Woops! Username or Password is Wrong.')</script>";
+        }
+
+}
+
+ 
+
 
 
  ?>
 
-</form>
+
 	</div>
 </div>
 
 
 <!-- ASTA DIRI ANG IMODAL -->
 
+<div class="confirm" id="confirm">
+  
+  <div class="confirmation">
+    <h4>Enter your Password</h4>
+    <input type="password" required="required" name="password">
+    <div>
+      <button class="waves-effect btn" onclick="confirmPw()">Cancel</button>
+      
+        <input type="submit" name="confirm" value="Confirm" class="waves-effect btn">
+  
+    </div>
+    </div>
+
+
+</div>
+</form>
 
 <script type="text/javascript" src="js/events.js"></script>
 </body>
