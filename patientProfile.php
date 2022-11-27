@@ -108,7 +108,7 @@ $result=mysqli_query($con,$select_query);
  <a href="patientsInfoForm.php?acct_id=<?php echo "$user_id";?>">Edit Profile</a>
 </div>
 
-
+<!-- ABOUT AREA -->
 
 <div class='container-about'>
 

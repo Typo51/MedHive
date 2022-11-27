@@ -94,7 +94,7 @@
                             if($type == 1){
 
 
-                                echo "href='doctorProfile.php?acct_id=$user_id'";
+                                echo "href='doctorsProfileReal.php?acct_id=$user_id'";
 
                             }
 
