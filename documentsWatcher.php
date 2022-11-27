@@ -5,9 +5,9 @@
 
   	$user_id = $_SESSION['user_id'];
 
-	if(isset($_GET['acct_id']))
+	if(isset($_GET['passer_id']))
 	{
-		$id = $_GET['acct_id'];
+		$id = $_GET['passer_id'];
 		$select_query="Select * from `account` WHERE acct_id = $id";
 		$result=mysqli_query($con,$select_query);
 
@@ -80,7 +80,7 @@
 <div class="file-container">
 <?php 
 
-		$select_query="Select * from `account`, `document_sessions` WHERE acct_id = sess_doc_id AND $user_id = sess_pat_id";
+		$select_query="Select * from `document_sessions` WHERE $id = sess_doc_id AND $user_id = sess_pat_id";
 		$result=mysqli_query($con,$select_query);
 
 	   while ($row=mysqli_fetch_assoc($result)) 

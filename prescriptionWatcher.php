@@ -34,10 +34,11 @@ $user_id = $_SESSION['user_id'];
 
 <?php 
 
-	$select_query="SELECT * FROM `doctor`, `prescription` WHERE doc_acc_id = '$id'";
+	$select_query="SELECT * FROM `doctor` WHERE doc_acc_id = '$id'";
 	$result=mysqli_query($con,$select_query);
 
-	$row=mysqli_fetch_assoc($result);
+	while ($row=mysqli_fetch_assoc($result)) {
+	
 	$address = $row['address'];
 	$doctor = $row['last_name'];
 	$firstname = $row['first_name'];
@@ -55,7 +56,7 @@ $user_id = $_SESSION['user_id'];
 	</h4>
 	</div>";
 
-
+}
  ?>
 
 <hr width="100%">
@@ -76,7 +77,7 @@ $user_id = $_SESSION['user_id'];
 
 
  
-	$select_query="SELECT `med_name`, `milligrams`, `every_hour` FROM `account`, `prescription` WHERE pres_pat_id = '$user_id' AND acct_id = pres_doc_id AND '$date_id' = pres_sched_date";
+	$select_query="SELECT `med_name`, `milligrams`, `every_hour` FROM `prescription` WHERE pres_pat_id = '$user_id' AND $id = pres_doc_id AND '$date_id' = pres_sched_date";
 	$result=mysqli_query($con,$select_query);
 
 				while ($row=mysqli_fetch_assoc($result)) 

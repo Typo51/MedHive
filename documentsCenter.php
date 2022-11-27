@@ -63,7 +63,7 @@
               $lastname= $row['last_name'];
 
               ?>
-             <a href='documentsWatcher.php?acct_id=<?php echo $row['acct_id']?>' class='waves-effect waves-light btn'>
+             <a href='documentsWatcher.php?passer_id=<?php echo $row['acct_id']?>' class='waves-effect waves-light btn'>
               <?php echo " Dr. $firstname $lastname </a> <br>";
               }
               }
