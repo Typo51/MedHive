@@ -5,9 +5,10 @@
      
       $first_name= htmlspecialchars($_POST['first_name']) ;
       $last_name=htmlspecialchars($_POST['last_name']) ;
-      $age=htmlspecialchars($_POST['age']) ;
+      $birth=htmlspecialchars($_POST['birth']) ;
       $gender=htmlspecialchars($_POST['gender']) ;
       $email=htmlspecialchars($_POST['email']) ;
+      $phone=htmlspecialchars($_POST['phone']) ;
       $username=htmlspecialchars($_POST['username']) ;
       $password=htmlspecialchars($_POST['password']) ;
       $acc_type='0';
@@ -26,7 +27,7 @@
     }
     else
     {
-      $sql1 = "insert into `screening` (first_name, last_name, age, gender, email, username, password, status, acc_type, pic_img) values ( '$first_name', '$last_name', '$age', '$gender','$email','$username','$password', '$status', '$acc_type', '$image')";
+      $sql1 = "insert into `screening` (first_name, last_name, birthday, gender, email, phone, username, password, status, acc_type, pic_img) values ( '$first_name', '$last_name', '$birth', '$gender','$email', '$phone', '$username','$password', '$status', '$acc_type', '$image')";
       $result1 = mysqli_query($con, $sql1);
       if($result1)
       {
@@ -75,14 +76,11 @@
         </div>
 
         <div class="txt_field">
-          <input type="text" required="required" name="age">
-          <label>Age</label>
+          <input type="date" required="required" name="birth">
         </div>
-      
-        <div class="txt_field">
-          <input type="text" required="required" name="email">
-          <label>Email</label>
-        </div>
+        <label>Date of Birth</label>
+
+        
         
                <div class="gender">
     <select id="gender" name="gender">
@@ -91,6 +89,17 @@
             <option value="Female">Female</option>
     </select>
   
+    <div class="txt_field">
+          <input type="text" required="required" name="email">
+          <label>Email</label>
+        </div>
+
+        <div class="txt_field">
+          <input type="text" required="required" name="phone">
+          <label>Phone Number</label>
+        </div>
+
+
 
         <div class="txt_field">
           <input type="text" required="required" name="username">
@@ -107,9 +116,7 @@
         
          </div>
 
-      
     
-</select>
 
       <button type="submit" name="submit" >Submit</button>
            
