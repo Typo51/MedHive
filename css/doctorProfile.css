@@ -1,6 +1,7 @@
 body{
-    background-color: #f3f5f9;
+    background-color: #f3f5f9 !important;
  }
+
 
 .whole-container
 {
@@ -32,12 +33,31 @@ body{
 {
   display: flex;
   flex-direction: column;
+  position: relative;
+  
 }
 
 .profile
 {
-  display: flex;
+
 }
+
+
+.profile p:nth-child(2)
+{
+  top: -34%;
+  left: 60%;
+  position: relative;
+  
+}
+
+.profile p:nth-child(3)
+{
+  top: -40%;
+  position: relative;
+
+}
+
 
 .container-profile p
 {
@@ -74,11 +94,91 @@ body{
 
 .appointment
 {
-	margin: 50px 0px 0px 0px;
+  border: 1px solid;
+  position: relative;
+  width: 80%;
+  background-color: #f3f5f9;
+  padding: 20px;
+  border-radius: 20px;
+
+  display: grid;
+
+  row-gap: 20px;
 }
+
+.appointment form{
+  padding: 20px 0px 0px 0px;
+}
+
+.appointment-button
+{
+  display: flex;
+  top: 5%;
+  position: relative;
+  justify-content: center;
+  gap: 20px;
+}
+
+.date-picker{
+
+  position: relative;
+  left: 10%;
+
+  width: 80%;
+  display: flex;
+  padding: 10px 20px 10px 20px;
+  gap: 20px;
+}
+
+
+/*END OF APPOINTMENT SETUP*/
 
 .button-holder
 {
 	float: right;
 	margin: 20px 0px 0px 0px;
+}
+
+.container-about
+{
+
+  padding: 50px 10em;
+  background-color: #fff;
+  border-radius: 30px;
+  margin-top: 70px;
+  margin-left: 8%;
+  width: 85%;
+  height: 50vh;
+  display: flex;
+  gap: 10em;
+
+}
+
+input [type='checkbox']{
+
+  opacity: 1 !important;
+}
+
+.personal-info{
+  border: 1px solid;
+  width: 40%;
+}
+
+.clinic-info{
+  border: 1px solid;
+  width: 40%;
+}
+
+.action-buttons{
+  border: 1px solid;
+  width: 37%;
+  height: 20%;
+  display: flex;
+  position: relative;
+  top: 101%;
+  left: 30%;
+
+  padding: 5px;
+  justify-content: center;
+  gap: 20px;
 }
