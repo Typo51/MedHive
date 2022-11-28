@@ -30,7 +30,7 @@
     var modal3 = document.getElementById('modal3');
     modal3.classList.toggle('active');
     var blur = document.getElementById('blur');
-    //blur.classList.toggle('active');
+    blur.classList.toggle('active');
  } 
  function doctorCard()
 {
@@ -116,3 +116,11 @@ else{
 
     
  }
+
+  function setAppoint()
+ {
+    var modal2 = document.getElementById('modal-appoint');
+    modal2.classList.toggle('active');
+    var blur = document.getElementById('blur');
+    blur.classList.toggle('active');
+ } 
