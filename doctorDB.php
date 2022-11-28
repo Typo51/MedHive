@@ -49,10 +49,7 @@
 			
         		<a href="#" onclick="appointment()"> <button class="btn btn-primary">List of Appointment </button></a> 
         	
-				
-				<a href="#" onclick="logs()"> <button class="btn btn-primary">Appointment Logs</button></a> 
-        	
-			<a href="#" onclick="sched()"> <button class="btn btn-primary">Set Schedule</button></a> 
+			
         	
 	</div>
 
@@ -264,7 +261,7 @@
 		</table>
 		<div></div>
 		<a href="#" onclick="logs()"> <button class="buttons" id="cancel">Cancel</button></a> 
-		</a>
+		
 	</div>
 </div>
 
@@ -301,7 +298,7 @@
     
 					 if($resultar){
 					   echo "<script>alert ('Schedule Added!')  </script>";
-					   echo "<script>window.open('doctorDB.php','_self')</script>";
+					   echo "<script>window.open('doctorsProfileReal.php','_self')</script>";
 				 
 				 
 					 }else{

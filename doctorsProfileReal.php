@@ -85,6 +85,7 @@ if(isset($_GET['acct_id']))
     <script src="https://kit.fontawesome.com/42135a69b7.js" crossorigin="anonymous"></script>
  </head>
  <body>
+
 <div class="whole-container">
  	<div class="header">
  		<div class="profile-bubble">
@@ -132,12 +133,37 @@ $result=mysqli_query($con,$select_query);
 
 
 <div class='container-about'>
-
-       <a href="#" onclick="sched()"> <button class="btn btn-primary">Set Schedule</button></a> 
-      
+  <div class="personal-info">
+    
   </div>
 
+  <div class="clinic-info">
+    
+  </div>
+
+
+
+
+ 
+
+  </div>
+
+<div class="action-buttons">
+        <button onclick="sched()" class="btn btn-primary">Set Schedule</button>
+
+        <button onclick="logs()" class="btn btn-primary">Appointment Logs</button>
+  </div>
+
+
+
 </div>
+
+
+
+
+
+
+
 
 <!-- SET SCHEDULE MODAL -->
 
@@ -169,7 +195,7 @@ $result=mysqli_query($con,$select_query);
     
            if($resultar){
              echo "<script>alert ('Schedule Added!')  </script>";
-             echo "<script>window.open('doctorDB.php','_self')</script>";
+             echo "<script>window.open('doctorsProfileReal.php?acct_id=$id','_self')</script>";
          
          
            }else{
@@ -186,7 +212,7 @@ $result=mysqli_query($con,$select_query);
       <br>
       <label>Select Date</label>
       <br>
-      <input type="date" name="dater">
+      <input required="required" type="date" name="dater">
       
       <br>
       <br>
@@ -231,14 +257,56 @@ $result=mysqli_query($con,$select_query);
   </form>
 
 
-  
 
 
 
 
+
+        </div>
+    </div>
 </div>
-            </div>
-            </div>
+
+  <!-- APPOINTMENT LOGS -->
+
+
+<div class="popup3" id="modal3" >
+  <div class="container">
+    <h4>Appointment Logs</h4>
+    <table class="striped">
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Time</th>
+          <th>Doctor's Name</th>
+          <th>Clinic Address</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>09-25-22</td>
+          <td>3:15 PM</td>
+          <td>Jasper L. Panzo</td>
+          <td>Alunan Avenue, City of Koroandal</td>
+        </tr>
+        <tr>
+          <td>09-25-22</td>
+          <td>3:15 PM</td>
+          <td>Jasper L. Panzo</td>
+          <td>Alunan Avenue, City of Koroandal</td>
+        </tr>
+        <tr>
+          <td>09-25-22</td>
+          <td>3:15 PM</td>
+          <td>Jasper L. Panzo</td>
+          <td>Alunan Avenue, City of Koroandal</td>
+        </tr>
+      </tbody>
+    </table>
+    <div></div>
+    <a href="#" onclick="logs()"> <button class="buttons" id="cancel">Cancel</button></a> 
+    
+  </div>
+</div>
 
 <script src="js/events.js"></script>
  </body>

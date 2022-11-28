@@ -83,6 +83,7 @@ if(isset($_GET['acct_id']))
 	<link rel="stylesheet" href="./css/modals.css">
  </head>
  <body>
+
 <div class="whole-container">
  	<div class="header">
  		<div class="profile-bubble">
@@ -111,8 +112,8 @@ $result=mysqli_query($con,$select_query);
     	<div class='patient-profile'>
     	<h5>$firstname $surname</h5>
 	    	<div class='profile'>
-	    		<p>Specialization: $specialization</p>
-	    		<p>Sex: $sex</p>
+	    		<p> $specialization</p>
+	    		<p> $sex</p>
 	    	</div>
     	</div>
     	
@@ -126,104 +127,117 @@ $result=mysqli_query($con,$select_query);
 
 
 
+<div class='container-about'>
+
+   <div class="personal-info">
+    
+  </div>
+
+  <div class="clinic-info">
+    
+  </div>
+
+
+
+
+ 
+
+  </div>
+
+<div class="action-buttons">
+        <button onclick="setAppoint()" class="btn btn-primary">Set Appointment</button>
+  </div>
+
+
+
+
+
+</div>
+
 
 
 <!-- SETUP FOR APPOINTMENT -->
 
-	<div class="appointment">
-
-	      <form method="POST">
-
-	     
-     <br>
-     <br>
 
 
 
-    <fieldset>
- 	<legend>Appointment</legend>
- 		<center>
- 		<form method="POST">
- 			
-		 <?php 
- 				if(isset($_POST['pick']))
- 				{ 	
+
+ ?>
+<div class="modal-appoint" id="modal-appoint">
+  <div class="appointment">
+
+  <form method="POST">
+  
+    <?php
+     if(isset($_POST['pick']))
+        {   
           $formaccid = $_GET['acct_id'];
- 					$date = $_POST['date'];
+          $date = $_POST['date'];
 
- 					$sql = "SELECT * FROM `doctors_availability` WHERE doctor_id ='$formaccid' AND avail_date = '$date' AND status = 1";
- 					 $resultpick= $con->query($sql);
- 				 if($resultpick->num_rows > 0){
-					echo "<select class= 'dropdown-trigger btn'name='time'>";
+          $sql = "SELECT * FROM `doctors_availability` WHERE doctor_id ='$formaccid' AND avail_date = '$date' AND status = 1";
+           $resultpick= $con->query($sql);
 
-					while ($row=mysqli_fetch_assoc($resultpick)) {
-						
-							 
-						?>
+           ?>
+
+           <?php
+    if($resultpick->num_rows > 0){
+          echo "
+          <label>Choose Time</label>
+          <select class= 'dropdown-trigger btn'name='time'>
+          ";
+
+          while ($row=mysqli_fetch_assoc($resultpick)) {
+            
+               
+            ?>
+      <option value='<?php echo $row['avail_time']; ?>'><?php echo $row['avail_time']; ?></option>
+     <?php 
    
-							<option value='<?php echo $row['avail_time']; ?>'><?php echo $row['avail_time']; ?></option>
-   
-   
-						<?php 
-   
-					}
-					echo "</select>";
-					echo"<input type='submit' name='submit' value='Appoint!'>";
-				 }
+          }
+          echo "</select>";
+        }
+      }
+          ?>
+        <label>Choose a Date</label>
+            <div class="date-picker">
+        <input required='required' type="date" name="date" value='<?php echo $date ?>'>
+        <input type="submit" name="pick" value="Pick Date" class="waves-effect btn">
+    </div>
+    <label>Appointment Type</label>
+    <select class="dropdown-trigger btn" name="type"> 
+        <option value="Face to face">Face to face</option>
+        <option value="Virtual">Virtual</option>
+     </select> 
 
-				 else {
-					
-					echo "<input type='submit' value= 'Appoint!'disabled >";
-				 }
+     <div class="appointment-button">
+      <input type='submit' name='submit' value='Appoint!' class="waves-effect btn">
+  </form>
 
- 				
+<button class="waves-effect btn" onclick="setAppoint()">Cancel</button>
+</div>
 
- 				
-			}
-
-		
-			if(isset($_POST['submit']))
- 				{	
-					
-   					
- 					$time = $_POST['time'];
- 					$date = $_POST['date'];
-					
-
- 					$sql1 = "UPDATE `doctors_availability` SET `status`= '0' WHERE avail_date = '$date' AND  `avail_time` = '$time'";
- 					$resultar=mysqli_query($con,$sql1);
-				
- 				}
-
-				
-
- 			 ?>
- 			 
-			<br>
- 			<br>
- 			 <input type="date" name="date" value='<?php echo $date ?>'>
-
-
- 			
-
-
-
- 			<input type="submit" name="pick" value="Pick Date">
-			 <select class="dropdown-trigger btn" name="type"> 
-		    <option value="Face to face">Face to face</option>
-		    <option value="Virtual">Virtual</option>
-		 </select> 
-
-</center>
-
-
-
-
- </fieldset>
+</div>
 </div>
 </div>
 
+<?php 
 
+   if(isset($_POST['submit']))
+        { 
+          
+            
+          $time = $_POST['time'];
+          $date = $_POST['date'];
+          
+
+          $sql1 = "UPDATE `doctors_availability` SET `status`= '0' WHERE avail_date = '$date' AND  `avail_time` = '$time'";
+          $resultar=mysqli_query($con,$sql1);
+        
+        }
+
+        
+
+       ?>
 
 <script src="js/events.js"></script>
  </body>
