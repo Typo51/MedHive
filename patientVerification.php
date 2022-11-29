@@ -10,18 +10,21 @@ if(isset($_GET['screen_acct_id']))
 
   if (isset($_POST['submit'])) {
      
-      $first_name=$_POST['first_name'];
-      $last_name=$_POST['last_name'];
-      $age=$_POST['age'];
-      $gender=$_POST['gender'];
-      $email=$_POST['email'];
-      $username=$_POST['username'];
-      $password=$_POST['password'];
+      $first_name= htmlspecialchars($_POST['first_name']) ;
+      $last_name=htmlspecialchars($_POST['last_name']) ;
+      $gender=htmlspecialchars($_POST['gender']);
+      $birth=htmlspecialchars($_POST['birth']) ;
+      $height=htmlspecialchars($_POST['height']);
+      $weight=htmlspecialchars($_POST['weight']);
+      $address=htmlspecialchars($_POST['address']);
+      $username=htmlspecialchars($_POST['username']) ;
+      $password=htmlspecialchars($_POST['password']) ;
+      $email=htmlspecialchars($_POST['email']) ;
+      $phone=htmlspecialchars($_POST['phone']) ;
       $acc_type='0';
-      $status = '0';
 
 
-    $sql= "Select * From `account` Where first_name= '$first_name' and last_name= '$last_name'";
+    $sql= "Select * From `patient` Where first_name= '$first_name' and last_name= '$last_name'";
     $selectresult=mysqli_query($con, $sql);
     $number = mysqli_num_rows($selectresult);
 
@@ -31,17 +34,17 @@ if(isset($_GET['screen_acct_id']))
     }
     else
     {
-      $sql1 = "insert into `account` (first_name, last_name, gender, email, username, password, status, acc_type) values ( '$first_name', '$last_name', '$gender','$email','$username','$password', '$status', '$acc_type')";
+      $sql1 = "insert into `account` (`username`, `password`, `email`, `address`, `contact`, `type`) values ( '$username', '$password', '$email', '$address','$phone','$acc_type')";
       $result1 = mysqli_query($con, $sql1);
       if($result1)
       {
 
-        $sql2 = "insert into `patient` (last_name, first_name, age) values ( '$last_name', '$first_name', '$age')";
+        $sql2 = "insert into `patient` (`last_name`, `first_name`, `birthday`, `height`, `weight`, `sex`) values ( '$last_name', '$first_name', '$birth', '$height', '$weight', '$gender')";
          $result2 = mysqli_query($con, $sql2);
 
         if ($result2){
 
-         $sql_delete="Delete from `screening` where screen_acct_id=$id";
+         $sql_delete="Delete from `screening` where screening_id=$id";
          $deletation=mysqli_query($con,$sql_delete);
 
         echo"<script>alert('Verified!')</script>";
@@ -56,7 +59,9 @@ if(isset($_GET['screen_acct_id']))
 
 ?>
 
- <!DOCTYPE html>
+
+
+  <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8">
@@ -66,96 +71,117 @@ if(isset($_GET['screen_acct_id']))
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
-    <title>Patient Verification</title>
+    <title>Patient Signup</title>
   </head>
   <body>
-  <div class="center">
 
+    <?php 
 
-<?php 
-
-  $sql = "Select * from `screening` WHERE screen_acct_id = $id";
+  $sql = "Select * from `screening` WHERE screening_id = $id";
   $selectresult=mysqli_query($con, $sql);
 while ($row=mysqli_fetch_assoc($selectresult)) 
 {
- $surname=$row['last_name'];
- $firstname=$row['first_name']; 
- $age=$row['age']; 
-$gender=$row['gender'];
-$email=$row['email'];
+ $last_name=$row['last_name'];
+ $first_name=$row['first_name'];
+$gender=$row['sex'];
+$birth=$row['birthday'];
+$height=$row['height'];
+$weight=$row['weight'];
 $address=$row['address'];
 $username=$row['username'];
 $password=$row['password'];
-$specialization=$row['specialization'];
+$email=$row['email'];
+$phone=$row['contact'];
+$idCard=$row['id'];
+
 }
  ?>
 
 
+  <div class="center">
 
     <div class="container my-5">
         <div class="header">
-          <h3>Patient Verification</h3>
+          <h3>Patient Registration</h3>
         </div>
       <form method="post" enctype="multipart/form-data">
         <div class="txt_field">
-          <input type="text" required="required" name="first_name" <?php echo"value='$firstname'"; ?>>
+          
+          <input type="text" required="required" name="first_name" value="<?php echo $first_name; ?>">
           <label>First Name</label>
         </div>
         <div class="txt_field">
-          <input type="text" required="required" name="last_name" <?php echo"value='$surname'"; ?>>
+          <input type="text" required="required" name="last_name" value="<?php echo $last_name; ?>">
           <label>Last Name</label>
         </div>
-      
+
+          <div class="gender">
+            <select id="gender" name="gender">
+                    <option value="<?php echo $gender; ?>"><?php echo $gender ?></option>
+            </select>
+          </div>
+
+        <br>
+        <label>Date of Birth</label>
         <div class="txt_field">
-          <input type="text" required="required" name="email" <?php echo"value='$email'"; ?>>
+          <input type="date" required="required" name="birth" value="<?php echo $birth; ?>">
+        </div>
+
+        <div class="txt_field">
+          <input type="text" required="required" name="height" value="<?php echo $height; ?>">
+          <label>Height (cm)</label>
+        </div>
+
+        <div class="txt_field">
+          <input type="text" required="required" name="weight" value="<?php echo $weight; ?>">
+          <label>Weight (kg)</label>
+        </div>
+
+        <div class="txt_field">
+          <input type="text" required="required" name="address" value="<?php echo $address; ?>">
+          <label>Full Address</label>
+        </div>
+
+        
+        <div class="txt_field">
+          <input type="text" required="required" name="username" value="<?php echo $username; ?>">
+          <label>Enter Username</label>
+        </div>
+  
+        <div class="txt_field">
+          <input type="password" required="required" name="password" value="<?php echo $password; ?>">
+          <label>Password</label>
+        </div>
+
+        <div class="txt_field">
+          <input type="text" required="required" name="email" value="<?php echo $email; ?>">
           <label>Email</label>
         </div>
 
         <div class="txt_field">
-          <input type="text" required="required" name="age" <?php echo"value='$age'"; ?>>
-          <label>Age</label>
+          <input type="text" required="required" name="phone" value="<?php echo $phone; ?>">
+          <label>Phone Number</label>
         </div>
-        
-               <div class="gender">
-    <select id="gender" name="gender">
-            <option <?php echo"value='$gender'"; ?>><?php echo"$gender"; ?></option>
-            <option value="Male">Male</option>
-            <option value="Female">Female</option>
-    </select>
-    <br>
-    <br>
-        <div class="txt_field">
-          <input type="text" required="required" name="username" <?php echo"value='$username'"; ?>>
-          <label>Enter Username</label>
-        </div>
+
+          <label style="color: gray;">Upload your PRC</label>
           <div class="txt_field">
-          <input type="text" required="required" name="password" <?php echo"value='$password'"; ?>>
-          <label>Password</label>
+         <img src=' <?php echo "./ids/".$idCard.""?>'>
         </div>
-        
-
-
-        <!-- IPA MODAL MO NING NA COMMENT JAS HA -->
-          <!-- IUNCOMMENT ANG HTML KAG PHP SINI TQ -->
-
-
-<!--           <div class="txt_field">
-          <a onclick="#"> <img <?php /*echo" src='ids/$surname$firstname.jpg'"*/; ?>> </a>
-        </div> -->
         
          </div>
+        
+        
 
-      
     
-</select>
 
-      <button type="submit" name="submit" >Verify</button>
+      <button type="submit" name="submit" >Submit</button>
            
          <br>
          <br>
-   <center>  <a href="adminDB.php" class="btn btn-dark" style="text-decoration: none; color: white;">Cancel</a> </center>
+   <center>  <a href="login.php" class="btn btn-dark" style="text-decoration: none; color: white;">Cancel</a> </center>
      
       </form>
+
     </div>
     </div>
     </div>

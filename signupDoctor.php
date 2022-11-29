@@ -5,19 +5,20 @@
      
       $first_name=htmlspecialchars($_POST['first_name']);
       $last_name=htmlspecialchars($_POST['last_name']);
-      $gender=htmlspecialchars($_POST['gender']);
-      $email=htmlspecialchars($_POST['email']);
-      $address=htmlspecialchars($_POST['address']);
+      $specialization=htmlspecialchars($_POST['specialization']);
       $username=htmlspecialchars($_POST['username']);
       $password=htmlspecialchars($_POST['password']);
-      $specialization=htmlspecialchars($_POST['specialization']);
+      $email=htmlspecialchars($_POST['email']);
+      $phone=htmlspecialchars($_POST['contact']);
+      $address=htmlspecialchars($_POST['address']);
       $acc_type='1';
-      $status = '0';
       $image = $_FILES['image']['name'];
+      $dp = $_FILES['dp']['name'];
       $target = "ids/".basename($image);
+      $avatarTarget = "avatar/".basename($dp);
 
 
-    $sql= "Select * From `screening` Where first_name= '$first_name' and last_name= '$last_name'";
+    $sql= "Select * From `account` Where username= '$username'";
     $selectresult=mysqli_query($con, $sql);
     $number = mysqli_num_rows($selectresult);
 
@@ -27,7 +28,7 @@
     }
     else
     {
-      $sql = "insert into `screening` (first_name, last_name, gender, email, address, specialization, username, password, status, acc_type, pic_img) values ( '$first_name', '$last_name', '$gender','$email', ' $address','$specialization','$username','$password', '$status', '$acc_type', '$image')";
+      $sql = "insert into `screening` (`last_name`, `first_name`, `specialization`, `username`, `password`, `email`, `address`, `contact`, `type`, `id`, `avatar`) values ( '$last_name', '$first_name', '$specialization','$username', ' $password','$email','$address', '$phone','$acc_type', '$image', '$dp')";
       $result = mysqli_query($con, $sql);
       if($result)
       {
@@ -73,7 +74,32 @@
           <input type="text" required="required" name="last_name">
           <label>Last Name</label>
         </div>
-      
+
+        <div class="gender">
+          <select id="specialization" name="specialization">
+            <option value=" ">-Specialization-</option>
+            <option value="Psychiatrist">Psychiatrist</option>
+            <option value="Orthopedic surgeon ">Orthopedic surgeon </option>
+            <option value="Obstetrician & gynecologist">Obstetrician and gynecologist</option>
+            <option value="Neurologist">Neurologist</option>
+            <option value="Radiologist">Radiologist</option>
+            <option value="Pediatrician">Pediatrician</option>
+            <option value="Cardiologist">Cardiologist</option>
+            <option value="Family physician">Family physicians</option>
+            <option value="General internal medicine physician">General internal medicine physician</option>
+          </select>
+        </div>
+
+        <div class="txt_field">
+        <input type="text" required="required" name="username">
+        <label>Enter Username</label>
+      </div>
+
+        <div class="txt_field">
+            <input type="password" required="required" name="password">
+            <label>Password</label>
+          </div>
+
         <div class="txt_field">
           <input type="text" required="required" name="email">
           <label>Email</label>
@@ -84,47 +110,26 @@
           <label>Clinic Address</label>
         </div>
         
-               <div class="gender">
-    <select id="gender" name="gender">
-            <option value="genderr">-Select Gender-</option>
-            <option value="Male">Male</option>
-            <option value="Female">Female</option>
-    </select>
-    <br>
-    <br>
-
-    <div class="gender">
-    <select id="specialization" name="specialization">
-            <option value=" ">-Specialization-</option>
-            <option value="Psychiatrist">Psychiatrist</option>
-            <option value="Orthopedic surgeon ">Orthopedic surgeon </option>
-            <option value="Obstetrician & gynecologist">Obstetrician and gynecologist</option>
-            <option value="Neurologist">Neurologist</option>
-            <option value="Radiologist">Radiologist</option>
-            <option value="Pediatrician">Pediatrician</option>
-            <option value="Cardiologist">Cardiologist</option>
-            <option value="Family physician">Family physicians</option>
-            <option value="General internal medicine physician">General internal medicine physician</option></select>
-</div>
-
         <div class="txt_field">
-          <input type="text" required="required" name="username">
-          <label>Enter Username</label>
+          <input type="text" name="contact">
+          <label>Clinic Contact Number</label>
         </div>
-          <div class="txt_field">
-          <input type="password" required="required" name="password">
-          <label>Password</label>
+
+        <label style="color: gray;">Profile Picture</label>
+        <div class="txt_field">
+
+          <input type="file" required="required" class="form-control" name="dp">
+          
         </div>
-        
+
+          <label style="color: gray;">Upload your PRC</label>
           <div class="txt_field">
           <input type="file" required="required" class="form-control" name="image">
         </div>
         
          </div>
 
-      
     
-</select>
 
       <button type="submit" name="submit" >Submit</button>
            

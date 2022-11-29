@@ -5,19 +5,23 @@
      
       $first_name= htmlspecialchars($_POST['first_name']) ;
       $last_name=htmlspecialchars($_POST['last_name']) ;
+      $gender=htmlspecialchars($_POST['gender']);
       $birth=htmlspecialchars($_POST['birth']) ;
-      $gender=htmlspecialchars($_POST['gender']) ;
-      $email=htmlspecialchars($_POST['email']) ;
-      $phone=htmlspecialchars($_POST['phone']) ;
+      $height=htmlspecialchars($_POST['height']);
+      $weight=htmlspecialchars($_POST['weight']);
+      $address=htmlspecialchars($_POST['address']);
       $username=htmlspecialchars($_POST['username']) ;
       $password=htmlspecialchars($_POST['password']) ;
+      $email=htmlspecialchars($_POST['email']) ;
+      $phone=htmlspecialchars($_POST['phone']) ;
       $acc_type='0';
-      $status = '0';
       $image = $_FILES['image']['name'];
+      $dp = $_FILES['dp']['name'];
       $target = "ids/".basename($image);
+      $avatarTarget = "avatar/".basename($dp);
 
 
-    $sql= "Select * From `account` Where first_name= '$first_name' and last_name= '$last_name'";
+    $sql= "Select * From `account` Where username= '$username'";
     $selectresult=mysqli_query($con, $sql);
     $number=mysqli_num_rows($selectresult);
 
@@ -27,7 +31,7 @@
     }
     else
     {
-      $sql1 = "insert into `screening` (first_name, last_name, birthday, gender, email, phone, username, password, status, acc_type, pic_img) values ( '$first_name', '$last_name', '$birth', '$gender','$email', '$phone', '$username','$password', '$status', '$acc_type', '$image')";
+      $sql1 = "insert into `screening` (`last_name`, `first_name`, `username`, `password`, `email`, `address`, `contact`, `type`, `birthday`, `height`, `weight`, `sex`, `id`, `avatar`) values ( '$last_name', '$first_name', '$username', '$password','$email', '$address', '$phone','$acc_type', '$birth', '$height', '$weight', '$gender', '$image', '$dp')";
       $result1 = mysqli_query($con, $sql1);
       if($result1)
       {
@@ -75,21 +79,47 @@
           <label>Last Name</label>
         </div>
 
+          <div class="gender">
+            <select id="gender" name="gender">
+                    <option value="genderr">-Select Gender-</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+            </select>
+          </div>
+
+        <br>
+        <label>Date of Birth</label>
         <div class="txt_field">
           <input type="date" required="required" name="birth">
         </div>
-        <label>Date of Birth</label>
+
+        <div class="txt_field">
+          <input type="text" required="required" name="height">
+          <label>Height (cm)</label>
+        </div>
+
+        <div class="txt_field">
+          <input type="text" required="required" name="weight">
+          <label>Weight (kg)</label>
+        </div>
+
+        <div class="txt_field">
+          <input type="text" required="required" name="address">
+          <label>Full Address</label>
+        </div>
 
         
-        
-               <div class="gender">
-    <select id="gender" name="gender">
-            <option value="genderr">-Select Gender-</option>
-            <option value="Male">Male</option>
-            <option value="Female">Female</option>
-    </select>
+        <div class="txt_field">
+          <input type="text" required="required" name="username">
+          <label>Enter Username</label>
+        </div>
   
-    <div class="txt_field">
+        <div class="txt_field">
+          <input type="password" required="required" name="password">
+          <label>Password</label>
+        </div>
+
+        <div class="txt_field">
           <input type="text" required="required" name="email">
           <label>Email</label>
         </div>
@@ -100,21 +130,21 @@
         </div>
 
 
-
+         <label style="color: gray;">Profile Picture</label>
         <div class="txt_field">
-          <input type="text" required="required" name="username">
-          <label>Enter Username</label>
+
+          <input type="file" required="required" class="form-control" name="dp">
+          
         </div>
-          <div class="txt_field">
-          <input type="password" required="required" name="password">
-          <label>Password</label>
-        </div>
-        
+
+          <label style="color: gray;">Upload your PRC</label>
           <div class="txt_field">
           <input type="file" required="required" class="form-control" name="image">
         </div>
         
          </div>
+        
+        
 
     
 

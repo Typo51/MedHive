@@ -39,7 +39,7 @@
 							
 							<?php 
 
-								 $select_query="Select * from `screening` WHERE acc_type = '0'";
+								 $select_query="Select * from `screening` WHERE type = '0'";
 						
 						$result=mysqli_query($con,$select_query);
 					$i=1;
@@ -48,7 +48,7 @@
 					{
 					   while ($row=mysqli_fetch_assoc($result)) 
 					   {
-					    $id=$row['screen_acct_id'];
+					    $id=$row['screening_id'];
 					     $surname=$row['last_name'];
 					     $firstname=$row['first_name'];
 						?>
@@ -56,9 +56,9 @@
 							   
 							     	
 									<tr class='clickable'>
-										<td><a href='patientVerification.php?screen_acct_id=<?php echo $row['screen_acct_id']?>'><?php echo "$id"?></a></td>
+										<td><a href='patientVerification.php?screen_acct_id=<?php echo $row['screening_id']?>'><?php echo "$id"?></a></td>
 
-									<td><a href='patientVerification.php?screen_acct_id=<?php echo $row['screen_acct_id']?>' onclick='doctorsModal1()'><?php echo " $firstname $surname"?></a></td>
+									<td><a href='patientVerification.php?screen_acct_id=<?php echo $row['screening_id']?>' onclick='doctorsModal1()'><?php echo " $firstname $surname"?></a></td>
 									</tr>
 							<?php
 							    $i++;

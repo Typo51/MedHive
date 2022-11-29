@@ -10,19 +10,19 @@ if(isset($_GET['screen_acct_id']))
 
   if (isset($_POST['submit'])) {
      
-      $first_name=$_POST['first_name'];
-      $last_name=$_POST['last_name'];
-      $gender=$_POST['gender'];
-      $email=$_POST['email'];
-      $address=$_POST['address'];
-      $username=$_POST['username'];
-      $password=$_POST['password'];
-      $specialization=$_POST['specialization'];
+      $first_name=htmlspecialchars($_POST['first_name']);
+      $last_name=htmlspecialchars($_POST['last_name']);
+      $specialization=htmlspecialchars($_POST['specialization']);
+      $username=htmlspecialchars($_POST['username']);
+      $password=htmlspecialchars($_POST['password']);
+      $email=htmlspecialchars($_POST['email']);
+      $phone=htmlspecialchars($_POST['contact']);
+      $address=htmlspecialchars($_POST['address']);
       $acc_type='1';
       $status = '0';
 
 
-    $sql= "Select * From `account` Where first_name= '$first_name' and last_name= '$last_name'";
+    $sql= "Select * From `doctor` Where first_name= '$first_name' and last_name= '$last_name'";
     $selectresult=mysqli_query($con, $sql);
     $number = mysqli_num_rows($selectresult);
 
@@ -32,17 +32,17 @@ if(isset($_GET['screen_acct_id']))
     }
     else
     {
-      $sql1 = "insert into `account` (first_name, last_name, gender, email, specialization, username, password, status, acc_type) values ( '$first_name', '$last_name', '$gender','$email', '$specialization','$username','$password', '$status', '$acc_type')";
+      $sql1 = "insert into `account` ( `username`, `password`, `email`, `address`, `contact`, `type`) values ( '$username', '$password', '$email','$address', '$phone','$acc_type')";
       $result1 = mysqli_query($con, $sql1);
       if($result1)
       {
 
-        $sql2 = "insert into `doctor` (last_name, first_name, specialization, address) values ( '$last_name', '$first_name',' $specialization', '$address')";
+        $sql2 = "insert into `doctor` (last_name, first_name, specialization) values ( '$last_name', '$first_name',' $specialization')";
          $result2 = mysqli_query($con, $sql2);
 
         if ($result2){
 
-         $sql_delete="Delete from `screening` where screen_acct_id=$id";
+         $sql_delete="Delete from `screening` where screening_id=$id";
          $deletation=mysqli_query($con,$sql_delete);
 
         echo"<script>alert('Verified!')</script>";
@@ -55,9 +55,14 @@ if(isset($_GET['screen_acct_id']))
     }
   }
 
+
+
+
+
+
 ?>
 
- <!DOCTYPE html>
+  <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8">
@@ -67,108 +72,101 @@ if(isset($_GET['screen_acct_id']))
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
-    <title>Doctor Verification</title>
+    <title>Doctor Signup</title>
   </head>
   <body>
+
+
+    <?php 
+
+      $sql = "Select * from `screening` WHERE screening_id = $id";
+      $selectresult=mysqli_query($con, $sql);
+      while ($row=mysqli_fetch_assoc($selectresult)) 
+      {
+         $last_name=$row['last_name'];
+         $first_name=$row['first_name']; 
+        $specialization=$row['specialization'];
+        $username=$row['username'];
+        $password=$row['password'];
+        $email=$row['email'];
+        $address=$row['address'];
+        $contact=$row['contact'];
+        $prc = $row['id'];
+      }
+
+
+
+
+
+
+
+     ?>
+
+
+
   <div class="center">
-
-
-<?php 
-
-  $sql = "Select * from `screening` WHERE screen_acct_id = $id";
-  $selectresult=mysqli_query($con, $sql);
-while ($row=mysqli_fetch_assoc($selectresult)) 
-{
- $surname=$row['last_name'];
- $firstname=$row['first_name']; 
-$gender=$row['gender'];
-$email=$row['email'];
-$address=$row['address'];
-$username=$row['username'];
-$password=$row['password'];
-$specialization=$row['specialization'];
-}
- ?>
-
-
 
     <div class="container my-5">
         <div class="header">
-          <h3>Doctor Verification</h3>
+          <h3>Doctor Registration</h3>
         </div>
       <form method="post" enctype="multipart/form-data">
         <div class="txt_field">
-          <input type="text" required="required" name="first_name" <?php echo"value='$firstname'"; ?>>
+          <input type="text" required="required" name="first_name" value="<?php echo $first_name ?>">
           <label>First Name</label>
         </div>
         <div class="txt_field">
-          <input type="text" required="required" name="last_name" <?php echo"value='$surname'"; ?>>
+          <input type="text" required="required" name="last_name" value="<?php echo $last_name ?>">
           <label>Last Name</label>
         </div>
-      
+
+        <div class="gender">
+          <select id="specialization" name="specialization" >
+            <option value="<?php echo $specialization ?>"><?php echo $specialization ?></option>
+          </select>
+        </div>
+
+        <div class="txt_field" >
+        <input type="text" required="required" name="username" value="<?php echo $username ?>">
+        <label>Enter Username</label>
+      </div>
+
+        <div class="txt_field" >
+            <input type="password" required="required" name="password" value="<?php echo $password ?>">
+            <label>Password</label>
+          </div>
+
         <div class="txt_field">
-          <input type="text" required="required" name="email" <?php echo"value='$email'"; ?>>
+          <input type="text" required="required" name="email" value="<?php echo $email ?>">
           <label>Email</label>
         </div>
 
         <div class="txt_field">
-          <input type="text" required="required" name="address" <?php echo"value='$address'"; ?>>
+          <input type="text" required="required" name="address" value="<?php echo $address ?>">
           <label>Clinic Address</label>
         </div>
         
-               <div class="gender">
-    <select id="gender" name="gender">
-            <option <?php echo"value='$gender'"; ?>><?php echo"$gender"; ?></option>
-            <option value="Male">Male</option>
-            <option value="Female">Female</option>
-    </select>
-    <br>
-    <br>
-
-    <div class="gender">
-    <select id="specialization" name="specialization" >
-            <option <?php echo"value='$specialization'"; ?>><?php echo"$specialization"; ?></option>
-            <option value="Psychiatrist">Psychiatrist</option>
-            <option value="Orthopedic surgeon ">Orthopedic surgeon </option>
-            <option value="Obstetrician & gynecologist">Obstetrician and gynecologist</option>
-            <option value="Neurologist">Neurologist</option>
-            <option value="Radiologist">Radiologist</option>
-            <option value="Pediatrician">Pediatrician</option>
-            <option value="Cardiologist">Cardiologist</option>
-            <option value="Family physician">Family physicians</option>
-            <option value="General internal medicine physician">General internal medicine physician</option></select>
-</div>
-
-        <div class="txt_field">
-          <input type="text" required="required" name="username" <?php echo"value='$username'"; ?>>
-          <label>Enter Username</label>
+        <div class="txt_field" >
+          <input type="text" name="contact" value="<?php echo $contact ?>">
+          <label>Clinic Contact Number</label>
         </div>
+
+       
+
+          <label style="color: gray;">PRC</label>
           <div class="txt_field">
-          <input type="text" required="required" name="password" <?php echo"value='$password'"; ?>>
-          <label>Password</label>
+          <img src=' <?php echo "./ids/".$prc.""?>'>
         </div>
-        
-
-
-        <!-- IPA MODAL MO NING NA COMMENT JAS HA -->
-          <!-- IUNCOMMENT ANG HTML KAG PHP SINI TQ -->
-
-
-<!--           <div class="txt_field">
-          <a onclick="#"> <img <?php /*echo" src='ids/$surname$firstname.jpg'"*/; ?>> </a>
-        </div> -->
         
          </div>
 
-      
     
-</select>
 
-      <button type="submit" name="submit" >Verify</button>
+      <button type="submit" name="submit" >Submit</button>
            
          <br>
          <br>
-   <center>  <a href="admindb.php" class="btn btn-dark" style="text-decoration: none; color: white;">Cancel</a> </center>
+   <center>  <a href="login.php" class="btn btn-dark" style="text-decoration: none; color: white;">Cancel</a> </center>
      
       </form>
 
