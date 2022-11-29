@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Nov 21, 2022 at 07:00 AM
+-- Generation Time: Nov 29, 2022 at 08:28 PM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 8.0.19
 
@@ -24,50 +24,20 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `accept_appointment`
---
-
-CREATE TABLE `accept_appointment` (
-  `transaction_id` int(11) NOT NULL,
-  `fullname` int(11) NOT NULL,
-  `docfullname` int(11) NOT NULL,
-  `doc_id` int(10) NOT NULL,
-  `pat_id` int(10) NOT NULL,
-  `sched_date` date NOT NULL,
-  `sched_time` time NOT NULL,
-  `type` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `account`
 --
 
 CREATE TABLE `account` (
   `acct_id` int(11) NOT NULL,
+  `username` varchar(50) NOT NULL,
+  `password` varchar(50) NOT NULL,
+  `address` varchar(100) NOT NULL,
   `email` varchar(100) NOT NULL,
-  `password` varchar(100) NOT NULL,
-  `acc_type` enum('0','1') NOT NULL,
-  `first_name` varchar(100) NOT NULL,
-  `last_name` varchar(100) NOT NULL,
-  `specialization` varchar(50) NOT NULL,
-  `username` varchar(100) NOT NULL,
-  `gender` enum('Male','Female') NOT NULL,
-  `status` enum('0','1') NOT NULL
+  `contact` varchar(15) NOT NULL,
+  `status` enum('0','1') NOT NULL,
+  `type` enum('0','1') NOT NULL,
+  `avatar` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `account`
---
-
-INSERT INTO `account` (`acct_id`, `email`, `password`, `acc_type`, `first_name`, `last_name`, `specialization`, `username`, `gender`, `status`) VALUES
-(10, 'earljakemahilum@gmail.com', 'earljake', '1', 'Earl Jake', 'Mahilum', 'Neurologists', 'earl jake', 'Male', '0'),
-(11, 'kernelpaulo@gmail.com', 'kerker', '1', 'Kernel', 'Paulo', 'Pediatricians', 'kerker', '', '1'),
-(14, 'anamaeflores@gmail.com', 'anamae', '0', 'Ana Mae', 'Flores', '', 'ana', 'Female', '0'),
-(15, 'marcusmahilum@gmail.com', 'macmac', '0', 'Marcus Julian', 'Mahilum', '', 'macmac', 'Male', '0'),
-(17, 'fritz@gmail.com', 'fritz', '1', 'Fritz', 'Tuazon', 'Orthopedic surgeon ', 'fritz', 'Male', '0'),
-(19, 'giljason@gmail.com', 'tuna', '0', 'Gil Jason', 'Tuna', '', 'tuna', 'Male', '0');
 
 -- --------------------------------------------------------
 
@@ -77,8 +47,6 @@ INSERT INTO `account` (`acct_id`, `email`, `password`, `acc_type`, `first_name`,
 
 CREATE TABLE `appointment` (
   `transaction_id` int(11) NOT NULL,
-  `Fullname` varchar(250) NOT NULL,
-  `docfullname` varchar(250) NOT NULL,
   `doc_id` int(50) NOT NULL,
   `pat_id` int(50) NOT NULL,
   `sched_date` date NOT NULL,
@@ -90,36 +58,9 @@ CREATE TABLE `appointment` (
 -- Dumping data for table `appointment`
 --
 
-INSERT INTO `appointment` (`transaction_id`, `Fullname`, `docfullname`, `doc_id`, `pat_id`, `sched_date`, `sched_time`, `type`) VALUES
-(22, 'Marcus Julian Mahilum', 'Earl Jake Mahilum', 10, 15, '2022-10-29', '08:00:00', 'Face to Face'),
-(23, 'Marcus Julian Mahilum', 'Kernel Paulo', 11, 15, '2022-10-22', '10:01:00', 'Face to Face'),
-(24, ' ', 'Earl Jake Mahilum', 10, 0, '2022-10-27', '16:27:00', '1'),
-(25, ' ', 'Earl Jake Mahilum', 10, 0, '0000-00-00', '00:00:00', '1'),
-(26, ' ', 'Earl Jake Mahilum', 10, 0, '0000-00-00', '00:00:00', '1'),
-(30, 'Ana Mae Flores', 'Earl Jake Mahilum', 10, 14, '2022-10-28', '14:51:00', 'Face to face'),
-(31, ' ', 'Earl Jake Mahilum', 10, 0, '2022-11-07', '11:00:00', '1'),
-(32, ' ', 'Earl Jake Mahilum', 10, 0, '2022-11-07', '11:00:00', '1'),
-(34, 'Earl Jake Mahilum', 'Earl Jake Mahilum', 10, 10, '2022-11-07', '11:55:00', '1'),
-(35, 'Ana Mae Flores', 'Earl Jake Mahilum', 10, 14, '2022-11-10', '00:00:00', ''),
-(36, 'Ana Mae Flores', 'Earl Jake Mahilum', 10, 14, '0000-00-00', '00:00:00', ''),
-(37, 'Ana Mae Flores', 'Earl Jake Mahilum', 10, 14, '2022-11-09', '00:00:00', '');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `app_log`
---
-
-CREATE TABLE `app_log` (
-  `transaction_id` int(11) NOT NULL,
-  `fullname` varchar(100) NOT NULL,
-  `docfullname` varchar(100) NOT NULL,
-  `doc_id` int(11) NOT NULL,
-  `pat_id` int(11) NOT NULL,
-  `sched_date` date NOT NULL,
-  `sched_time` time NOT NULL,
-  `type` varchar(250) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+INSERT INTO `appointment` (`transaction_id`, `doc_id`, `pat_id`, `sched_date`, `sched_time`, `type`) VALUES
+(38, 11, 15, '2022-11-21', '08:00:00', 'Face to face'),
+(39, 11, 15, '2022-11-28', '08:00:00', 'Face to face');
 
 -- --------------------------------------------------------
 
@@ -162,6 +103,13 @@ CREATE TABLE `diagnosis` (
   `diagnosis` varchar(500) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `diagnosis`
+--
+
+INSERT INTO `diagnosis` (`id`, `diag_doc_id`, `diag_pat_id`, `diag_sched_date`, `diagnosis`) VALUES
+(6, 11, 15, '2022-11-21', 'asdasd');
+
 -- --------------------------------------------------------
 
 --
@@ -170,18 +118,11 @@ CREATE TABLE `diagnosis` (
 
 CREATE TABLE `doctor` (
   `doctor_id` int(11) NOT NULL,
-  `last_name` varchar(100) NOT NULL,
-  `first_name` varchar(100) NOT NULL,
-  `specialization` varchar(100) NOT NULL,
-  `address` varchar(100) NOT NULL
+  `doc_acc_id` int(11) NOT NULL,
+  `doc_last_name` varchar(100) NOT NULL,
+  `doc_first_name` varchar(100) NOT NULL,
+  `specialization` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `doctor`
---
-
-INSERT INTO `doctor` (`doctor_id`, `last_name`, `first_name`, `specialization`, `address`) VALUES
-(1, 'Tuazon', 'Fritz', 'Psychiatrist', '');
 
 -- --------------------------------------------------------
 
@@ -202,8 +143,8 @@ CREATE TABLE `doctors_availability` (
 --
 
 INSERT INTO `doctors_availability` (`avail_id`, `doctor_id`, `avail_date`, `avail_time`, `status`) VALUES
-(1, 0, '2022-11-09', '9:00', '0'),
-(2, 0, '2022-11-09', '10:00', '0'),
+(1, 0, '2022-11-09', '9:00', '1'),
+(2, 0, '2022-11-09', '10:00', '1'),
 (3, 0, '2022-11-09', '11:00', '0'),
 (4, 0, '2022-11-09', '12:00', '0'),
 (5, 0, '2022-11-09', '9:00', '0'),
@@ -214,7 +155,34 @@ INSERT INTO `doctors_availability` (`avail_id`, `doctor_id`, `avail_date`, `avai
 (10, 0, '2022-11-09', '9:00', '0'),
 (11, 0, '2022-11-09', '10:00', '0'),
 (12, 0, '2022-11-09', '11:00', '0'),
-(13, 0, '2022-11-09', '12:00pm', '1');
+(13, 0, '2022-11-09', '12:00pm', '1'),
+(14, 11, '2022-11-21', '8:00', '0'),
+(15, 11, '2022-11-21', '9:00', '1'),
+(16, 11, '2022-11-21', '10:00', '1'),
+(17, 11, '2022-11-21', '11:00', '1'),
+(18, 11, '2022-11-21', '12:00pm', '1'),
+(19, 11, '2022-11-21', '1:00', '1'),
+(20, 11, '2022-11-21', '2:00', '1'),
+(21, 11, '2022-11-21', '3:00', '1'),
+(22, 11, '2022-11-21', '4:00', '1'),
+(23, 11, '2022-11-21', '5:00pm', '1'),
+(24, 11, '2022-11-28', '8:00', '0'),
+(25, 11, '2022-11-28', '9:00', '1'),
+(26, 11, '2022-11-28', '10:00', '1'),
+(27, 11, '2022-11-28', '11:00', '1'),
+(28, 11, '2022-11-28', '12:00pm', '1'),
+(29, 11, '2022-11-28', '1:00', '1'),
+(30, 11, '2022-11-28', '2:00', '1'),
+(31, 11, '2022-11-29', '8:00', '1'),
+(32, 11, '2022-11-29', '9:00', '1'),
+(33, 11, '2022-11-29', '10:00', '1'),
+(34, 11, '2022-11-29', '11:00', '1'),
+(35, 11, '2022-11-29', '12:00pm', '1'),
+(36, 11, '2022-11-29', '1:00', '1'),
+(37, 11, '2022-11-29', '2:00', '1'),
+(38, 11, '2022-11-29', '3:00', '1'),
+(39, 11, '2022-11-29', '4:00', '1'),
+(40, 11, '2022-11-29', '5:00pm', '1');
 
 -- --------------------------------------------------------
 
@@ -228,6 +196,13 @@ CREATE TABLE `document_sessions` (
   `sess_pat_id` int(11) NOT NULL,
   `sess_sched_date` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `document_sessions`
+--
+
+INSERT INTO `document_sessions` (`id`, `sess_doc_id`, `sess_pat_id`, `sess_sched_date`) VALUES
+(6, 11, 15, '2022-11-21');
 
 -- --------------------------------------------------------
 
@@ -258,25 +233,14 @@ INSERT INTO `image` (`img_id`, `doc_img_id`, `pat_img_id`, `image`, `type`) VALU
 
 CREATE TABLE `patient` (
   `patient_id` int(11) NOT NULL,
-  `acct_patient_id` int(11) NOT NULL,
-  `last_name` varchar(100) NOT NULL,
-  `first_name` varchar(100) NOT NULL,
+  `pat_acc_id` int(11) NOT NULL,
+  `pat_last_name` varchar(100) NOT NULL,
+  `pat_first_name` varchar(100) NOT NULL,
   `birthday` date NOT NULL,
-  `about` text NOT NULL,
-  `age` int(3) NOT NULL,
-  `sex` varchar(100) NOT NULL,
-  `religion` varchar(100) NOT NULL,
-  `gender` enum('Male','Female') NOT NULL,
-  `status` enum('1','0') NOT NULL
+  `height` int(3) NOT NULL,
+  `weight` int(3) NOT NULL,
+  `sex` enum('Male','Female') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `patient`
---
-
-INSERT INTO `patient` (`patient_id`, `acct_patient_id`, `last_name`, `first_name`, `birthday`, `about`, `age`, `sex`, `religion`, `gender`, `status`) VALUES
-(1, 15, 'Mahilum', 'Earl Jake', '0000-00-00', '', 22, 'Male', 'Christian', 'Male', '1'),
-(2, 0, 'Paulo', 'Kernel Fritz', '0000-00-00', '', 21, 'Male', 'Catholic', 'Male', '0');
 
 -- --------------------------------------------------------
 
@@ -302,51 +266,40 @@ CREATE TABLE `prescription` (
 --
 
 CREATE TABLE `screening` (
-  `screening_acct_id` int(11) NOT NULL,
-  `email` varchar(100) NOT NULL,
-  `password` varchar(100) NOT NULL,
-  `acc_type` enum('0','1') NOT NULL,
-  `first_name` varchar(100) NOT NULL,
+  `screening_id` int(11) NOT NULL,
   `last_name` varchar(100) NOT NULL,
-  `age` int(11) NOT NULL,
-  `specialization` varchar(50) NOT NULL,
+  `first_name` varchar(100) NOT NULL,
+  `specialization` varchar(100) NOT NULL,
   `username` varchar(100) NOT NULL,
-  `gender` enum('Male','Female') NOT NULL,
-  `status` enum('0','1') NOT NULL,
-  `pic_img` varchar(100) NOT NULL
+  `password` varchar(100) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `address` varchar(100) NOT NULL,
+  `contact` varchar(15) NOT NULL,
+  `type` enum('0','1') NOT NULL,
+  `birthday` date NOT NULL,
+  `height` int(3) NOT NULL,
+  `weight` int(3) NOT NULL,
+  `sex` enum('Male','Female') NOT NULL,
+  `id` varchar(100) NOT NULL,
+  `avatar` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `vital_signs`
+-- Table structure for table `shared_docs`
 --
 
-CREATE TABLE `vital_signs` (
+CREATE TABLE `shared_docs` (
   `id` int(11) NOT NULL,
-  `vit_pat_id` int(11) NOT NULL,
-  `height` int(11) NOT NULL,
-  `weight` int(11) NOT NULL,
-  `heart_rate` int(11) NOT NULL,
-  `blood_pressure` int(11) NOT NULL
+  `share_doc_id` int(11) NOT NULL,
+  `share_pat_id` int(11) NOT NULL,
+  `image` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `vital_signs`
---
-
-INSERT INTO `vital_signs` (`id`, `vit_pat_id`, `height`, `weight`, `heart_rate`, `blood_pressure`) VALUES
-(1, 15, 1, 1, 1, 1);
 
 --
 -- Indexes for dumped tables
 --
-
---
--- Indexes for table `accept_appointment`
---
-ALTER TABLE `accept_appointment`
-  ADD PRIMARY KEY (`transaction_id`);
 
 --
 -- Indexes for table `account`
@@ -358,12 +311,6 @@ ALTER TABLE `account`
 -- Indexes for table `appointment`
 --
 ALTER TABLE `appointment`
-  ADD PRIMARY KEY (`transaction_id`);
-
---
--- Indexes for table `app_log`
---
-ALTER TABLE `app_log`
   ADD PRIMARY KEY (`transaction_id`);
 
 --
@@ -385,7 +332,8 @@ ALTER TABLE `diagnosis`
 -- Indexes for table `doctor`
 --
 ALTER TABLE `doctor`
-  ADD PRIMARY KEY (`doctor_id`);
+  ADD PRIMARY KEY (`doctor_id`),
+  ADD UNIQUE KEY `doc_acc_id` (`doc_acc_id`);
 
 --
 -- Indexes for table `doctors_availability`
@@ -412,7 +360,7 @@ ALTER TABLE `image`
 --
 ALTER TABLE `patient`
   ADD PRIMARY KEY (`patient_id`),
-  ADD KEY `acct_fkey` (`acct_patient_id`);
+  ADD UNIQUE KEY `pat_acc_id` (`pat_acc_id`);
 
 --
 -- Indexes for table `prescription`
@@ -426,42 +374,31 @@ ALTER TABLE `prescription`
 -- Indexes for table `screening`
 --
 ALTER TABLE `screening`
-  ADD PRIMARY KEY (`screening_acct_id`);
+  ADD PRIMARY KEY (`screening_id`);
 
 --
--- Indexes for table `vital_signs`
+-- Indexes for table `shared_docs`
 --
-ALTER TABLE `vital_signs`
+ALTER TABLE `shared_docs`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `vit_pat_id` (`vit_pat_id`);
+  ADD KEY `share_doc_id` (`share_doc_id`),
+  ADD KEY `share_pat_id` (`share_pat_id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT for table `accept_appointment`
---
-ALTER TABLE `accept_appointment`
-  MODIFY `transaction_id` int(11) NOT NULL AUTO_INCREMENT;
-
---
 -- AUTO_INCREMENT for table `account`
 --
 ALTER TABLE `account`
-  MODIFY `acct_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `acct_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `appointment`
 --
 ALTER TABLE `appointment`
-  MODIFY `transaction_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
-
---
--- AUTO_INCREMENT for table `app_log`
---
-ALTER TABLE `app_log`
-  MODIFY `transaction_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `transaction_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 
 --
 -- AUTO_INCREMENT for table `consultation`
@@ -473,25 +410,25 @@ ALTER TABLE `consultation`
 -- AUTO_INCREMENT for table `diagnosis`
 --
 ALTER TABLE `diagnosis`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `doctor`
 --
 ALTER TABLE `doctor`
-  MODIFY `doctor_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `doctor_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `doctors_availability`
 --
 ALTER TABLE `doctors_availability`
-  MODIFY `avail_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `avail_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 
 --
 -- AUTO_INCREMENT for table `document_sessions`
 --
 ALTER TABLE `document_sessions`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `image`
@@ -503,7 +440,7 @@ ALTER TABLE `image`
 -- AUTO_INCREMENT for table `patient`
 --
 ALTER TABLE `patient`
-  MODIFY `patient_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `patient_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `prescription`
@@ -515,13 +452,13 @@ ALTER TABLE `prescription`
 -- AUTO_INCREMENT for table `screening`
 --
 ALTER TABLE `screening`
-  MODIFY `screening_acct_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `screening_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `vital_signs`
+-- AUTO_INCREMENT for table `shared_docs`
 --
-ALTER TABLE `vital_signs`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+ALTER TABLE `shared_docs`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
