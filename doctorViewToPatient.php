@@ -57,6 +57,7 @@ $result=mysqli_query($con,$select_query);
      $id=$row['acct_id'];
      $surname=$row['last_name'];
      $firstname=$row['first_name'];
+     $email=$row['email'];
      $specialization=$row['specialization'];
      $sex=$row['gender'];
 
@@ -83,7 +84,7 @@ $result=mysqli_query($con,$select_query);
  ?>
 
 <div class='container-about'>
-      
+    
 
 
 
@@ -129,9 +130,17 @@ $result=mysqli_query($con,$select_query);
             ";
         }
          ?>
-     
+   <form class="" action="send.php" method="post">
+    <input type="text" name="acct_id" value="<?php echo $_GET['acct_id'] ?>" style="display:none">
+    <input type="text" name="date_id" value="<?php echo $_GET['date_id'] ?>" style="display:none">
+<label>Email To:</label><input type="email" name="email" value=""><br>
+     <label>Subject:</label><input type="text" name="subject" value=""><br>
+     <label>Message:</label><input type="text" name="message" value=""><br><br>
+ <button type="submit" name="send" class="waves-effect waves-light btn">Send</button>
          <a style="margin-left: 20px;" class="waves-effect waves-light btn" target="_blank" type="button" href="diagnosisPrescriptionForm.php?acct_id=<?php echo $id;?>&&date_id=<?php echo $date_id;?>">Appoint Patient</a>
-  
+         </form>
+       
+        
         </div>        
       
 
