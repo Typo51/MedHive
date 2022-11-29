@@ -10,7 +10,6 @@ body{
   padding: 0;
   background: linear-gradient(120deg,#2980b9, #8e44ad);
   height: 100vh;
-  overflow: hidden;
 
 }
 
@@ -25,11 +24,12 @@ body{
  
 }
 .center{
-  position: absolute;
-  top: 50%;
+  margin-top: 10em;
+   position: absolute;
+  top: 70%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 600px;
+  width: 50%;
   background: white;
   border-radius: 10px;
   box-shadow: 10px 10px 15px rgba(0,0,0,0.05);
@@ -43,10 +43,11 @@ body{
   padding: 0 40px;
   box-sizing: border-box;
 }
-form .txt_field{
+.txt_field{
   position: relative;
   border-bottom: 2px solid #adadad;
   margin: 30px 0;
+  display: flex;
 }
 .txt_field input{
   width: 100%;
