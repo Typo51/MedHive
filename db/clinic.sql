@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Nov 29, 2022 at 08:28 PM
+-- Generation Time: Dec 01, 2022 at 06:22 AM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 8.0.19
 
@@ -29,14 +29,14 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `account` (
   `acct_id` int(11) NOT NULL,
+  `last_name` varchar(100) NOT NULL,
+  `first_name` varchar(100) NOT NULL,
   `username` varchar(50) NOT NULL,
   `password` varchar(50) NOT NULL,
-  `address` varchar(100) NOT NULL,
   `email` varchar(100) NOT NULL,
-  `contact` varchar(15) NOT NULL,
   `status` enum('0','1') NOT NULL,
   `type` enum('0','1') NOT NULL,
-  `avatar` varchar(100) NOT NULL
+  `avatar` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -61,6 +61,21 @@ CREATE TABLE `appointment` (
 INSERT INTO `appointment` (`transaction_id`, `doc_id`, `pat_id`, `sched_date`, `sched_time`, `type`) VALUES
 (38, 11, 15, '2022-11-21', '08:00:00', 'Face to face'),
 (39, 11, 15, '2022-11-28', '08:00:00', 'Face to face');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `clinic_info`
+--
+
+CREATE TABLE `clinic_info` (
+  `clinic_id` int(11) NOT NULL,
+  `doc_clinic_id` int(11) NOT NULL,
+  `clinic_address` varchar(100) NOT NULL,
+  `office_days` varchar(100) NOT NULL,
+  `office_time` varchar(100) NOT NULL,
+  `contact_info` varchar(15) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -119,9 +134,8 @@ INSERT INTO `diagnosis` (`id`, `diag_doc_id`, `diag_pat_id`, `diag_sched_date`, 
 CREATE TABLE `doctor` (
   `doctor_id` int(11) NOT NULL,
   `doc_acc_id` int(11) NOT NULL,
-  `doc_last_name` varchar(100) NOT NULL,
-  `doc_first_name` varchar(100) NOT NULL,
-  `specialization` varchar(50) NOT NULL
+  `specialization` varchar(50) NOT NULL,
+  `bio` varchar(200) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -234,9 +248,10 @@ INSERT INTO `image` (`img_id`, `doc_img_id`, `pat_img_id`, `image`, `type`) VALU
 CREATE TABLE `patient` (
   `patient_id` int(11) NOT NULL,
   `pat_acc_id` int(11) NOT NULL,
-  `pat_last_name` varchar(100) NOT NULL,
-  `pat_first_name` varchar(100) NOT NULL,
+  `bio` varchar(200) NOT NULL,
   `birthday` date NOT NULL,
+  `address` varchar(100) NOT NULL,
+  `contact_num` varchar(15) NOT NULL,
   `height` int(3) NOT NULL,
   `weight` int(3) NOT NULL,
   `sex` enum('Male','Female') NOT NULL
@@ -269,19 +284,18 @@ CREATE TABLE `screening` (
   `screening_id` int(11) NOT NULL,
   `last_name` varchar(100) NOT NULL,
   `first_name` varchar(100) NOT NULL,
-  `specialization` varchar(100) NOT NULL,
+  `specialization` varchar(100) DEFAULT NULL,
   `username` varchar(100) NOT NULL,
   `password` varchar(100) NOT NULL,
   `email` varchar(100) NOT NULL,
   `address` varchar(100) NOT NULL,
   `contact` varchar(15) NOT NULL,
   `type` enum('0','1') NOT NULL,
-  `birthday` date NOT NULL,
-  `height` int(3) NOT NULL,
-  `weight` int(3) NOT NULL,
-  `sex` enum('Male','Female') NOT NULL,
-  `id` varchar(100) NOT NULL,
-  `avatar` varchar(100) NOT NULL
+  `birthday` date DEFAULT NULL,
+  `height` int(3) DEFAULT NULL,
+  `weight` int(3) DEFAULT NULL,
+  `sex` enum('Male','Female') DEFAULT NULL,
+  `id` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -312,6 +326,13 @@ ALTER TABLE `account`
 --
 ALTER TABLE `appointment`
   ADD PRIMARY KEY (`transaction_id`);
+
+--
+-- Indexes for table `clinic_info`
+--
+ALTER TABLE `clinic_info`
+  ADD PRIMARY KEY (`clinic_id`),
+  ADD UNIQUE KEY `doc_clinic_id` (`doc_clinic_id`);
 
 --
 -- Indexes for table `consultation`
@@ -392,13 +413,19 @@ ALTER TABLE `shared_docs`
 -- AUTO_INCREMENT for table `account`
 --
 ALTER TABLE `account`
-  MODIFY `acct_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `acct_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `appointment`
 --
 ALTER TABLE `appointment`
   MODIFY `transaction_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
+
+--
+-- AUTO_INCREMENT for table `clinic_info`
+--
+ALTER TABLE `clinic_info`
+  MODIFY `clinic_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `consultation`
@@ -452,7 +479,7 @@ ALTER TABLE `prescription`
 -- AUTO_INCREMENT for table `screening`
 --
 ALTER TABLE `screening`
-  MODIFY `screening_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `screening_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `shared_docs`
