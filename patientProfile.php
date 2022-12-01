@@ -75,11 +75,8 @@ $result=mysqli_query($con,$select_query);
 
    while ($row=mysqli_fetch_assoc($result)) 
    {
-     $id=$row['acct_id'];
-     $surname=$row['last_name'];
-     $firstname=$row['first_name'];
-     $specialization=$row['specialization'];
-     $sex=$row['gender'];
+     $last_name=$row['last_name'];
+     $first_name=$row['first_name'];
 
 
      /*PROFILE BUBBLE*/
@@ -91,10 +88,10 @@ $result=mysqli_query($con,$select_query);
     <div class='container-profile'>
       <img src='images/icon.png '>
       <div class='patient-profile'>
-      <h5>$firstname $surname</h5>
+      <h5>$first_name $last_name</h5>
         <div class='profile'>
       
-          <p>Sex: $sex</p>
+          <p></p>
         </div>
       </div>
       
@@ -105,59 +102,63 @@ $result=mysqli_query($con,$select_query);
 
 
 <div class="edit-profile">
- <a href="patientsInfoForm.php?acct_id=<?php echo "$user_id";?>">Edit Profile</a>
+ <a href="editProfile.php?acct_id=<?php echo "$user_id";?>">Edit Profile</a>
 </div>
 
 <!-- ABOUT AREA -->
 
 <div class='container-about'>
 
-        <?php 
 
+  <?php 
 
-        $select_query = "SELECT * FROM `vital_signs` WHERE vit_pat_id = $user_id";
-        $result = mysqli_query($con, $select_query);
+  $select_info = "SELECT * FROM `patient` WHERE pat_acc_id = $user_id";
+  $select_query = mysqli_query($con, $select_info);
 
-        
+  $row=mysqli_fetch_assoc($select_query);
+  $sex=$row['sex'];
+  $address=$row['address'];
+  $birth=$row['birthday'];
+  $height=$row['height'];
+  $weight=$row['weight'];
+  $contact=$row['contact_num'];
 
+  echo " <div class='wrapper-about'>
+     <div class='first-layer'>
+       <div> 
+        <h6><b>Sex</b></h6>
+        <h6> $sex</h6>
+      </div>
+      <div>
+        <h6><b>Date of Birth</b></h6> 
+        <h6>$birth</h6>
+      </div>
+     </div>
 
-          while($row=mysqli_fetch_assoc($result)){
+     <div class='second-layer'>
+       <div> 
+        <h6><b>Height</b></h6>
+        <h6> $height</h6>
+      </div>
+      <div>
+        <h6><b>Weight</b></h6> 
+        <h6>$weight</h6>
+      </div>
+     </div>
 
-            $height = $row['height'];
-            $weight = $row['weight'];
-            $heart_rate = $row['heart_rate'];
-            $bp = $row['blood_pressure'];
-
-
-            echo "
-
-    
-                <div class='height'>
-                  <label>Height</label>
-                  $height
-                </div>
-
-                <div class='weight'>
-                  <label>Weight</label>
-                  $weight
-                </div>
-
-                <div class='rate'>
-                  <label>Heart Rate</label>
-                  $heart_rate
-                </div>
-
-                <div class='bp'>
-                  <label>Latest Blood Pressure</label>
-                  $bp
-                </div>
-            ";
-        }
-         ?>
-         
-        <button class="waves-effect btn" onclick="confirmPw()">Documents Center</button>
-      
+       <button id='docsCenter' class='waves-effect btn' onclick='confirmPw()'>Documents Center</button>
   </div>
+
+    <div class='contact-info'>
+       <h5><b>Contact Info & Address</b></h5>
+       <h6>$address</h6>
+       <h6>City of Koronadal, South Cotabato, 9506</h6>
+       <br>
+       <h6>$contact</h6>      
+      
+</div>";
+
+?>
 
 <?php 
 
@@ -189,6 +190,8 @@ if (isset($_POST['confirm'])) {
 
  ?>
 
+  
+
 
 <div class="confirm" id="confirm">
   
@@ -213,12 +216,4 @@ if (isset($_POST['confirm'])) {
 <script type="text/javascript" src="js/events.js"></script>
 </body>
  </html>
-
-<!-- 
-
-
-    <a class="waves-effect waves-light btn" type="button" href="documentsCenter.php?acct_id=<?php echo $user_id;?>">Documents Center</a>
-
- -->
-
 

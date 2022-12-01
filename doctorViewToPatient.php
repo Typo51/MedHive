@@ -6,16 +6,14 @@
   $doctorID= $_SESSION['user_id'];
 	if(isset($_GET['acct_id']))
 	{
-		$id = $_GET['acct_id'];
+    $id = $_GET['acct_id'];
 		$select_query="Select * from `account` WHERE acct_id = $id";
 		$result=mysqli_query($con,$select_query);
 
 	   while ($row=mysqli_fetch_assoc($result)) 
 		   {
-
-		 	$id=$row['acct_id'];
-			$firstname=$row['first_name'];
-		 }
+			   $first_name=$row['first_name'];
+		   }
 
 	}
 
@@ -30,7 +28,7 @@
  <!DOCTYPE html>
  <html>
  <head>
- 	<title> <?php echo "$firstname's" ?> Profile </title>
+ 	<title> <?php echo "$first_name's" ?> Profile </title>
   <link rel="stylesheet" type="text/css" href="./css/recordsCenter.css">
 	<link rel="stylesheet" type="text/css" href="./css/doctorViewToPatient.css">
   <link rel="stylesheet" type="text/css" href="./css/patientProfile.css">
@@ -49,17 +47,14 @@
 
       <?php 
 
-$select_query="Select * from `account` WHERE acct_id = $id";
+$select_query="Select * from `account`, `patient` WHERE acct_id = $id";
 $result=mysqli_query($con,$select_query);
 
    while ($row=mysqli_fetch_assoc($result)) 
    {
-     $id=$row['acct_id'];
-     $surname=$row['last_name'];
-     $firstname=$row['first_name'];
-     $email=$row['email'];
-     $specialization=$row['specialization'];
-     $sex=$row['gender'];
+     $last_name=$row['last_name'];
+     $first_name=$row['first_name'];
+     $sex=$row['sex'];
 
 
      /*PROFILE BUBBLE*/
@@ -71,10 +66,9 @@ $result=mysqli_query($con,$select_query);
     <div class='container-profile'>
       <img src='images/icon.png '>
       <div class='patient-profile'>
-      <h5>$firstname $surname</h5>
+      <h5>$first_name $last_name</h5>
         <div class='profile'>
-      
-          <p>Sex: $sex</p>
+          <p>$sex</p>
         </div>
       </div>
       
@@ -85,72 +79,68 @@ $result=mysqli_query($con,$select_query);
 
 <div class='container-about'>
     
+    <?php 
 
+  $select_info = "SELECT * FROM `patient` WHERE pat_acc_id = $id";
+  $select_query = mysqli_query($con, $select_info);
 
+  $row=mysqli_fetch_assoc($select_query);
+  $sex=$row['sex'];
+  $address=$row['address'];
+  $birth=$row['birthday'];
+  $height=$row['height'];
+  $weight=$row['weight'];
+  $contact=$row['contact_num'];
 
-        <?php 
+  echo " <div class='wrapper-about'>
+     <div class='first-layer'>
+       <div> 
+        <h6><b>Sex</b></h6>
+        <h6> $sex</h6>
+      </div>
+      <div>
+        <h6><b>Date of Birth</b></h6> 
+        <h6>$birth</h6>
+      </div>
+     </div>
 
+     <div class='second-layer'>
+       <div> 
+        <h6><b>Height</b></h6>
+        <h6> $height</h6>
+      </div>
+      <div>
+        <h6><b>Weight</b></h6> 
+        <h6>$weight</h6>
+      </div>
+     </div>
 
-        $select_query = "SELECT * FROM `vital_signs` WHERE vit_pat_id = $id";
-        $result = mysqli_query($con, $select_query);
+     <div class='appoint-button'>
+      <a style='margin-left: 20px;' class='waves-effect waves-light btn' target='_blank' type='button' href='diagnosisPrescriptionForm.php?acct_id=<?php echo $id;?>&&date_id=<?php echo $date_id;?>'>Appoint Patient</a>
+      </div>
+  </div>
 
-        
+    <div class='contact-info'>
+       <h5><b>Contact Info & Address</b></h5>
+       <h6>$address</h6>
+       <h6>City of Koronadal, South Cotabato, 9506</h6>
+       <br>
+       <h6>$contact</h6>      
+      
+</div>";
 
-
-          while($row=mysqli_fetch_assoc($result)){
-
-            $height = $row['height'];
-            $weight = $row['weight'];
-            $heart_rate = $row['heart_rate'];
-            $bp = $row['blood_pressure'];
-
-
-            echo "
-
-    
-                <div class='height'>
-                  <label>Height</label>
-                  $height
-                </div>
-
-                <div class='weight'>
-                  <label>Weight</label>
-                  $weight
-                </div>
-
-                <div class='rate'>
-                  <label>Heart Rate</label>
-                  $heart_rate
-                </div>
-
-                <div class='bp'>
-                  <label>Latest Blood Pressure</label>
-                  $bp
-                </div>
-            ";
-        }
-         ?>
-   <form class="" action="send.php" method="post">
-    <input type="text" name="acct_id" value="<?php echo $_GET['acct_id'] ?>" style="display:none">
-    <input type="text" name="date_id" value="<?php echo $_GET['date_id'] ?>" style="display:none">
-<label>Email To:</label><input type="email" name="email" value=""><br>
-     <label>Subject:</label><input type="text" name="subject" value=""><br>
-     <label>Message:</label><input type="text" name="message" value=""><br><br>
- <button type="submit" name="send" class="waves-effect waves-light btn">Send</button>
-         <a style="margin-left: 20px;" class="waves-effect waves-light btn" target="_blank" type="button" href="diagnosisPrescriptionForm.php?acct_id=<?php echo $id;?>&&date_id=<?php echo $date_id;?>">Appoint Patient</a>
-         </form>
-       
+?>
         
         </div>        
       
 
-  
+    
 
   <!-- DOCUMENTS SHARING PART -->
 <div class="doc-wrapper">
   
       <center>
-        <h4><?php echo "$firstname"; ?>'s files from you</h4>
+        <h4><?php echo "$first_name"; ?>'s files from you</h4>
       </center>
 
   <!-- FILES FROM DOCTORS -->
@@ -183,7 +173,7 @@ $result=mysqli_query($con,$select_query);
 
 <!-- PERSONAL FILES -->
        <center>
-        <h4 class="shared-header"><?php echo "$firstname"; ?>'s shared files</h4>
+        <h4 class="shared-header"><?php echo "$first_name"; ?>'s shared files</h4>
       </center>
 
 <div class="personal-docs">
@@ -223,6 +213,18 @@ $result=mysqli_query($con,$select_query);
 
 </div>
 
+
+         <!-- SEND EMAIL AREA -->
+
+   <form class="" action="send.php" method="post">
+    <input type="text" name="acct_id" value="<?php echo $_GET['acct_id'] ?>" style="display:none">
+    <input type="text" name="date_id" value="<?php echo $_GET['date_id'] ?>" style="display:none">
+<label>Email To:</label><input type="email" name="email" value=""><br>
+     <label>Subject:</label><input type="text" name="subject" value=""><br>
+     <label>Message:</label><input type="text" name="message" value=""><br><br>
+ <button type="submit" name="send" class="waves-effect waves-light btn">Send</button>
+      
+         </form>
 
 <script type="text/javascript" src="js/dropdown.js"></script>
 </body>

@@ -6,8 +6,7 @@
 	if ($_SESSION['activedoctor'] == true){
 
 
-
-
+		
 
  ?>
 

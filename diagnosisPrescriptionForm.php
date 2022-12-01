@@ -14,9 +14,7 @@ if(isset($_GET['acct_id']))
 
 	   while ($row=mysqli_fetch_assoc($result)) 
 		   {
-
-		 	$id=$row['acct_id'];
-			$firstname=$row['first_name'];
+			$first_name=$row['first_name'];
 			$last_name=$row['last_name'];
 		 }
 
@@ -89,7 +87,7 @@ if(isset($_GET['acct_id']))
 <form method="POST">
 <div class="containerFluid">
 	<div class="nameHeader">
-		<h3><?php echo "$firstname $last_name"; ?></h3>
+		<h3><?php echo "$first_name $last_name"; ?></h3>
 	</div>
 	<div class="wrapper">
 		<div class="diagContainer">

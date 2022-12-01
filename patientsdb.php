@@ -73,7 +73,7 @@ else{
 				<tbody>
 					<?php 
 
-$select_query="Select * from `account` WHERE acc_type = '1'";
+$select_query="Select * from `account`, `doctor` WHERE type = '1'";
 $result=mysqli_query($con,$select_query);
 
 $i=1;
@@ -81,10 +81,9 @@ if($result)
 {
 while ($row=mysqli_fetch_assoc($result)) 
 {
-$id=$row['acct_id'];
- $surname=$row['last_name'];
- $firstname=$row['first_name']
-; $status=$row['status'];
+ $last_name=$row['last_name'];
+ $first_name=$row['first_name'];
+ $status=$row['status'];
  $specialty=$row['specialization'];
 						 
 					     
@@ -92,7 +91,7 @@ $id=$row['acct_id'];
 					     
 							<tr class='clickable'>
 							<td><img src='./images/icon.png'  width='40px' height='40px'></a></td>
-							<td>$firstname $surname</a></td>
+							<td>$first_name $last_name</a></td>
 							<td>$specialty</td>
 							<td>Online</td>
 							
@@ -142,7 +141,7 @@ $id=$row['acct_id'];
 
 								
 							     
-								 $select_query="Select * from `account` WHERE acc_type = '1'";
+								 $select_query="Select * from `account`, `doctor` WHERE type = '1'";
 						
 						$result=mysqli_query($con,$select_query);
 					$i=1;
@@ -150,9 +149,8 @@ $id=$row['acct_id'];
 					{
 					   while ($row=mysqli_fetch_assoc($result)) 
 					   {
-					    $id=$row['acct_id'];
-					     $surname=$row['last_name'];
-					     $firstname=$row['first_name'];
+					     $last_name=$row['last_name'];
+					     $first_name=$row['first_name'];
 					     $specialty=$row['specialization'];
 						?>
 
@@ -160,7 +158,7 @@ $id=$row['acct_id'];
 							     	
 									<tr class='clickable'>
 										<td><a data-toggle='#'><img src='./images/icon.png'  width='40px' height='40px'></a></td>
-									<td><a href='doctorProfile.php?acct_id=<?php echo $row['acct_id']?>' onclick='doctorsModal1()''><?php echo " $firstname $surname"?></a></td>
+									<td><a href='doctorProfile.php?acct_id=<?php echo $row['acct_id']?>' onclick='doctorsModal1()'><?php echo " $first_name $last_name"?></a></td>
 										<td><a href='doctorProfile.php?acct_id=<?php echo $row['acct_id']?>' onclick='doctorsModal1()'><?php echo "$specialty" ?></a></td>
 										
 									</tr>

@@ -13,9 +13,7 @@
       $address=htmlspecialchars($_POST['address']);
       $acc_type='1';
       $image = $_FILES['image']['name'];
-      $dp = $_FILES['dp']['name'];
       $target = "ids/".basename($image);
-      $avatarTarget = "avatar/".basename($dp);
 
 
     $sql= "Select * From `account` Where username= '$username'";
@@ -28,7 +26,7 @@
     }
     else
     {
-      $sql = "insert into `screening` (`last_name`, `first_name`, `specialization`, `username`, `password`, `email`, `address`, `contact`, `type`, `id`, `avatar`) values ( '$last_name', '$first_name', '$specialization','$username', ' $password','$email','$address', '$phone','$acc_type', '$image', '$dp')";
+      $sql = "insert into `screening` (`last_name`, `first_name`, `specialization`, `username`, `password`, `email`, `address`, `contact`, `type`, `id`) values ( '$last_name', '$first_name', '$specialization','$username', '$password','$email','$address', '$phone','$acc_type', '$image')";
       $result = mysqli_query($con, $sql);
       if($result)
       {
@@ -113,13 +111,6 @@
         <div class="txt_field">
           <input type="text" name="contact">
           <label>Clinic Contact Number</label>
-        </div>
-
-        <label style="color: gray;">Profile Picture</label>
-        <div class="txt_field">
-
-          <input type="file" required="required" class="form-control" name="dp">
-          
         </div>
 
           <label style="color: gray;">Upload your PRC</label>

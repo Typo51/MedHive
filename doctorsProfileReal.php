@@ -2,7 +2,7 @@
   include('connect.php');
   include('side.php');
   
-
+$user_id = $_SESSION['user_id'];
 
 if(isset($_SESSION['user']) && $_SESSION['user'] != ''){
 
@@ -21,41 +21,9 @@ if(isset($_GET['acct_id']))
        {
 
       $id=$row['acct_id'];
-      $firstname=$row['first_name'];
-      $doctorfullname=$row['first_name']." ".$row['last_name'];
+      $first_name=$row['first_name'];
+      $last_name=$row['last_name'];
      }
-
-  }
-
-
-  if (isset($_POST['submit'])) {
-    $patientID  =$_SESSION['user_id'];
-    $sqlpatient="Select * from `account` WHERE acct_id = $patientID";
-    $resultpatient=mysqli_query($con,$sqlpatient);
-    $rowpatient = mysqli_fetch_assoc($resultpatient);
-    $fullname= $rowpatient['first_name']." ".$rowpatient['last_name'];
-    $date       =$_POST['date'];
-    $time       =$_POST['time'];
-    $type       =$_POST['type'];
-   
-
-
-
-  $sql = "INSERT INTO `appointment` (doc_id, Fullname, docfullname, pat_id, sched_date, sched_time, `type`) VALUES ( '$id', '$fullname','$doctorfullname','$patientID', '$date', '$time', '$type')";
-
-
-    $result = mysqli_query($con, $sql);
-
-    
-    if($result){
-      echo "<script>alert ('Appointed!')  </script>";
-      echo "<script>window.open('patientsdb.php','_self')</script>";
-
-
-    }else{
-      die(mysqli_error($con));
-    }
-
 
   }
 
@@ -69,7 +37,7 @@ if(isset($_GET['acct_id']))
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
  	<title>
- 		<?php echo"$firstname" ?>'s Profile
+ 		<?php echo"$first_name" ?>'s Profile
  	</title>
  	
 
@@ -97,11 +65,9 @@ $result=mysqli_query($con,$select_query);
    while ($row=mysqli_fetch_assoc($result)) 
    {
      $id=$row['acct_id'];
-     $surname=$row['last_name'];
-     $firstname=$row['first_name'];
+     $last_name=$row['last_name'];
+     $first_name=$row['first_name'];
      $specialization=$row['specialization'];
-     $sex=$row['gender'];
-     $address = $row['address'];
 
 
      /*PROFILE BUBBLE*/
@@ -111,17 +77,21 @@ $result=mysqli_query($con,$select_query);
 
 
     <div class='container-profile'>
-    	<img src='images/icon.png '>
-    	<div class='patient-profile'>
-    	<h5><b> $firstname $surname </b></h5>
-	    	<div class='profile'>
-	    		<p><b> $specialization</b></p>
-	    		<p><b> $sex </b></p>
-          <p> $address </p>
-	    	</div>
-    	</div>
-    	
-    </div>";
+  <div class='avatar'>
+    <!-- INSERT AVATAR HERE -->
+  </div>
+
+  <div class='wrapper-profile'>
+    <div class='name'>
+      <h5>$first_name $last_name M.D.</h5>
+    </div>
+
+    <div class='specialty'>
+      <p>$specialization</p>
+    </div>
+  </div>
+
+</div>";
 
    }
  ?>
@@ -130,33 +100,71 @@ $result=mysqli_query($con,$select_query);
 <hr>
 
 <!-- ABOUT AREA -->
+<?php  
 
+
+    $select_clinic = "SELECT * FROM `clinic_info` WHERE doc_clinic_id = $user_id";
+    $result_clinic = mysqli_query($con, $select_clinic);
+
+    
+    while ($row=mysqli_fetch_assoc($result_clinic)) {
+      // code...
+    
+    $address = $row['clinic_address'];
+    $days = $row['office_days'];
+    $time = $row['office_time'];
+    $contact = $row['contact_info'];
+
+  }
+
+  $select_bio="SELECT * FROM `doctor` WHERE doc_acc_id = $user_id";
+  $result_bio=mysqli_query($con, $select_bio);
+  while($row=mysqli_fetch_assoc($result_bio)){
+    $bio=$row['bio'];
+  }
+
+   
+   echo"
 
 <div class='container-about'>
-  <div class="personal-info">
+
+   <div class='personal-info'>
+    <h6>I love helping people in need. :)</h6>
+    
+
+
+
+  </div>
+
+  <div class='clinic-info'>
+    <h5><b>$specialization</b></h5>
+    <h6>$address</h6>
+    <h6>City of Koronadal, South Cotabato, 9506</h6>
+    <h6><b>$contact</b></h6>
+    <br>
+    <h5><b>Office Hours</b></h5>
+    <h6>$days</h6>
+    <h6>$time</h6>
+    <br>
+    
     
   </div>
 
-  <div class="clinic-info">
-    
-  </div>
-
-
-
-
- 
-
-  </div>
-
+  </div>";
+?>
 <div class="action-buttons">
-        <button onclick="sched()" class="btn btn-primary">Set Schedule</button>
 
-        <button onclick="logs()" class="btn btn-primary">Appointment Logs</button>
+  <a href="editProfile.php?acct_id=<?php echo "$user_id";?>" class="btn btn-primary">Edit Profile</a>
+
+  <button onclick="sched()" class="btn btn-primary">Set Schedule</button>
+
+  <button onclick="logs()" class="btn btn-primary">Appointment Logs</button>
   </div>
 
 
 
 </div>
+
 
 
 
@@ -181,13 +189,14 @@ $result=mysqli_query($con,$select_query);
       <?php 
 
         if(isset($_POST['pass']))
-        {   $doctorID = $_SESSION['user_id'];
+        {  
+          $doctorID = $_SESSION['user_id'];
           $dater = $_POST['dater'];
           $timer = $_POST['timer'];
 
 
           foreach ($timer as $time_sched) {
-            $sql2 = "INSERT INTO `doctors_availability` (doctor_id,avail_date, avail_time) VALUES ('$doctorID','$dater', '$time_sched')";
+            $sql2 = "INSERT INTO `doctors_availability` (doctor_id, avail_date, avail_time) VALUES ('$doctorID','$dater', '$time_sched')";
           $resultar=mysqli_query($con,$sql2);
           }
 

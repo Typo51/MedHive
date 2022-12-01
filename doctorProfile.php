@@ -19,8 +19,6 @@ if(isset($_GET['acct_id']))
 
      while ($row=mysqli_fetch_assoc($result)) 
        {
-
-      $id=$row['acct_id'];
       $firstname=$row['first_name'];
       $doctorfullname=$row['first_name']." ".$row['last_name'];
      }
@@ -41,7 +39,7 @@ if(isset($_GET['acct_id']))
 
 
 
-  $sql = "INSERT INTO `appointment` (doc_id, Fullname, docfullname, pat_id, sched_date, sched_time, `type`) VALUES ( '$id', '$fullname','$doctorfullname','$patientID', '$date', '$time', '$type')";
+  $sql = "INSERT INTO `appointment` (doc_id, pat_id, sched_date, sched_time, `type`) VALUES ( '$id','$patientID', '$date', '$time', '$type')";
 
 
     $result = mysqli_query($con, $sql);
@@ -74,75 +72,113 @@ if(isset($_GET['acct_id']))
  	
 
 	<!-- BOOTSTRAP -->
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+	 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
     <script src="https://kit.fontawesome.com/42135a69b7.js" crossorigin="anonymous"></script>
 
 
 	<link rel="stylesheet" type="text/css" href="./css/doctorProfile.css">
-	<link rel="stylesheet" href="./css/buttons.css">
 	<link rel="stylesheet" href="./css/modals.css">
  </head>
  <body>
 
 <div class="whole-container">
  	<div class="header">
- 		<div class="profile-bubble">
  			<?php 
 
-$select_query="Select * from `account` WHERE acct_id = $id";
+$select_query="Select * from `account`, `doctor` WHERE acct_id = $id";
 $result=mysqli_query($con,$select_query);
 
    while ($row=mysqli_fetch_assoc($result)) 
    {
      $id=$row['acct_id'];
-     $surname=$row['last_name'];
-     $firstname=$row['first_name'];
+     $last_name=$row['last_name'];
+     $first_name=$row['first_name'];
      $specialization=$row['specialization'];
-     $sex=$row['gender'];
 
 
      /*PROFILE BUBBLE*/
 
      echo " 
      
+     <div class='container-profile'>
+  <div class='avatar'>
+    <!-- INSERT AVATAR HERE -->
+  </div>
+
+  <div class='wrapper-profile'>
+    <div class='name'>
+      <h5><b>$first_name $last_name </b></h5>
+    </div>
+
+    <div class='specialty'>
+      <p>$specialization</p>
+    </div>
+  </div>
+
+</div>
 
 
-    <div class='container-profile'>
-    	<img src='images/icon.png '>
-    	<div class='patient-profile'>
-    	<h5>$firstname $surname</h5>
-	    	<div class='profile'>
-	    		<p> $specialization</p>
-	    		<p> $sex</p>
-	    	</div>
-    	</div>
-    	
-    </div>";
+    ";
 
    }
  ?>
- 		</div>
  	</div>
 <hr>
 
 
 
+
+
+
 <div class='container-about'>
 
-   <div class="personal-info">
+
+  <?php 
+
+    $select_clinic = "SELECT * FROM `clinic_info` WHERE doc_clinic_id = $id";
+    $result_clinic = mysqli_query($con, $select_clinic);
+
+    
+    while ($row=mysqli_fetch_assoc($result_clinic)) {
+      // code...
+    
+    $address = $row['clinic_address'];
+    $days = $row['office_days'];
+    $time = $row['office_time'];
+    $contact = $row['contact_info'];
+
+  }
+
+  $select_bio="SELECT * FROM `doctor` WHERE doc_acc_id = $id";
+  $result_bio=mysqli_query($con, $select_bio);
+  while($row=mysqli_fetch_assoc($result_bio)){
+    $bio=$row['bio'];
+  }
+
+   
+   echo"
+
+   <div class='personal-info'>
+    <h6>$bio</h6>
+  </div>
+
+
+  <div class='clinic-info'>
+    <h5><b>$specialization</b></h5>
+    <h6>$address</h6>
+    <h6>City of Koronadal, South Cotabato, 9506</h6>
+    <h6><b>$contact</b></h6>
+    <br>
+    <h5><b>Office Hours</b></h5>
+    <h6>$days</h6>
+    <h6>$time</h6>
+    <br>
+    
     
   </div>
-
-  <div class="clinic-info">
-    
-  </div>
-
-
-
-
- 
-
-  </div>
+  ";
+?>
+</div>
 
 <div class="action-buttons">
         <button onclick="setAppoint()" class="btn btn-primary">Set Appointment</button>
@@ -153,7 +189,6 @@ $result=mysqli_query($con,$select_query);
 
 
 </div>
-
 
 
 <!-- SETUP FOR APPOINTMENT -->

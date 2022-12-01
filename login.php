@@ -22,10 +22,10 @@ if (isset($_POST['submit'])) {
 		$_SESSION['username'] = $row['username'];
         
 		header("Location: doctorDB.php");
-        if ($row['acc_type'] == 1){
+        if ($row['type'] == 1){
             $_SESSION['user'] = $row['first_name'];
             $_SESSION['user_id'] = $row['acct_id'];
-            $_SESSION['acc_type'] = $row['acc_type'];
+            $_SESSION['acc_type'] = $row['type'];
             
             $_SESSION['activedoctor'] = true;
             header ("Location: doctorDB.php");

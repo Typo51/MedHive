@@ -24,7 +24,7 @@ if(isset($_GET['screen_acct_id']))
       $acc_type='0';
 
 
-    $sql= "Select * From `patient` Where first_name= '$first_name' and last_name= '$last_name'";
+    $sql= "Select * From `account` Where username= '$username'";
     $selectresult=mysqli_query($con, $sql);
     $number = mysqli_num_rows($selectresult);
 
@@ -34,12 +34,12 @@ if(isset($_GET['screen_acct_id']))
     }
     else
     {
-      $sql1 = "insert into `account` (`username`, `password`, `email`, `address`, `contact`, `type`) values ( '$username', '$password', '$email', '$address','$phone','$acc_type')";
+      $sql1 = "insert into `account` (`last_name`, `first_name`, `username`, `password`, `email`,`type`) values ('$last_name', '$first_name', '$username', '$password', '$email', '$acc_type')";
       $result1 = mysqli_query($con, $sql1);
       if($result1)
       {
 
-        $sql2 = "insert into `patient` (`last_name`, `first_name`, `birthday`, `height`, `weight`, `sex`) values ( '$last_name', '$first_name', '$birth', '$height', '$weight', '$gender')";
+        $sql2 = "insert into `patient` ( `birthday`, `address`, `contact_num`, `height`, `weight`, `sex`) values ('$birth', '$address','$phone', '$height', '$weight', '$gender')";
          $result2 = mysqli_query($con, $sql2);
 
         if ($result2){

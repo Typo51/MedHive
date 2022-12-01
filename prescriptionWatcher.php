@@ -34,15 +34,22 @@ $user_id = $_SESSION['user_id'];
 
 <?php 
 
-	$select_query="SELECT * FROM `doctor` WHERE doc_acc_id = '$id'";
+	$select_query="SELECT * FROM `account`,`doctor` WHERE doc_acc_id = '$id' AND acct_id = $id";
 	$result=mysqli_query($con,$select_query);
 
 	while ($row=mysqli_fetch_assoc($result)) {
 	
-	$address = $row['address'];
+	$address = $row['clinic_address'];
+	$contact = $row['contact_num'];
 	$doctor = $row['last_name'];
 	$firstname = $row['first_name'];
 	echo "
+
+	<div class='header'>
+	<h4>
+	Dr. $firstname $doctor
+	</h4>
+	</div>
 
 	<div class='header'>
 	<h4>
@@ -52,7 +59,13 @@ $user_id = $_SESSION['user_id'];
 
 	<div class='header'>
 	<h4>
-	Dr. $firstname $doctor
+	City of Koronadal, South Cotabato, 9506
+	</h4>
+	</div>
+
+	<div class='header'>
+	<h4>
+	$contact
 	</h4>
 	</div>";
 

@@ -7,15 +7,12 @@
 
 	if(isset($_GET['acct_id']))
 	{
-		$id = $_GET['acct_id'];
 		$select_query="Select * from `account` WHERE acct_id = $id";
 		$result=mysqli_query($con,$select_query);
 
 	   while ($row=mysqli_fetch_assoc($result)) 
 		   {
-
-		 	$id=$row['acct_id'];
-			$firstname=$row['first_name'];
+			$first_name=$row['first_name'];
 		 }
 
 	}
@@ -53,6 +50,7 @@
 	<link rel="stylesheet" type="text/css" href="css/recordsCenter.css">
 
 
+
 	 	<!-- BOOTSTRAP -->
  	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <script src="https://kit.fontawesome.com/42135a69b7.js" crossorigin="anonymous">
@@ -64,7 +62,10 @@
 
 <div class="doc-container">
 	<div class="nav">
-		<h4>Files from Dr. <?php echo "$firstname"; ?></h4>
+	<div class="back">
+	<a href="documentsCenter.php?acct_id=<?php echo $user_id ?>"><i class="fa-solid fa-arrow-left"></i> </a>
+	</div>
+		<h4>Files from Dr. <?php echo "$first_name"; ?></h4>
 	</div>
 
 		      <!-- BUTTONS FOR DOCUMENTS-->
@@ -75,7 +76,7 @@
 	        		<input required="required" type="file" name="image" class="waves-effect waves-light btn" value="Upload" style="margin-right: 30px;">
 
 	        		<button class="waves-effect waves-light btn" type="submit" name="upload">Upload</button>
-	        		<a href="#" > <button class="waves-effect waves-light btn">Delete</button></a>
+	        		<a href="#" > <button class="waves-effect waves-light btn" id="deleteBtn">Delete</button></a>
 	    </form>
 	        		
 	    		<button onclick="shareBtn()" class="btn btn-primary">Share</button>
@@ -92,7 +93,9 @@
 
 <div class="file-container">
 	<div class='docu'></div>
-
+  	<div class="popupBtn">
+  		<button class="popupDelete"><i class="fa-solid fa-xmark"></i></button>
+	</div>
 <?php 
 
   	$type = '1';
@@ -126,13 +129,11 @@
 
 
 
-
 <!-- SHARE DOCUMENT AREA -->
-	<!-- PAKI MODAL SINI SA SHARE NGA BUTTON JAS TQ TQ -->
 
 <?php 
 
-	$show_doctor = "SELECT * FROM `appointment` WHERE pat_id = $user_id";
+	$show_doctor = "SELECT * FROM `appointment`, `account` WHERE pat_id = $user_id AND doc_id = acct_id";
 	$showDoctor_query = mysqli_query($con, $show_doctor);
 
 	$show_documents = "SELECT * FROM `image` WHERE pat_img_id = $user_id AND type ='1'";
@@ -142,8 +143,6 @@
 
 
  ?>
-
-
 
 
 <div class="popup-share" id="popup_share">
@@ -157,10 +156,11 @@
 						while($row=mysqli_fetch_assoc($showDoctor_query)){
 
 							$doc_id = $row['doc_id'];
-							$docName = $row['docfullname'];
+							$docLast = $row['last_name'];
+							$docFirst = $row['first_name'];
 
 							echo "
-									<option value='$doc_id'>$docName</option>
+									<option value='$doc_id'>$docFirst $docLast</option>
 							";
 							
 					}
@@ -199,9 +199,9 @@
 			<button onclick="shareBtn()" class="waves-effect btn" id="cancel">Cancel</button>
 	
 
+<!-- PASSWORD VERIFICATION -->
 
 <?php 
-
 
 
 
@@ -213,7 +213,7 @@ if (isset($_POST['confirm'])) {
   $password = $_POST['password'];
 
 
-   $sql = "SELECT * FROM account WHERE acct_id = $user_id AND password ='$password'";
+   $sql = "SELECT * FROM `account` WHERE acct_id = $user_id AND password ='$password'";
   $result = mysqli_query($con, $sql);
 
   if ($result->num_rows > 0) {
@@ -246,7 +246,6 @@ if (isset($_POST['confirm'])) {
 </div>
 
 
-<!-- ASTA DIRI ANG IMODAL -->
 
 <div class="confirm" id="confirm">
   

@@ -10,17 +10,7 @@
     if(isset($_GET['acct_id']))
     {
         $id = $_GET['acct_id'];
-        $select_query="Select * from `account` WHERE acct_id = $user_id";
-        $result=mysqli_query($con,$select_query);
-
-       while ($row=mysqli_fetch_assoc($result)) 
-           {
-
-            $id=$row['acct_id'];
-            $firstname=$row['first_name'];
-
-         }
-
+       
     }
  ?>
 

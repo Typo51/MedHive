@@ -16,10 +16,7 @@
       $phone=htmlspecialchars($_POST['phone']) ;
       $acc_type='0';
       $image = $_FILES['image']['name'];
-      $dp = $_FILES['dp']['name'];
       $target = "ids/".basename($image);
-      $avatarTarget = "avatar/".basename($dp);
-
 
     $sql= "Select * From `account` Where username= '$username'";
     $selectresult=mysqli_query($con, $sql);
@@ -31,7 +28,7 @@
     }
     else
     {
-      $sql1 = "insert into `screening` (`last_name`, `first_name`, `username`, `password`, `email`, `address`, `contact`, `type`, `birthday`, `height`, `weight`, `sex`, `id`, `avatar`) values ( '$last_name', '$first_name', '$username', '$password','$email', '$address', '$phone','$acc_type', '$birth', '$height', '$weight', '$gender', '$image', '$dp')";
+      $sql1 = "insert into `screening` (`last_name`, `first_name`, `username`, `password`, `email`, `address`, `contact`, `type`, `birthday`, `height`, `weight`, `sex`, `id`) values ( '$last_name', '$first_name', '$username', '$password','$email', '$address', '$phone','$acc_type', '$birth', '$height', '$weight', '$gender', '$image')";
       $result1 = mysqli_query($con, $sql1);
       if($result1)
       {
@@ -129,15 +126,7 @@
           <label>Phone Number</label>
         </div>
 
-
-         <label style="color: gray;">Profile Picture</label>
-        <div class="txt_field">
-
-          <input type="file" required="required" class="form-control" name="dp">
-          
-        </div>
-
-          <label style="color: gray;">Upload your PRC</label>
+          <label style="color: gray;">Upload your ID</label>
           <div class="txt_field">
           <input type="file" required="required" class="form-control" name="image">
         </div>

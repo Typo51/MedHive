@@ -22,7 +22,7 @@ if(isset($_GET['screen_acct_id']))
       $status = '0';
 
 
-    $sql= "Select * From `doctor` Where first_name= '$first_name' and last_name= '$last_name'";
+    $sql= "Select * From `account` Where username= '$username'";
     $selectresult=mysqli_query($con, $sql);
     $number = mysqli_num_rows($selectresult);
 
@@ -32,12 +32,12 @@ if(isset($_GET['screen_acct_id']))
     }
     else
     {
-      $sql1 = "insert into `account` ( `username`, `password`, `email`, `address`, `contact`, `type`) values ( '$username', '$password', '$email','$address', '$phone','$acc_type')";
+      $sql1 = "insert into `account` (`last_name`,`first_name`, `username`, `password`, `email`,`type`) values ('$last_name', '$first_name', '$username', '$password', '$email','$acc_type')";
       $result1 = mysqli_query($con, $sql1);
       if($result1)
       {
 
-        $sql2 = "insert into `doctor` (last_name, first_name, specialization) values ( '$last_name', '$first_name',' $specialization')";
+        $sql2 = "insert into `doctor` (specialization, `clinic_address`, `contact_num`) values ( ' $specialization', '$address', '$phone')";
          $result2 = mysqli_query($con, $sql2);
 
         if ($result2){
@@ -132,7 +132,7 @@ if(isset($_GET['screen_acct_id']))
       </div>
 
         <div class="txt_field" >
-            <input type="password" required="required" name="password" value="<?php echo $password ?>">
+            <input type="text" required="required" name="password" value="<?php echo$password ?>">
             <label>Password</label>
           </div>
 
