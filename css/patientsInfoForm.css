@@ -75,14 +75,22 @@ body{
  .firstInputs
 {
     display: flex;
-    flex-wrap: wrap ;
+    flex-direction: column;
     justify-content: space-between;
     width: 100%;
     gap: 20px;
     align-items: flex-start;
     margin-bottom: 10px ;
-   
 }
+
+.divider{
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    gap: 10px;
+
+}
+
 
 .inputGroup
 {
@@ -94,6 +102,18 @@ body{
     width: 100%;
     height: 40px;
 }
+
+.address
+{
+    width: 96%;
+
+}
+
+.address input{
+    width: 100%;
+    height: 40px;
+}
+
 .aboutMe
 {
     display: flex;
@@ -123,7 +143,7 @@ body{
 .names
 {
     display: flex;
-    width: 250px;
+    width: 100px;
     height: 30px;
     border: solid gray 2px;
 }

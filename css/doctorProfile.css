@@ -18,76 +18,82 @@ body{
 
  .container-profile
 {
-  padding: 50px;
   background-color: #fff;
+  padding: 10px 10px 0px 10px;
   border-radius: 80px;
   margin-top: 20px;
   width: 40%;
   margin-left: 8%;
   height: 180px;
   display: flex;
+  gap: 10px;
 
 }
 
-.patient-profile
+ .avatar
 {
+  width: 16em;
+  height: 10em;
+   position: relative;
+   border-radius: 100%;
+
+}
+
+.wrapper-profile{
+
   display: flex;
   flex-direction: column;
-  position: relative;
-  
-}
 
-.profile
-{
+  width: 100%;
+  height: 80%;
 
 }
 
-
-.profile p:nth-child(2)
+ .name
 {
-  top: -34%;
-  left: 60%;
-  position: relative;
-  
-}
-
-.profile p:nth-child(3)
-{
-  top: -40%;
-  position: relative;
+  width: 100%;
+  height: 50%;
+  padding: 20px 0px 0px 0px;
 
 }
 
-
-.container-profile p
+ .specialty
 {
-  padding: 0px 0px 0px 10px;
+  width: 100%;
+  height: 50%;
+  padding: 10px 0px 0px 0px;
 
-}
 
-.container-profile img
-{
-  height: 90px;
-  width: 90px;
-  border-radius: 80px;
-
-}
-
-.container-profile h5
-{
-  padding-left: 20px;
 }
 
 /*ABOUT ME CSS*/
 
-.about-me-container
-{
-	padding: 1px 40px;
+.container-about{
+  background-color: #fff;
+  padding: 50px;
+  border-radius: 30px;
+  margin-top: 70px;
+  margin-left: 8%;
+  width: 80%;
+  height: 50vh;
+  display: flex;
+  gap: 10em;
+
 }
-.about-me
-{
-	padding: 20px 0px 0px 0px;
-	font-family: arial;
+
+.personal-info{
+  border: 1px solid;
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.clinic-info{
+  border: 1px solid;
+  width: 40%;
+  display: flex;
+  flex-direction: column;
 }
 
 /*APPOINTMENT SETUP*/
@@ -139,35 +145,7 @@ body{
 	margin: 20px 0px 0px 0px;
 }
 
-.container-about
-{
 
-  padding: 50px 10em;
-  background-color: #fff;
-  border-radius: 30px;
-  margin-top: 70px;
-  margin-left: 8%;
-  width: 85%;
-  height: 50vh;
-  display: flex;
-  gap: 10em;
-
-}
-
-input [type='checkbox']{
-
-  opacity: 1 !important;
-}
-
-.personal-info{
-  border: 1px solid;
-  width: 40%;
-}
-
-.clinic-info{
-  border: 1px solid;
-  width: 40%;
-}
 
 .action-buttons{
   border: 1px solid;
@@ -181,4 +159,9 @@ input [type='checkbox']{
   padding: 5px;
   justify-content: center;
   gap: 20px;
+}
+
+input [type='checkbox']{
+
+  opacity: 1 !important;
 }

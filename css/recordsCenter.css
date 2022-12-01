@@ -89,27 +89,51 @@ body{
   margin-left: 8%;
   width: 85%;
   height: 50vh;
-  display: block;
+  display: flex;
 
 }
 
-
-
-
-
-.container-about label:nth-child(1){
-  margin-top: 100px;
-
-}
-
-.container-about button{
-  left: 38%;
-  top: 28%;
+#docsCenter{
+  left: 30%;
+  top: 50%;
   position: relative;
 }
 
+.wrapper-about{
+  display: block;
+  position: relative;
+  width: 50%;
+  padding: 10px;
+}
+
+.first-layer{
+  height: 10%;
+  width: 100%;
+  padding-left: 80px;
+
+  display: flex;
+  gap: 100px;
+}
+.second-layer{
+  height: 10%;
+  width: 100%;
+  padding: 50px 80px;
+
+  display: flex;
+  gap: 100px;
 
 
+}
+.contact-info{
+  width: 50%;
+  position: relative;
+}
+
+.appoint-button{
+  position: relative;
+  top: 100px;
+  left: 150px;
+}
 
 
 /*MENU BUTTONS CSS*/
