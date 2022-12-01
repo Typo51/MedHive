@@ -37,19 +37,25 @@ if(isset($_GET['screen_acct_id']))
       if($result1)
       {
 
-        $sql2 = "insert into `doctor` (specialization, `clinic_address`, `contact_num`) values ( ' $specialization', '$address', '$phone')";
+        $sql2 = "INSERT INTO `doctor`(`specialization`) VALUES ('$specialization')";
          $result2 = mysqli_query($con, $sql2);
 
-        if ($result2){
+        if($result2){  
 
+        $sql3 = "INSERT INTO `clinic_info`(`clinic_address`, `contact_info`) VALUES ('$address', '$phone')";
+         $result3 = mysqli_query($con, $sql3);
+
+          if($result3) {
+          
          $sql_delete="Delete from `screening` where screening_id=$id";
          $deletation=mysqli_query($con,$sql_delete);
 
         echo"<script>alert('Verified!')</script>";
         echo "<script>window.open('adminDB.php','_self')</script>";
+        }
       }
-    }else
-      {
+    }
+    else{
         die (mysqli_error($con));
       }
     }
