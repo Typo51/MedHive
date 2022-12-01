@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Dec 01, 2022 at 06:22 AM
+-- Generation Time: Dec 02, 2022 at 12:39 AM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 8.0.19
 
@@ -39,6 +39,14 @@ CREATE TABLE `account` (
   `avatar` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `account`
+--
+
+INSERT INTO `account` (`acct_id`, `last_name`, `first_name`, `username`, `password`, `email`, `status`, `type`, `avatar`) VALUES
+(10, 'Paulo', 'Kernel Fritz', 'kerker', 'kerker', 'kernelfritzp@gmail.com', '0', '1', NULL),
+(12, 'Mahilum', 'Marcus Julian', 'macmac', 'macmac', 'kernelfritzp@gmail.com', '0', '0', NULL);
+
 -- --------------------------------------------------------
 
 --
@@ -70,12 +78,19 @@ INSERT INTO `appointment` (`transaction_id`, `doc_id`, `pat_id`, `sched_date`, `
 
 CREATE TABLE `clinic_info` (
   `clinic_id` int(11) NOT NULL,
-  `doc_clinic_id` int(11) NOT NULL,
-  `clinic_address` varchar(100) NOT NULL,
-  `office_days` varchar(100) NOT NULL,
-  `office_time` varchar(100) NOT NULL,
-  `contact_info` varchar(15) NOT NULL
+  `doc_clinic_id` int(11) DEFAULT NULL,
+  `clinic_address` varchar(100) DEFAULT NULL,
+  `office_days` varchar(100) DEFAULT NULL,
+  `office_time` varchar(100) DEFAULT NULL,
+  `contact_info` varchar(15) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `clinic_info`
+--
+
+INSERT INTO `clinic_info` (`clinic_id`, `doc_clinic_id`, `clinic_address`, `office_days`, `office_time`, `contact_info`) VALUES
+(1, NULL, '5143 Rudy Lane', NULL, NULL, '17026015723');
 
 -- --------------------------------------------------------
 
@@ -133,10 +148,17 @@ INSERT INTO `diagnosis` (`id`, `diag_doc_id`, `diag_pat_id`, `diag_sched_date`, 
 
 CREATE TABLE `doctor` (
   `doctor_id` int(11) NOT NULL,
-  `doc_acc_id` int(11) NOT NULL,
-  `specialization` varchar(50) NOT NULL,
-  `bio` varchar(200) NOT NULL
+  `doc_acc_id` int(11) DEFAULT NULL,
+  `specialization` varchar(50) DEFAULT NULL,
+  `bio` varchar(200) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `doctor`
+--
+
+INSERT INTO `doctor` (`doctor_id`, `doc_acc_id`, `specialization`, `bio`) VALUES
+(4, NULL, 'Pediatrician', NULL);
 
 -- --------------------------------------------------------
 
@@ -247,15 +269,22 @@ INSERT INTO `image` (`img_id`, `doc_img_id`, `pat_img_id`, `image`, `type`) VALU
 
 CREATE TABLE `patient` (
   `patient_id` int(11) NOT NULL,
-  `pat_acc_id` int(11) NOT NULL,
-  `bio` varchar(200) NOT NULL,
-  `birthday` date NOT NULL,
-  `address` varchar(100) NOT NULL,
-  `contact_num` varchar(15) NOT NULL,
-  `height` int(3) NOT NULL,
-  `weight` int(3) NOT NULL,
-  `sex` enum('Male','Female') NOT NULL
+  `pat_acc_id` int(11) DEFAULT NULL,
+  `bio` varchar(200) DEFAULT NULL,
+  `birthday` date DEFAULT NULL,
+  `address` varchar(100) DEFAULT NULL,
+  `contact_num` varchar(15) DEFAULT NULL,
+  `height` int(3) DEFAULT NULL,
+  `weight` int(3) DEFAULT NULL,
+  `sex` enum('Male','Female') DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `patient`
+--
+
+INSERT INTO `patient` (`patient_id`, `pat_acc_id`, `bio`, `birthday`, `address`, `contact_num`, `height`, `weight`, `sex`) VALUES
+(1, NULL, NULL, '2022-12-01', '5143 Rudy Lane', '17026015723', 162, 59, 'Male');
 
 -- --------------------------------------------------------
 
@@ -413,7 +442,7 @@ ALTER TABLE `shared_docs`
 -- AUTO_INCREMENT for table `account`
 --
 ALTER TABLE `account`
-  MODIFY `acct_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `acct_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `appointment`
@@ -425,7 +454,7 @@ ALTER TABLE `appointment`
 -- AUTO_INCREMENT for table `clinic_info`
 --
 ALTER TABLE `clinic_info`
-  MODIFY `clinic_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `clinic_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `consultation`
@@ -443,7 +472,7 @@ ALTER TABLE `diagnosis`
 -- AUTO_INCREMENT for table `doctor`
 --
 ALTER TABLE `doctor`
-  MODIFY `doctor_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `doctor_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `doctors_availability`
@@ -467,7 +496,7 @@ ALTER TABLE `image`
 -- AUTO_INCREMENT for table `patient`
 --
 ALTER TABLE `patient`
-  MODIFY `patient_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `patient_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `prescription`
@@ -479,7 +508,7 @@ ALTER TABLE `prescription`
 -- AUTO_INCREMENT for table `screening`
 --
 ALTER TABLE `screening`
-  MODIFY `screening_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `screening_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `shared_docs`
