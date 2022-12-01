@@ -14,13 +14,13 @@ Security Features:
 
 Polish:
 
-	-redesign Database (optional)
+	-redesign Database (optional) ✓
 	-redesign UI
 	-Terms and conditions Declaration
 	-Vital Stats of Patients ✓
-	-Email Confirmation and Notifications
-	-Move Doctor Availability to Doctors Profile
-	-User Info Redesign (Signup and Patients Profile)
+	-Email Confirmation and Notifications ✓
+	-Move Doctor Availability to Doctors Profile ✓
+	-User Info Redesign (Signup and Patients Profile) ✓
 
 Testing:
 
