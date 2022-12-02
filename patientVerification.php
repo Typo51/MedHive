@@ -39,7 +39,7 @@ if(isset($_GET['screen_acct_id']))
       if($result1)
       {
 
-        $sql2 = "insert into `patient` ( `birthday`, `address`, `contact_num`, `height`, `weight`, `sex`) values ('$birth', '$address','$phone', '$height', '$weight', '$gender')";
+        $sql2 = "insert into `patient` (`birthday`, `address`, `contact_num`, `height`, `weight`, `sex`) values ('$birth', '$address','$phone', '$height', '$weight', '$gender')";
          $result2 = mysqli_query($con, $sql2);
 
         if ($result2){
@@ -47,6 +47,7 @@ if(isset($_GET['screen_acct_id']))
          $sql_delete="Delete from `screening` where screening_id=$id";
          $deletation=mysqli_query($con,$sql_delete);
 
+        
         echo"<script>alert('Verified!')</script>";
         echo "<script>window.open('adminDB.php','_self')</script>";
       }

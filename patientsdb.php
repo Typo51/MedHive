@@ -73,7 +73,7 @@ else{
 				<tbody>
 					<?php 
 
-$select_query="Select * from `account`, `doctor` WHERE type = '1'";
+$select_query="Select * from `account`, `doctor` WHERE type = '1' AND  doc_acc_id = acct_id";
 $result=mysqli_query($con,$select_query);
 
 $i=1;
@@ -85,6 +85,7 @@ while ($row=mysqli_fetch_assoc($result))
  $first_name=$row['first_name'];
  $status=$row['status'];
  $specialty=$row['specialization'];
+
 						 
 					     
 					     echo " 
@@ -141,7 +142,7 @@ while ($row=mysqli_fetch_assoc($result))
 
 								
 							     
-								 $select_query="Select * from `account`, `doctor` WHERE type = '1'";
+								 $select_query="Select * from `account`, `doctor` WHERE type = '1' AND doc_acc_id = acct_id";
 						
 						$result=mysqli_query($con,$select_query);
 					$i=1;
@@ -152,6 +153,7 @@ while ($row=mysqli_fetch_assoc($result))
 					     $last_name=$row['last_name'];
 					     $first_name=$row['first_name'];
 					     $specialty=$row['specialization'];
+					 
 						?>
 
 							   
@@ -164,7 +166,8 @@ while ($row=mysqli_fetch_assoc($result))
 									</tr>
 							<?php
 							    $i++;
-							   }
+							}
+							   
 							}
 
 							else{

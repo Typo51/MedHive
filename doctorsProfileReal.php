@@ -129,7 +129,7 @@ $result=mysqli_query($con,$select_query);
 <div class='container-about'>
 
    <div class='personal-info'>
-    <h6>I love helping people in need. :)</h6>
+    <h6>$bio</h6>
     
 
 

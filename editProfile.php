@@ -25,21 +25,22 @@
         $contact=htmlspecialchars($_POST['contact']);
         $about=htmlspecialchars($_POST['doc_about']);
 
-        $sql_insert = "INSERT INTO `clinic_info`( `doc_clinic_id`, `clinic_address`, `office_days`, `office_time`, `contact_info`) VALUES ('$id', '$address', '$days', '$time', '$contact' )";
-        $insert_query = mysqli_query($con, $sql_insert);
+        $check_exist = "SELECT * FROM `clinic_info` WHERE doc_clinic_id = $user_id";
+        $query_check = mysqli_query($con, $check_exist);
+        $counter = mysqli_num_rows($query_check);
 
-        if ($insert_query) {
-       
+    
+            $update_clinic = "UPDATE `clinic_info` SET `clinic_address`='$address',`office_days`='$days',`office_time`='$time',`contact_info`='$contact' WHERE doc_clinic_id = $user_id";
+            $update_clinic_query = mysqli_query($con, $update_clinic);
+
             $sql_update = "UPDATE `doctor` SET `bio`='$about' WHERE doc_acc_id = $user_id";
             $update_query = mysqli_query($con, $sql_update);
-
-            if ($update_query) {
+              if ($update_query) {
                 echo "<script>alert('Changed Successful')</script>";
-                
-            }
 
         }
     }
+    
 
     if (isset($_POST['patient_submit'])) {
         
@@ -48,21 +49,21 @@
         $time=htmlspecialchars($_POST['clinic_time']);
         $contact=htmlspecialchars($_POST['contact']);
         $about=htmlspecialchars($_POST['doc_about']);
+        $height=htmlspecialchars($_POST['height']);
+        $weight=htmlspecialchars($_POST['weight']);
 
-        $sql_insert = "INSERT INTO `clinic_info`( `doc_clinic_id`, `clinic_address`, `office_days`, `office_time`, `contact_info`) VALUES ('$id', '$address', '$days', '$time', '$contact' )";
-        $insert_query = mysqli_query($con, $sql_insert);
 
-        if ($insert_query) {
+        $update_pat_info = "UPDATE `patient` SET `bio`='$patAbout',`address`='$patAddress',`contact_num`='$contact',`height`='$height',`weight`='$weight' WHERE pat_acc_id = $user_id";
+        $query_update = mysqli_query($con, $update_pat_info);
+
+         if ($query_update) {
        
-            $sql_update = "UPDATE `doctor` SET `bio`='$about' WHERE doc_acc_id = $user_id";
-            $update_query = mysqli_query($con, $sql_update);
-
-            if ($update_query) {
                 echo "<script>alert('Changed Successful')</script>";
-                
-            }
+            
 
-        }
+          
+          } 
+
     }
 
 

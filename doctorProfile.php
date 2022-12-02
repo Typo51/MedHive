@@ -88,14 +88,14 @@ if(isset($_GET['acct_id']))
 $select_query="Select * from `account`, `doctor` WHERE acct_id = $id";
 $result=mysqli_query($con,$select_query);
 
-   while ($row=mysqli_fetch_assoc($result)) 
-   {
+   while($row=mysqli_fetch_assoc($result)){
+   
      $id=$row['acct_id'];
      $last_name=$row['last_name'];
      $first_name=$row['first_name'];
      $specialization=$row['specialization'];
 
-
+   }
      /*PROFILE BUBBLE*/
 
      echo " 
@@ -120,7 +120,7 @@ $result=mysqli_query($con,$select_query);
 
     ";
 
-   }
+   
  ?>
  	</div>
 <hr>
