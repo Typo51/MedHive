@@ -39,7 +39,14 @@ if(isset($_GET['screen_acct_id']))
       if($result1)
       {
 
-        $sql2 = "insert into `patient` (`birthday`, `address`, `contact_num`, `height`, `weight`, `sex`) values ('$birth', '$address','$phone', '$height', '$weight', '$gender')";
+
+         $sql= "Select * From `account` Where username= '$username'";
+        $selectresult=mysqli_query($con, $sql);
+
+        $row = mysqli_fetch_assoc($selectresult);
+        $temp_id = $row['acct_id'];
+
+        $sql2 = "insert into `patient` (`pat_acc_id`, `birthday`, `address`, `contact_num`, `height`, `weight`, `sex`) values ('$temp_id', '$birth', '$address','$phone', '$height', '$weight', '$gender')";
          $result2 = mysqli_query($con, $sql2);
 
         if ($result2){

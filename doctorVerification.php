@@ -37,12 +37,18 @@ if(isset($_GET['screen_acct_id']))
       if($result1)
       {
 
-        $sql2 = "INSERT INTO `doctor`(`specialization`) VALUES ('$specialization')";
+        $sql= "Select * From `account` Where username= '$username'";
+        $selectresult=mysqli_query($con, $sql);
+
+        $row = mysqli_fetch_assoc($selectresult);
+        $temp_id = $row['acct_id'];
+
+        $sql2 = "INSERT INTO `doctor`(`doc_acc_id`, `specialization`) VALUES ('$temp_id', '$specialization')";
          $result2 = mysqli_query($con, $sql2);
 
         if($result2){  
 
-        $sql3 = "INSERT INTO `clinic_info`(`clinic_address`, `contact_info`) VALUES ('$address', '$phone')";
+        $sql3 = "INSERT INTO `clinic_info`(`doc_clinic_id`, `clinic_address`, `contact_info`) VALUES ('$temp_id', '$address', '$phone')";
          $result3 = mysqli_query($con, $sql3);
 
           if($result3) {
