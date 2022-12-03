@@ -124,3 +124,14 @@ else{
     var blur = document.getElementById('blur');
     blur.classList.toggle('active');
  } 
+
+
+  function changeAv()
+ {
+    var modal2 = document.getElementById('changeAvatar');
+    modal2.classList.toggle('active');
+    var blur = document.getElementById('blur');
+    blur.classList.toggle('active');
+ } 
+
+
