@@ -24,6 +24,8 @@ Polish:
 	-Avatar/Icon feature
 	-Appointment Log
 	-Accept/Decline Appointment Feature
+	-Edit Profile Debug
+	-Set Appointment Wont refresh
 
 Testing:
 
