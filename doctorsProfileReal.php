@@ -68,6 +68,7 @@ $result=mysqli_query($con,$select_query);
      $last_name=$row['last_name'];
      $first_name=$row['first_name'];
      $specialization=$row['specialization'];
+     $avatar=$row['avatar'];
 
 
      /*PROFILE BUBBLE*/
@@ -78,7 +79,8 @@ $result=mysqli_query($con,$select_query);
 
     <div class='container-profile'>
   <div class='avatar'>
-    <!-- INSERT AVATAR HERE -->
+            <img src='./avatar/".$avatar."' id='avatar' onclick='changeAv()'>
+
   </div>
 
   <div class='wrapper-profile'>
@@ -315,6 +317,52 @@ $result=mysqli_query($con,$select_query);
     <a href="#" onclick="logs()"> <button class="buttons" id="cancel">Cancel</button></a> 
     
   </div>
+</div>
+
+
+<div class="changeAvatar" id="changeAvatar">
+  
+<?php 
+
+ if (isset($_POST['upload'])) {
+    // Get image name
+    $image = $_FILES['image']['name'];
+
+    // image file directory
+    $target = "avatar/".basename($image);
+    $type = '1';
+
+    $sql = "UPDATE `account` SET `avatar`='$image' WHERE acct_id = $user_id";
+    // execute query
+    mysqli_query($con, $sql);
+
+    if (move_uploaded_file($_FILES['image']['tmp_name'], $target)) {
+      echo "<script>alert('Upload Successful')</script>";
+    }
+
+  }
+
+
+
+ ?>
+
+
+
+  <div class="confirmation" enctype='multipart/form-data'>
+    <h4>Change your Icon</h4>
+    <div class="avatar-wrapper">
+      <form method="POST" enctype='multipart/form-data'>
+      <label for="uploadIcon">Upload</label>
+      <input type="file" name="image" id="uploadIcon" required>
+      <br>
+      <br>
+      <input type="submit" name="upload" class="waves-effect btn">
+
+      </form>
+      <button class="waves-effect btn" onclick="changeAv()">Cancel</button>
+
+    </div>
+
 </div>
 
 <script src="js/events.js"></script>

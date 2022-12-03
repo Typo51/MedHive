@@ -20,28 +20,7 @@
 
 	}
 
-
- 
-
-
-  // If upload button is clicked ...
-  if (isset($_POST['upload'])) {
-  	// Get image name
-  	$image = $_FILES['image']['name'];
-
-  	// image file directory
-  	$target = "images/".basename($image);
-
-  	$sql = "INSERT INTO image (doc_img_id, pat_img_id, image) VALUES ('$doctorID', '$id', '$image')";
-  	// execute query
-  	mysqli_query($con, $sql);
-
-  	if (move_uploaded_file($_FILES['image']['tmp_name'], $target)) {
-  		echo "<script>alert('Upload Successful')</script>";
-      echo "<script>window.open('doctorViewToPatient.php?acct_id=$id','_self')</script>";
-  	}
-
-  }
+  
 
   
   $resultar = mysqli_query($con, "SELECT * FROM `image`, `account` where pat_img_id = $id AND doc_img_id = acct_id GROUP BY doc_img_id");
@@ -77,6 +56,7 @@ $result=mysqli_query($con,$select_query);
    {
      $last_name=$row['last_name'];
      $first_name=$row['first_name'];
+     $avatar=$row['avatar'];
 
 
      /*PROFILE BUBBLE*/
@@ -86,12 +66,11 @@ $result=mysqli_query($con,$select_query);
 
 
     <div class='container-profile'>
-      <img src='images/icon.png '>
+        <img src='./avatar/".$avatar."' id='avatar' onclick='changeAv()'>
+        <p>Change your Icon</p>
       <div class='patient-profile'>
       <h5>$first_name $last_name</h5>
         <div class='profile'>
-      
-          <p></p>
         </div>
       </div>
       
@@ -206,11 +185,52 @@ if (isset($_POST['confirm'])) {
       </form>
     </div>
     </div>
-
-
 </div>
 
+<div class="changeAvatar" id="changeAvatar">
+  
+<?php 
 
+ if (isset($_POST['upload'])) {
+    // Get image name
+    $image = $_FILES['image']['name'];
+
+    // image file directory
+    $target = "avatar/".basename($image);
+    $type = '1';
+
+    $sql = "UPDATE `account` SET `avatar`='$image' WHERE acct_id = $user_id";
+    // execute query
+    mysqli_query($con, $sql);
+
+    if (move_uploaded_file($_FILES['image']['tmp_name'], $target)) {
+      echo "<script>alert('Upload Successful')</script>";
+    }
+
+  }
+
+
+
+ ?>
+
+
+
+  <div class="confirmation" enctype='multipart/form-data'>
+    <h4>Change your Icon</h4>
+    <div class="avatar-wrapper">
+      <form method="POST" enctype='multipart/form-data'>
+      <label for="uploadIcon">Upload</label>
+      <input type="file" name="image" id="uploadIcon" required>
+      <br>
+      <br>
+      <input type="submit" name="upload" class="waves-effect btn">
+
+      </form>
+      <button class="waves-effect btn" onclick="changeAv()">Cancel</button>
+
+    </div>
+
+</div>
   
 
 <script type="text/javascript" src="js/events.js"></script>

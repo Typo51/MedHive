@@ -85,13 +85,15 @@ while ($row=mysqli_fetch_assoc($result))
  $first_name=$row['first_name'];
  $status=$row['status'];
  $specialty=$row['specialization'];
+					     	$avatar=$row['avatar'];
+ 
 
 						 
 					     
 					     echo " 
 					     
 							<tr class='clickable'>
-							<td><img src='./images/icon.png'  width='40px' height='40px'></a></td>
+							<td>    <img src='./avatar/".$avatar."'></td>
 							<td>$first_name $last_name</a></td>
 							<td>$specialty</td>
 							<td>Online</td>

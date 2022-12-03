@@ -46,25 +46,28 @@
         
         $patAddress=htmlspecialchars($_POST['pat_address']);
         $patAbout=htmlspecialchars($_POST['pat_about']);
-        $time=htmlspecialchars($_POST['clinic_time']);
-        $contact=htmlspecialchars($_POST['contact']);
-        $about=htmlspecialchars($_POST['doc_about']);
         $height=htmlspecialchars($_POST['height']);
         $weight=htmlspecialchars($_POST['weight']);
+        $contact=htmlspecialchars($_POST['pat_contact']);
+
+       
 
 
-        $update_pat_info = "UPDATE `patient` SET `bio`='$patAbout',`address`='$patAddress',`contact_num`='$contact',`height`='$height',`weight`='$weight' WHERE pat_acc_id = $user_id";
+        $update_pat_info = "UPDATE `patient` SET `bio`='$patAbout',`address`='$patAddress',`contact_num`='$contact',`height`='$height',`weight`='$weight'WHERE pat_acc_id = $user_id";
         $query_update = mysqli_query($con, $update_pat_info);
 
          if ($query_update) {
+
+      echo "<script>alert('Changed Successful')</script>";
+    }
        
-                echo "<script>alert('Changed Successful')</script>";
+                
             
 
           
           } 
 
-    }
+    
 
 
  ?>
@@ -109,7 +112,7 @@
       <?php 
 
 
-           $select_query="Select * from `account` WHERE acct_id = $user_id";
+        $select_query="Select * from `account` WHERE acct_id = $user_id";
         $result=mysqli_query($con,$select_query);
 
             $row=mysqli_fetch_assoc($result);
@@ -132,7 +135,7 @@
                     <div class='firstInputs'>
                         <div class='address'>
                         <h2>Clinic Address</h2>
-                        <input class='names' type='text' placeholder=' Exclude the City' name='address'>
+                        <input class='names' type='text' placeholder=' Exclude the City' name='address' value=''>
                         </div>
                         <div class='divider'>
                             <div class='inputGroup'>
@@ -170,11 +173,17 @@
       <?php 
 
 
-           $select_query="Select * from `account` WHERE acct_id = $user_id";
+           $select_query="Select * from `account`, `patient` WHERE acct_id = $user_id AND pat_acc_id = $user_id";
         $result=mysqli_query($con,$select_query);
 
             $row=mysqli_fetch_assoc($result);
             $acc_type = $row['type'];
+            $bio = $row['bio'];
+            $address = $row['address'];
+            $height = $row['height'];
+            $weight = $row['weight'];
+            $contact = $row['contact_num'];
+            $avatar = $row['avatar'];
 
 
         if($acc_type == '0')
@@ -183,7 +192,7 @@
 
           <div class='containerFluid'>
         <div class='header'> <h1> Patients Information Form</h1>  </div> 
-            <form method='POST'>
+            <form method='POST' enctype='multipart/form-data'>
             
             <div class='wrapper'>
 
@@ -193,17 +202,23 @@
                     <div class='firstInputs'>
                         <div class='address'>
                         <h2>Address</h2>
-                        <input class='names' type='text' placeholder='Exclude the City' name='pat_address'>
+                        <input class='names' type='text' placeholder='Exclude the City' name='pat_address' value='$address'>
+                        </div>
+                        <div class='address'>
+                        <h2>Contact Number</h2>
+                        <input class='names' type='text' placeholder='Contact Number' name='pat_contact' value='$contact'>
                         </div>
                     </div>
                      <h2>About Me</h2>
                     <div class='aboutMe'>
-                        <textarea class='about' name='pat_about' id=''  placeholder=' Write Something About you' name='pat_about'></textarea>
+                        <textarea class='about' name='pat_about' id=''  placeholder=' Write Something About you' name='pat_about' value='$bio'></textarea>
                     </div>
                     <div class='vitals'>
-                        <input class='vita'type='text' placeholder=' Height' name='height'>
-                        <input class='vita' type='text' placeholder=' Weight' name='weight'> 
+                        <input class='vita'type='text' placeholder=' Height' name='height' value='$height'>
+                        <input class='vita' type='text' placeholder=' Weight' name='weight' value='$weight'> 
                     </div>
+
+
                 </div>
                     <input id='submit' type='submit' name='patient_submit'>
             </div>

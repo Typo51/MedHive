@@ -94,6 +94,8 @@ $result=mysqli_query($con,$select_query);
      $last_name=$row['last_name'];
      $first_name=$row['first_name'];
      $specialization=$row['specialization'];
+     $avatar=$row['avatar'];
+     
 
    }
      /*PROFILE BUBBLE*/
@@ -102,7 +104,7 @@ $result=mysqli_query($con,$select_query);
      
      <div class='container-profile'>
   <div class='avatar'>
-    <!-- INSERT AVATAR HERE -->
+    <img src='./avatar/".$avatar."'>
   </div>
 
   <div class='wrapper-profile'>
@@ -205,7 +207,10 @@ $result=mysqli_query($con,$select_query);
   
     <?php
      if(isset($_POST['pick']))
-        {   
+        { 
+
+
+
           $formaccid = $_GET['acct_id'];
           $date = $_POST['date'];
 
@@ -217,8 +222,10 @@ $result=mysqli_query($con,$select_query);
            <?php
     if($resultpick->num_rows > 0){
           echo "
+
+
           <label>Choose Time</label>
-          <select class= 'dropdown-trigger btn'name='time'>
+          <select class= 'dropdown-trigger btn'name='time' required>
           ";
 
           while ($row=mysqli_fetch_assoc($resultpick)) {
@@ -233,9 +240,11 @@ $result=mysqli_query($con,$select_query);
         }
       }
           ?>
-        <label>Choose a Date</label>
+        
             <div class="date-picker">
+              <label>Choose a Date</label>
         <input required='required' type="date" name="date" value='<?php echo $date ?>'>
+
         <input type="submit" name="pick" value="Pick Date" class="waves-effect btn">
     </div>
     <label>Appointment Type</label>

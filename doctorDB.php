@@ -172,13 +172,14 @@
 						     $time=$row['sched_time'];
 							 $date=$row['sched_date'];
 					     	$status=$row['status'];
+					     	$avatar=$row['avatar'];
 
 
 						      
 						     	?>
 
 								<tr class='table'>
-								<td><a data-toggle='#'><img src='./images/icon.png'  width='40px' height='40px'></a></td>
+								<td><a data-toggle='#'>    <img src='./avatar/".$avatar."'></a></td>
 
 
 								<td><a href='doctorViewToPatient.php?acct_id=<?php echo $row['acct_id'];?>&&date_id=<?php echo $row['sched_date'];?>'> <?php echo "$firstname $surname"; ?></a></td>
