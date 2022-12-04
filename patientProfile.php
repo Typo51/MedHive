@@ -1,26 +1,48 @@
 <?php 
 
-	include ('connect.php');
-  include ('side.php');
+  include ('connect.php');
+	include ('side.php');
+
 
   ob_start();
-  $user_id = $_SESSION['user_id'];
-  
-	if(isset($_SESSION['user_id']))
+	if(isset($_GET['acct_id']))
 	{
+		$id = $_GET['acct_id'];
 		$select_query="Select * from `account` WHERE acct_id = $user_id";
 		$result=mysqli_query($con,$select_query);
-
+   
 	   while ($row=mysqli_fetch_assoc($result)) 
 		   {
-
-		 	$id=$row['acct_id'];
+   
+			$id=$row['acct_id'];
 			$firstname=$row['first_name'];
+   
 		 }
-
+   
 	}
 
-  
+
+ 
+
+
+  // If upload button is clicked ...
+  if (isset($_POST['upload'])) {
+  	// Get image name
+  	$image = $_FILES['image']['name'];
+
+  	// image file directory
+  	$target = "images/".basename($image);
+
+  	$sql = "INSERT INTO image (doc_img_id, pat_img_id, image) VALUES ('$doctorID', '$id', '$image')";
+  	// execute query
+  	mysqli_query($con, $sql);
+
+  	if (move_uploaded_file($_FILES['image']['tmp_name'], $target)) {
+  		echo "<script>alert('Upload Successful')</script>";
+      echo "<script>window.open('doctorViewToPatient.php?acct_id=$id','_self')</script>";
+  	}
+
+  }
 
   
   $resultar = mysqli_query($con, "SELECT * FROM `image`, `account` where pat_img_id = $id AND doc_img_id = acct_id GROUP BY doc_img_id");
@@ -35,16 +57,23 @@
  	<title> <?php echo "$firstname's" ?> Profile </title>
 	<link rel="stylesheet" type="text/css" href="./css/recordsCenter.css">
 	<link rel="stylesheet" type="text/css" href="./css/patientProfile.css">
+  <link rel="stylesheet" href="./css/sidebars.css">
+  <link
+      href="https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css"
+      rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 
 
  	<!-- BOOTSTRAP -->
- 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <script src="https://kit.fontawesome.com/42135a69b7.js" crossorigin="anonymous">
     </script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+ 
  </head>
-<body style="margin-left: 45px;">
 
+
+<body style="margin-left: 45px;">
 
 
       <?php 
@@ -56,7 +85,6 @@ $result=mysqli_query($con,$select_query);
    {
      $last_name=$row['last_name'];
      $first_name=$row['first_name'];
-     $avatar=$row['avatar'];
 
 
      /*PROFILE BUBBLE*/
@@ -66,11 +94,12 @@ $result=mysqli_query($con,$select_query);
 
 
     <div class='container-profile'>
-        <img src='./avatar/".$avatar."' id='avatar' onclick='changeAv()'>
-        <p>Change your Icon</p>
+     <div class='image'> <img src='images/icon.png '></div>
       <div class='patient-profile'>
-      <h5>$first_name $last_name</h5>
+      <h2>$first_name $last_name</h2>
         <div class='profile'>
+      
+          <p></p>
         </div>
       </div>
       
@@ -80,9 +109,7 @@ $result=mysqli_query($con,$select_query);
  ?>
 
 
-<div class="edit-profile">
- <a href="editProfile.php?acct_id=<?php echo "$user_id";?>">Edit Profile</a>
-</div>
+
 
 <!-- ABOUT AREA -->
 
@@ -103,6 +130,7 @@ $result=mysqli_query($con,$select_query);
   $contact=$row['contact_num'];
 
   echo " <div class='wrapper-about'>
+  <h5><b>About</b></h5><br>
      <div class='first-layer'>
        <div> 
         <h6><b>Sex</b></h6>
@@ -125,15 +153,18 @@ $result=mysqli_query($con,$select_query);
       </div>
      </div>
 
-       <button id='docsCenter' class='waves-effect btn' onclick='confirmPw()'>Documents Center</button>
+       <button id='docsCenter' class='waves-effect btn' onclick='confirmPw()'></button></button>
   </div>
 
     <div class='contact-info'>
-       <h5><b>Contact Info & Address</b></h5>
+       <h5><b>Contact Info & Address</b></h5><br>
        <h6>$address</h6>
        <h6>City of Koronadal, South Cotabato, 9506</h6>
        <br>
-       <h6>$contact</h6>      
+       <h6>$contact</h6>     
+       <div class='edit-profile'>
+ <a href='editProfile.php?acct_id=<?php echo '$user_id';?>Edit Profile</a>
+</div> 
       
 </div>";
 
@@ -185,52 +216,11 @@ if (isset($_POST['confirm'])) {
       </form>
     </div>
     </div>
+
+
 </div>
 
-<div class="changeAvatar" id="changeAvatar">
-  
-<?php 
 
- if (isset($_POST['upload'])) {
-    // Get image name
-    $image = $_FILES['image']['name'];
-
-    // image file directory
-    $target = "avatar/".basename($image);
-    $type = '1';
-
-    $sql = "UPDATE `account` SET `avatar`='$image' WHERE acct_id = $user_id";
-    // execute query
-    mysqli_query($con, $sql);
-
-    if (move_uploaded_file($_FILES['image']['tmp_name'], $target)) {
-      echo "<script>alert('Upload Successful')</script>";
-    }
-
-  }
-
-
-
- ?>
-
-
-
-  <div class="confirmation" enctype='multipart/form-data'>
-    <h4>Change your Icon</h4>
-    <div class="avatar-wrapper">
-      <form method="POST" enctype='multipart/form-data'>
-      <label for="uploadIcon">Upload</label>
-      <input type="file" name="image" id="uploadIcon" required>
-      <br>
-      <br>
-      <input type="submit" name="upload" class="waves-effect btn">
-
-      </form>
-      <button class="waves-effect btn" onclick="changeAv()">Cancel</button>
-
-    </div>
-
-</div>
   
 
 <script type="text/javascript" src="js/events.js"></script>

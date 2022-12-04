@@ -1,9 +1,8 @@
 <?php 
 
-	include ('connect.php');
-  include ('side.php');
+  include ('connect.php');
+	include ('side.php');
 
-  $doctorID= $_SESSION['user_id'];
 	if(isset($_GET['acct_id']))
 	{
     $id = $_GET['acct_id'];
@@ -34,18 +33,16 @@
   <link rel="stylesheet" type="text/css" href="./css/patientProfile.css">
 
 
+  <!-- BOOTSTRAP -->
+  <link href="https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css" rel="stylesheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+   <script src="https://kit.fontawesome.com/42135a69b7.js" crossorigin="anonymous"></script>
 
-
- 	<!-- BOOTSTRAP -->
- 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-    <script src="https://kit.fontawesome.com/42135a69b7.js" crossorigin="anonymous">
-    </script>
  </head>
 <body style="margin-left: 45px;">
 
-
-
-      <?php 
+<?php
 
 $select_query="Select * from `account`, `patient` WHERE acct_id = $id";
 $result=mysqli_query($con,$select_query);
@@ -55,26 +52,24 @@ $result=mysqli_query($con,$select_query);
      $last_name=$row['last_name'];
      $first_name=$row['first_name'];
      $sex=$row['sex'];
-     $avatar=$row['avatar'];
-     
+    }
 
      /*PROFILE BUBBLE*/
 
+   
      echo " 
      
-
-
     <div class='container-profile'>
-      <img src='./avatar/".$avatar."'>
+      <img src='images/icon.png '>
       <div class='patient-profile'>
       <h5>$first_name $last_name</h5>
         <div class='profile'>
+       
         </div>
       </div>
       
     </div>";
 
-   }
  ?>
 
 <div class='container-about'>
@@ -130,15 +125,14 @@ $result=mysqli_query($con,$select_query);
 </div>";
 
 ?>
-
-
-
-</div>        
+        
+        </div>        
+      
 
     
 
   <!-- DOCUMENTS SHARING PART -->
-<div class="doc-wrapper" id="docWrapper">
+<div class="doc-wrapper">
   
       <center>
         <h4><?php echo "$first_name"; ?>'s files from you</h4>
@@ -149,7 +143,7 @@ $result=mysqli_query($con,$select_query);
 
   <?php 
 
-    $select_query="Select * from `document_sessions` WHERE $doctorID = sess_doc_id AND $id = sess_pat_id";
+    $select_query="Select * from `document_sessions` WHERE $user_id = sess_doc_id AND $id = sess_pat_id";
     $result=mysqli_query($con,$select_query);
 
      while ($row=mysqli_fetch_assoc($result)) 
@@ -213,8 +207,6 @@ $result=mysqli_query($con,$select_query);
 
 
 </div>
-</div>
-</div>
 
 
          <!-- SEND EMAIL AREA -->
@@ -229,6 +221,6 @@ $result=mysqli_query($con,$select_query);
       
          </form>
 
-<script type="text/javascript" src="js/dropdown.js"></script>
+<script type="text/javascript" src="js/events.js"></script>
 </body>
  </html>

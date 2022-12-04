@@ -34,13 +34,13 @@ $user_id = $_SESSION['user_id'];
 
 <?php 
 
-	$select_query="SELECT * FROM `account`,`clinic_info` WHERE doc_clinic_id = '$id' AND acct_id = $id";
+	$select_query="SELECT * FROM `account`,`doctor` WHERE doc_acc_id = '$id' AND acct_id = $id";
 	$result=mysqli_query($con,$select_query);
 
 	while ($row=mysqli_fetch_assoc($result)) {
 	
 	$address = $row['clinic_address'];
-	$contact = $row['contact_info'];
+	$contact = $row['contact_num'];
 	$doctor = $row['last_name'];
 	$firstname = $row['first_name'];
 	echo "

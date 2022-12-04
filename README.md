@@ -3,7 +3,7 @@ Records Center Features:
 	-Lab Results, Med Certs and Other Recs. ✓
 	-Allows the patients to share specific documents to doctors ✓
 	-Delete Button Feature.
-	-Back button. ✓
+	-Back button.
 	-Share button Modal. ✓
 
 Security Features:
@@ -14,18 +14,13 @@ Security Features:
 
 Polish:
 
-	-redesign Database (optional) ✓
+	-redesign Database (optional)
 	-redesign UI
 	-Terms and conditions Declaration
 	-Vital Stats of Patients ✓
-	-Email Confirmation and Notifications ✓
-	-Move Doctor Availability to Doctors Profile ✓
-	-User Info Redesign (Signup and Patients Profile) ✓
-	-Avatar/Icon feature
-	-Appointment Log
-	-Accept/Decline Appointment Feature
-	-Edit Profile Debug
-	-Set Appointment Wont refresh
+	-Email Confirmation and Notifications
+	-Move Doctor Availability to Doctors Profile
+	-User Info Redesign (Signup and Patients Profile)
 
 Testing:
 

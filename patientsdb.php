@@ -1,6 +1,22 @@
 <?php 
  include('connect.php');
  include('side.php');
+
+
+ if(isset($_GET['acct_id']))
+ {
+	 $id = $_GET['acct_id'];
+	 $select_query="Select * from `account` WHERE acct_id = $user_id";
+	 $result=mysqli_query($con,$select_query);
+
+	while ($row=mysqli_fetch_assoc($result)) 
+		{
+
+		 $id=$row['acct_id'];
+		 $firstname=$row['first_name'];
+
+	  }
+	}
  if($_SESSION['activeuser'] == true){
     // wala ka ibutang diri
 }
@@ -22,12 +38,14 @@ else{
 	<link rel="stylesheet" href="./css/patientsdb.css">
 	<link rel="stylesheet" href="./css/buttons.css">
 	<link rel="stylesheet" href="./css/modals.css">
+	<link rel="stylesheet" href="./css/sidebars.css">
 
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 	<!-- BOOTSTRAP -->
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-    <script src="https://kit.fontawesome.com/42135a69b7.js" crossorigin="anonymous"></script>
+	<link href="https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css" rel="stylesheet">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+   <script src="https://kit.fontawesome.com/42135a69b7.js" crossorigin="anonymous"></script>
 
 
 </head>
@@ -42,16 +60,13 @@ else{
 
     <div class="main_content">
         <div class="header">
-        	<div>
-        		<a href="#" onclick="appointment()"> <button class="waves-effect waves-light btn">Set an appointment</button></a> 
+        	<div class="appt">
+        		<a href="#" onclick="appointment()"> <button class="btn btn-primary">Set an appointment</button></a> 
         	</div>
 	
-        	<div>
-				<a href="#" onclick="conference()"> <button class="waves-effect waves-light btn">Join a conference</button></a> 
-        	</div>
-        	
-        	<div>
-				<a href="#" onclick="logs()"> <button class="waves-effect waves-light btn">Appointment Logs</button></a> 
+     
+        	<div class="appt">
+				<a href="#" onclick="logs()"> <button class="btn btn-primary">Appointment Logs</button></a> 
         	</div>
         	</a>
         </div>
@@ -59,11 +74,12 @@ else{
         <!-- DOCTORS LIST -->
         
         <div class="patient-list-container-outside">
-			<table class="list">
+			<table class="table table-hover">
 				<thead>
 					<tr>
 						<th style="width: 70px;"> </th>
 						<th>Doctor's Name</th>
+	   					
 						<th>Specialization</th>
 						<th>Status</th>
 					</tr>
@@ -72,7 +88,7 @@ else{
 				<tbody>
 					<?php 
 
-$select_query="Select * from `account`, `doctor` WHERE type = '1' AND  doc_acc_id = acct_id";
+$select_query="Select * from `account`, `doctor` WHERE type = '1'";
 $result=mysqli_query($con,$select_query);
 
 $i=1;
@@ -84,15 +100,12 @@ while ($row=mysqli_fetch_assoc($result))
  $first_name=$row['first_name'];
  $status=$row['status'];
  $specialty=$row['specialization'];
-					     	$avatar=$row['avatar'];
- 
-
 						 
 					     
 					     echo " 
 					     
 							<tr class='clickable'>
-							<td><img src='./avatar/".$avatar."' style='width: 70px;'></td>
+							<td><img src='./images/icon.png'  width='40px' height='40px'></a></td>
 							<td>$first_name $last_name</a></td>
 							<td>$specialty</td>
 							<td>Online</td>
@@ -127,7 +140,7 @@ while ($row=mysqli_fetch_assoc($result))
 		<h5>Please select a Doctor</h5>
 		<form method="POST">
 			<div class="patient-list-container-inside">
-				<table class="list">
+				<table class="table table-striped">
 					<thead>
 						<tr>
 							<th style="width: 70px;"> </th>
@@ -143,7 +156,7 @@ while ($row=mysqli_fetch_assoc($result))
 
 								
 							     
-								 $select_query="Select * from `account`, `doctor` WHERE type = '1' AND doc_acc_id = acct_id";
+								 $select_query="Select * from `account`, `doctor` WHERE type = '1'";
 						
 						$result=mysqli_query($con,$select_query);
 					$i=1;
@@ -154,24 +167,19 @@ while ($row=mysqli_fetch_assoc($result))
 					     $last_name=$row['last_name'];
 					     $first_name=$row['first_name'];
 					     $specialty=$row['specialization'];
-
-					 
 						?>
 
 							   
 							     	
 									<tr class='clickable'>
-										<td>
-											<?php echo "
-											<img src='./avatar/".$avatar."' style='width: 70px;'>"; ?></td>
+										<td><a data-toggle='#'><img src='./images/icon.png'  width='40px' height='40px'></a></td>
 									<td><a href='doctorProfile.php?acct_id=<?php echo $row['acct_id']?>' onclick='doctorsModal1()'><?php echo " $first_name $last_name"?></a></td>
 										<td><a href='doctorProfile.php?acct_id=<?php echo $row['acct_id']?>' onclick='doctorsModal1()'><?php echo "$specialty" ?></a></td>
 										
 									</tr>
 							<?php
 							    $i++;
-							}
-							   
+							   }
 							}
 
 							else{
@@ -187,10 +195,10 @@ while ($row=mysqli_fetch_assoc($result))
 
 
 	</div>
-	<div class="blurbg">
-		<a href="#" onclick="appointment()"> <button class="buttons" id="cancel">Cancel</button></a> 
+	
+		<a href="#" onclick="appointment()"> <button class="btn btn-primary" id="cancel">Cancel</button></a> 
 		
-	</div>
+
 	</div>
 </div>
 
@@ -218,7 +226,7 @@ while ($row=mysqli_fetch_assoc($result))
 	<div class="popup3" id="modal3" >
 	<div class="container">
 	<div class="patient-list-container-outside">
-			<table class="list">
+			<table class="table table-striped">
 				<thead>
 					<tr>
 						<th style="width: 70px;"> </th>
@@ -234,7 +242,7 @@ while ($row=mysqli_fetch_assoc($result))
 
 		<?php 
 $patID = $_SESSION['user_id'];
-$select_query="Select * from `appointment` WHERE pat_id = '$patID'";
+$select_query="Select * from `appointment`,`account` WHERE pat_id = '$patID' AND acct_id=doc_id";
 $result=mysqli_query($con,$select_query);
 
 $i=1;
@@ -245,14 +253,14 @@ while ($row=mysqli_fetch_assoc($result))
 
  $scheddate=$row['sched_date'];
  $schedtime=$row['sched_time'];
- $doctorfullname=$row['docfullname'];
- 
+ $doctorfname=$row['first_name'];
+ $doctorlname=$row['last_name'];
 						 
 					     
  ?>
  <tr>
 	 <td><img src="./images/icon.png" alt="" style="width:40px; height:40px"></td>
-	 <td><?php echo $doctorfullname ?></td>
+	<td><?php echo $doctorfname." ".$doctorlname ?></td>
 	 <td><?php echo $scheddate." ".$schedtime ?></td>
 	 <td><button type="button" style="color:red; border:none; cursor:pointer; background-color: inherit;" onclick="cancel_appointment(<?php echo $row['transaction_id']; ?>)" >CANCEL</button></td>
 	

@@ -1,9 +1,15 @@
-<?php
+<?php 
 
-$con = new mysqli('localhost', 'kernelpaulo', 'admin12345', 'clinic');
 
-if (!$con){
-die(mysql_error($con));
+$server = "localhost";
+$user = "kernelpaulo";
+$pass = "admin12345";
+$database = "clinic";
 
+$con = mysqli_connect($server, $user, $pass, $database);
+
+if (!$con) {
+    die("<script>alert('Connection Failed.')</script>");
 }
+
 ?>

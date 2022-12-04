@@ -2,6 +2,22 @@
 
 	include ('connect.php');
 	include ('side.php');
+   
+	if(isset($_GET['acct_id']))
+	{
+		$id = $_GET['acct_id'];
+		$select_query="Select * from `account` WHERE acct_id = $user_id";
+		$result=mysqli_query($con,$select_query);
+   
+	   while ($row=mysqli_fetch_assoc($result)) 
+		   {
+   
+			$id=$row['acct_id'];
+			$firstname=$row['first_name'];
+   
+		 }
+   
+	}
 
 	if ($_SESSION['activedoctor'] == true){
 
@@ -20,12 +36,11 @@
 	<link rel="stylesheet" href="./css/doctordb.css">
 	<link rel="stylesheet" href="./css/buttons.css">
 	<link rel="stylesheet" href="./css/modals.css">
-
+	<link href="https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css" rel="stylesheet" >
 	<!-- BOOTSTRAP -->
-	<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"> -->
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
     <script src="https://kit.fontawesome.com/42135a69b7.js" crossorigin="anonymous"></script>
-
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 </head>
 <body>
@@ -33,7 +48,7 @@
 
 <!-- WELCOME BUBBLE -->
 <div class='welcome-bubble'>
-				<h5>Welcome, Dr. <?php echo $_SESSION['user'];?> </h5>
+				<h5>Welcome to MedHive </h5>
     		</div>
 
 
@@ -84,14 +99,12 @@
 						$fullname = $row['Fullname'];
 					     $date=$row['sched_date'];
 					     $time=$row['sched_time'];
-					     	$avatar=$row['avatar'];
-
 					     
 					     
 					     echo " 
 					     
 							<tr class=''>
-							<td><img src='./avatar/".$avatar."' style='width: 70px;'></td>
+							<td><img src='./images/icon.png'  width='40px' height='40px'></a></td>
 							<td>$fullname</a></td>
 							<td>$date</a></td>
 							<td>$time</a></td>
@@ -174,15 +187,13 @@
 						     $time=$row['sched_time'];
 							 $date=$row['sched_date'];
 					     	$status=$row['status'];
-					     	$avatar=$row['avatar'];
 
 
 						      
 						     	?>
 
 								<tr class='table'>
-								<td><a data-toggle='#'><?php echo "
-											<img src='./avatar/".$avatar."' style='width: 70px;'>"; ?></td>
+								<td><a data-toggle='#'><img src='./images/icon.png'  width='40px' height='40px'></a></td>
 
 
 								<td><a href='doctorViewToPatient.php?acct_id=<?php echo $row['acct_id'];?>&&date_id=<?php echo $row['sched_date'];?>'> <?php echo "$firstname $surname"; ?></a></td>
