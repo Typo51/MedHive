@@ -84,12 +84,14 @@
 						$fullname = $row['Fullname'];
 					     $date=$row['sched_date'];
 					     $time=$row['sched_time'];
+					     	$avatar=$row['avatar'];
+
 					     
 					     
 					     echo " 
 					     
 							<tr class=''>
-							<td><img src='./images/icon.png'  width='40px' height='40px'></a></td>
+							<td><img src='./avatar/".$avatar."' style='width: 70px;'></td>
 							<td>$fullname</a></td>
 							<td>$date</a></td>
 							<td>$time</a></td>
@@ -179,7 +181,8 @@
 						     	?>
 
 								<tr class='table'>
-								<td><a data-toggle='#'>    <img src='./avatar/".$avatar."'></a></td>
+								<td><a data-toggle='#'><?php echo "
+											<img src='./avatar/".$avatar."' style='width: 70px;'>"; ?></td>
 
 
 								<td><a href='doctorViewToPatient.php?acct_id=<?php echo $row['acct_id'];?>&&date_id=<?php echo $row['sched_date'];?>'> <?php echo "$firstname $surname"; ?></a></td>

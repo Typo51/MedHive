@@ -116,7 +116,7 @@ $result=mysqli_query($con,$select_query);
      </div>
 
      <div class='appoint-button'>
-      <a style='margin-left: 20px;' class='waves-effect waves-light btn' target='_blank' type='button' href='diagnosisPrescriptionForm.php?acct_id=<?php echo $id;?>&&date_id=<?php echo $date_id;?>'>Appoint Patient</a>
+      <a style='margin-left: 20px;' class='waves-effect waves-light btn' target='_blank' type='button' href='diagnosisPrescriptionForm.php?acct_id=$id&&date_id=$date_id'>Appoint Patient</a>
       </div>
   </div>
 
@@ -130,14 +130,15 @@ $result=mysqli_query($con,$select_query);
 </div>";
 
 ?>
-        
-        </div>        
-      
+
+
+
+</div>        
 
     
 
   <!-- DOCUMENTS SHARING PART -->
-<div class="doc-wrapper">
+<div class="doc-wrapper" id="docWrapper">
   
       <center>
         <h4><?php echo "$first_name"; ?>'s files from you</h4>
@@ -211,6 +212,8 @@ $result=mysqli_query($con,$select_query);
 </div>
 
 
+</div>
+</div>
 </div>
 
 

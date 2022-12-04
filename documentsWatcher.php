@@ -59,23 +59,16 @@
 
 </head>
 <body>
-<div class="doc-container">
+
+	
 	<div class="nav">
+		<a href="documentsCenter.php?acct_id=<?php echo $user_id ?>"><i class="fa-solid fa-arrow-left"></i> BACK </a>
 		<h4>Files from Dr. <?php echo "$firstname"; ?></h4>
+
 	</div>
 
 		      <!-- BUTTONS FOR DOCUMENTS-->
-   		
-		<form  method="POST" enctype="multipart/form-data">
-			<div class="header">
-	        	<div>
-	        		<button class="waves-effect waves-light btn" type="submit" name="upload">Upload</button>
-	        	</div>
-	        	<div>
-					<a href="#" > <button class="waves-effect waves-light btn">Delete</button></a> 
-	    		</div>
-    		</div>
-    	</form>
+   
 
 <div class="file-container">
 <?php 

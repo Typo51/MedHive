@@ -64,7 +64,6 @@ else{
 					<tr>
 						<th style="width: 70px;"> </th>
 						<th>Doctor's Name</th>
-	   					
 						<th>Specialization</th>
 						<th>Status</th>
 					</tr>
@@ -93,7 +92,7 @@ while ($row=mysqli_fetch_assoc($result))
 					     echo " 
 					     
 							<tr class='clickable'>
-							<td>    <img src='./avatar/".$avatar."'></td>
+							<td><img src='./avatar/".$avatar."' style='width: 70px;'></td>
 							<td>$first_name $last_name</a></td>
 							<td>$specialty</td>
 							<td>Online</td>
@@ -155,13 +154,16 @@ while ($row=mysqli_fetch_assoc($result))
 					     $last_name=$row['last_name'];
 					     $first_name=$row['first_name'];
 					     $specialty=$row['specialization'];
+
 					 
 						?>
 
 							   
 							     	
 									<tr class='clickable'>
-										<td><a data-toggle='#'><img src='./images/icon.png'  width='40px' height='40px'></a></td>
+										<td>
+											<?php echo "
+											<img src='./avatar/".$avatar."' style='width: 70px;'>"; ?></td>
 									<td><a href='doctorProfile.php?acct_id=<?php echo $row['acct_id']?>' onclick='doctorsModal1()'><?php echo " $first_name $last_name"?></a></td>
 										<td><a href='doctorProfile.php?acct_id=<?php echo $row['acct_id']?>' onclick='doctorsModal1()'><?php echo "$specialty" ?></a></td>
 										

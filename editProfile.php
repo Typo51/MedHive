@@ -1,7 +1,8 @@
 <?php 
 
     include ('connect.php');
-  include ('side.php');
+    include ('side.php');
+
   $user_id = $_SESSION['user_id'];
   
     if(isset($_SESSION['acct_id']))
@@ -121,6 +122,20 @@
 
         if($acc_type == '1')
         {
+
+             $select_query="Select * from `account`, `clinic_info`, `doctor` WHERE acct_id = $user_id AND doc_clinic_id = $user_id AND doc_acc_id= $user_id";
+        $result=mysqli_query($con,$select_query);
+
+            $row=mysqli_fetch_assoc($result);
+            $address = $row['clinic_address'];
+            $days = $row['office_days'];
+            $time = $row['office_time'];
+            $contact = $row['contact_info'];
+            $bio=$row['bio'];
+
+
+
+
             echo "
 
             <div class='containerFluid'>
@@ -135,25 +150,25 @@
                     <div class='firstInputs'>
                         <div class='address'>
                         <h2>Clinic Address</h2>
-                        <input class='names' type='text' placeholder=' Exclude the City' name='address' value=''>
+                        <input class='names' type='text' placeholder=' Exclude the City' name='address' value='$address'>
                         </div>
                         <div class='divider'>
                             <div class='inputGroup'>
                                 <h2>Office Days</h2>
-                                <input class='datePicker' placeholder='Ex. Monday - Friday' type='text' name='clinic_days'>
+                                <input class='datePicker' placeholder='Ex. Monday - Friday' type='text' name='clinic_days' value='$days'>
                             </div>
                             <div class='inputGroup'>
                                 <h2>Office Time</h2>
-                                <input class='religion' type='text' placeholder='Ex. 8:00 AM - 5:00 PM' name='clinic_time'>
+                                <input class='religion' type='text' placeholder='Ex. 8:00 AM - 5:00 PM' name='clinic_time' value='$time'>
                             </div>
                         </div>
                     </div>
                     <div class='inputGroup'>
                         <h2>Office Contact Number</h2>
-                        <input class='datePicker' placeholder='Ex. 09123456789' type='text' name='contact'>
+                        <input class='datePicker' placeholder='Ex. 09123456789' type='text' name='contact' value='$contact'>
                      <h2>About Me</h2>
                     <div class='aboutMe'>
-                        <textarea class='about' name='doc_about'  placeholder=' Write Something About you' name='about'></textarea>
+                        <textarea class='about' name='doc_about'  placeholder=' Write Something About you' name='about'>$bio</textarea>
                     </div>
                     <input id='submit' type='submit' name='doctor_submit'>
                 </div>
@@ -173,6 +188,12 @@
       <?php 
 
 
+
+
+        if($acc_type == '0')
+        {
+
+
            $select_query="Select * from `account`, `patient` WHERE acct_id = $user_id AND pat_acc_id = $user_id";
         $result=mysqli_query($con,$select_query);
 
@@ -183,11 +204,9 @@
             $height = $row['height'];
             $weight = $row['weight'];
             $contact = $row['contact_num'];
-            $avatar = $row['avatar'];
 
 
-        if($acc_type == '0')
-        {
+
             echo "
 
           <div class='containerFluid'>
@@ -211,7 +230,7 @@
                     </div>
                      <h2>About Me</h2>
                     <div class='aboutMe'>
-                        <textarea class='about' name='pat_about' id=''  placeholder=' Write Something About you' name='pat_about' value='$bio'></textarea>
+                        <textarea class='about' name='pat_about' id=''  placeholder=' Write Something About you' name='pat_about'>$bio</textarea>
                     </div>
                     <div class='vitals'>
                         <input class='vita'type='text' placeholder=' Height' name='height' value='$height'>
