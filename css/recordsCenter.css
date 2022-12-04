@@ -198,12 +198,15 @@ body{
   
   height: 10px;
   width: 30%;
-  margin-left: 33vw;
-  margin-top: 50px;
+  top: 30%;
+  left: 35%;
+  position: absolute;
+  display: flex;
 }
 .file-container a{
 
   color: black;
+  width: 100%;
 }
 
 .docu:hover{
