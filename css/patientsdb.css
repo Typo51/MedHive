@@ -10,8 +10,12 @@ body{
   min-width: 60%;
   max-height: 400px;
   overflow-y: scroll;
-  border: 5px solid teal;
+  border: 1px solid rgb(115, 192, 216);
   display: flex;
+  border-radius: 10px;
+  box-shadow: 0 0.46875rem 2.1875rem rgb(4 9 20 / 3%), 0 0.9375rem 1.40625rem rgb(4 9 20 / 3%),
+   0 0.25rem 0.53125rem rgb(4 9 20 / 5%), 0 0.125rem 0.1875rem rgb(4 9 20 / 3%);
+  padding: 5px;
   }
   
  .welcome-bubble
@@ -52,17 +56,18 @@ body{
  .header{
  
    padding-bottom: 20px;
-   background: #f3f5f9;
+   
    display: flex; 
    border-radius:0px 50px 50px 0px;
    max-width: 95%;
    min-width: 60%;
    align-items: center;
    justify-content:space-between;
+   gap: 10px;
  }
 .header div
 {
-    width:calc(100% / 3 - 10px)
+    width:calc(100% / 2 - 10px)
 }
 .header div button
 {
@@ -179,7 +184,10 @@ body{
    margin: 10px 0px 0px 0px;
    background-color: #f3f5f9;
  }
- 
+ .appt{
+  box-shadow: 0 6px 7px -4px rgba(0, 0, 0, 0.2);
+  border-radius: 3px;
+}
  
  .doc-status
  {

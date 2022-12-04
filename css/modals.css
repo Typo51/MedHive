@@ -467,7 +467,7 @@
  
  .clickable:hover
  {
-     background-color: gray;
+     background-color: rgb(226, 225, 225);
      border:2px solid black;
  }
 
@@ -925,6 +925,3 @@
    justify-content: center;
    align-items: center;
  }
-
-
- 
