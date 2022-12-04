@@ -125,13 +125,35 @@ else{
     blur.classList.toggle('active');
  } 
 
+ const navBar = document.querySelector("nav"),
+ menuBtns = document.querySelectorAll(".menu-icon"),
+ overlay = document.querySelector(".overlay");
 
-  function changeAv()
- {
-    var modal2 = document.getElementById('changeAvatar');
-    modal2.classList.toggle('active');
-    var blur = document.getElementById('blur');
-    blur.classList.toggle('active');
- } 
+menuBtns.forEach((menuBtn) => {
+ menuBtn.addEventListener("click", () => {
+   navBar.classList.toggle("open");
+ });
+});
+
+overlay.addEventListener("click", () => {
+ navBar.classList.remove("open");
+});
 
 
+document.getElementById('logout').addEventListener('click', ()=>{
+   console.log("here")
+   $.ajax({
+   url: "logout-process.php",
+   method: "POST",
+   dataType: 'json',
+   data: {
+       logoutAcc: 1
+   },
+   success: function(response){
+       console.log(response);
+       if (response.status){
+           window.location.replace("login.php");
+       }
+   }
+})
+})
