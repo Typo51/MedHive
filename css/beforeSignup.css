@@ -3,7 +3,9 @@
 	display: grid;
 	justify-content: center;
 	align-content: center;
-	padding-top: 35vh;
+	margin-top: 200px;
+	
+	
 
 }
 
@@ -12,36 +14,61 @@
 {
 	display: flex;
 	padding-top: 50px;
+	width: 500px;
+	height: 230px;
+	box-shadow: 0 0.46875rem 2.1875rem rgb(4 9 20 / 3%), 0 0.9375rem 1.40625rem rgb(4 9 20 / 3%),
+   0 0.25rem 0.53125rem rgb(4 9 20 / 5%), 0 0.125rem 0.1875rem rgb(4 9 20 / 3%);
+   border-radius: 30px;
+	justify-content: center;
+	align-content: center;
+	background-color: aliceblue;
 }
 
 .box1 
 { 
 	padding: 50px;
-	border: solid 1px black; 
 	color: black; 
 	margin-right: 100px; 
+	border-radius: 30px;
+	box-shadow: 0 0.46875rem 2.1875rem rgb(4 9 20 / 3%), 0 0.9375rem 1.40625rem rgb(4 9 20 / 3%),
+   0 0.25rem 0.53125rem rgb(4 9 20 / 5%), 0 0.125rem 0.1875rem rgb(4 9 20 / 3%);
+   background: rgb(249,171,0);
+   background: linear-gradient(90deg, rgba(249,171,0,1) 0%, rgba(249,171,0,1) 6%, rgba(249,171,0,1) 6%, rgba(255,255,255,1) 6%);
+   height: 120px;
+ 
 }
 
 .box2
-{
+{	background: rgb(0,164,249);
+	background: linear-gradient(90deg, rgba(0,164,249,1) 0%, rgba(0,164,249,1) 6%, rgba(0,164,249,1) 6%, rgba(255,255,255,1) 6%);
+	border-radius: 30px;
 	padding: 50px;
-	border: solid 1px black;
 	color: black;
+	box-shadow: 0 0.46875rem 2.1875rem rgb(4 9 20 / 3%), 0 0.9375rem 1.40625rem rgb(4 9 20 / 3%),
+   0 0.25rem 0.53125rem rgb(4 9 20 / 5%), 0 0.125rem 0.1875rem rgb(4 9 20 / 3%);
+   height: 120px;
 }
 
 .button-container
 {
+	
+	justify-content: center;
+	align-items: center;
 	margin-top: 40px;
-	border: solid 1px black;
+	width: 500px;
 	border-radius: 70px;
 	padding: -100px;
 	color: black;
+	background-color: #55bbff;
+	box-shadow: 0 0.46875rem 2.1875rem rgb(4 9 20 / 3%), 0 0.9375rem 1.40625rem rgb(4 9 20 / 3%),
+   0 0.25rem 0.53125rem rgb(4 9 20 / 5%), 0 0.125rem 0.1875rem rgb(4 9 20 / 3%);
 }
 
 .button
 {
-	padding: 46px;
+	padding: 70px;
 	margin-left: 150px;
 	text-decoration: none;
 	color: black;
+	
 }
