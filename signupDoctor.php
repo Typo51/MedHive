@@ -59,7 +59,7 @@
   <body>
   <div class="center">
 
-    <div class="container my-5">
+    <div class="container">
         <div class="header">
           <h3>Doctor Registration</h3>
         </div>
@@ -116,17 +116,19 @@
           <label style="color: gray;">Upload your PRC</label>
           <div class="txt_field">
           <input type="file" required="required" class="form-control" name="image">
+          
+    
         </div>
-        
+        <button type="submit" name="submit" >Submit</button><br><br>
+      <center><a href="login.php" class="btn btn-dark" style="text-decoration: none; color: white;">Cancel</a> </center>
          </div>
 
     
 
-      <button type="submit" name="submit" >Submit</button>
            
          <br>
          <br>
-   <center>  <a href="login.php" class="btn btn-dark" style="text-decoration: none; color: white;">Cancel</a> </center>
+
      
       </form>
 
