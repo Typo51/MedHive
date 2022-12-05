@@ -1,6 +1,5 @@
 <?php 
 
-
 $server = "localhost";
 $user = "kernelpaulo";
 $pass = "admin12345";

@@ -112,7 +112,7 @@ $result=mysqli_query($con,$select_query);
      </div>
 
      <div class='appoint-button'>
-      <a style='margin-left: 20px;' class='waves-effect waves-light btn' target='_blank' type='button' href='diagnosisPrescriptionForm.php?acct_id=$id&&date_id=$date_id'>Appoint Patient</a>
+      <a style='margin-left: 20px;' class='waves-effect waves-light btn' target='_blank' type='button' href='diagnosisPrescriptionForm.php?passer=$id&&date_id=$date_id'>Appoint Patient</a>
       </div>
   </div>
 

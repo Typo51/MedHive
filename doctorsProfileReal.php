@@ -302,39 +302,64 @@ $result=mysqli_query($con,$select_query);
 
 
 <div class="popup3" id="modal3" >
+
+  <?php 
+
+  $select_query = "SELECT * FROM `appointment_log`, `account` WHERE doc_id = $user_id AND pat_id = acct_id";
+  $sql__select = mysqli_query($con, $select_query);
+
+
+
+
+
+   ?>
+
+
   <div class="container">
     <h4>Appointment Logs</h4>
-    <table class="striped">
+    <table class="table">
       <thead>
         <tr>
           <th>Date</th>
           <th>Time</th>
           <th>Doctor's Name</th>
-          <th>Clinic Address</th>
+          <th>Appointment Type</th>
         </tr>
       </thead>
       <tbody>
+
+        <?php 
+
+          while($row=mysqli_fetch_assoc($sql__select)){
+
+            $first_name = $row['first_name'];
+            $last_name = $row['last_name'];
+            $date = $row['sched_date'];
+            $time = $row['sched_time'];
+            $app_type = $row['app_type'];
+
+            echo "
+            <tr>
+          <td>$date</td>
+          <td>$time</td>
+          <td>$first_name $last_name</td>
+          <td>$app_type</td>
+          </tr>
+            ";
+
+          }
+
+
+
+         ?>
+
+
         <tr>
-          <td>09-25-22</td>
-          <td>3:15 PM</td>
-          <td>Jasper L. Panzo</td>
-          <td>Alunan Avenue, City of Koroandal</td>
+
         </tr>
-        <tr>
-          <td>09-25-22</td>
-          <td>3:15 PM</td>
-          <td>Jasper L. Panzo</td>
-          <td>Alunan Avenue, City of Koroandal</td>
-        </tr>
-        <tr>
-          <td>09-25-22</td>
-          <td>3:15 PM</td>
-          <td>Jasper L. Panzo</td>
-          <td>Alunan Avenue, City of Koroandal</td>
-        </tr>
+        
       </tbody>
     </table>
-    <div></div>
     <a href="#" onclick="logs()"> <button class="buttons" id="cancel">Cancel</button></a> 
     
   </div>
