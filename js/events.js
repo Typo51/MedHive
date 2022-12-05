@@ -140,6 +140,15 @@ overlay.addEventListener("click", () => {
 });
 
 
+ function changeAv()
+ {
+    var modal2 = document.getElementById('changeAvatar');
+    modal2.classList.toggle('active');
+    var blur = document.getElementById('blur');
+    blur.classList.toggle('active');
+ } 
+
+
 document.getElementById('logout').addEventListener('click', ()=>{
    console.log("here")
    $.ajax({
