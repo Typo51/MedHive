@@ -42,7 +42,14 @@ body{
   height: 10em;
    position: relative;
    border-radius: 100%;
-   
+
+}
+
+.avatar img {
+    height: 100%;
+  width: 100%;
+  border-radius: 80px;
+
 
 }
 
@@ -182,4 +189,96 @@ margin-left: 170px;
 input [type='checkbox']{
 
   opacity: 1 !important;
+}
+
+
+/*-------------------*/
+
+
+ .confirmation{
+    background-color: #fff;
+    width: 50%;
+    left: 28%;
+    position: absolute;
+    padding: 20px;
+    border-radius: 15px;
+    top: 30%;
+ }
+
+ .confirmation div{
+    display: flex;
+    padding: 10px;
+ }
+
+  .confirmation div form{
+    margin-left: 5px;
+ }
+
+   .changeAvatar.active
+ {
+   top: 50%;
+   visibility: visible;
+   opacity: 1;
+   transition: 0.5s ease-out;
+   justify-content: center;
+   align-items: center;
+   background-color: rgba(0,0,0,0.5);
+ }
+ 
+
+ .changeAvatar
+ {
+   position: fixed;
+   top: 40%;
+   left:50%;
+   transform: translate(-50%, -50%);
+   width: 600px;
+   padding:50px;
+   box-shadow: 0 5px 30px rgba(0,0,0,0.30);
+   background: #fff;
+   visibility: hidden;
+   opacity: 0;
+   transition: 0.5s ease-out;
+   z-index: 1;
+   width: 100%;
+   height: 100%;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+ }
+
+ .avatar-wrapper label{
+  cursor: pointer;
+
+  font-size: 50px;
+  border: 1px dashed;
+ }
+
+  .avatar-wrapper button{
+
+  position: absolute;
+  top: 75%;
+  left: 20%;
+
+ }
+
+#uploadIcon{
+  opacity: 0;
+   position: absolute;
+   z-index: -1;
+}
+
+#avatar{
+  z-index: 2;
+  transition: 500ms ease-out;
+
+
+}
+
+
+#avatar:hover{
+  z-index: 0;
+  transition: 500ms ease-out;
+
+
 }
