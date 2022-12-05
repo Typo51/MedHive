@@ -88,7 +88,7 @@ else{
 				<tbody>
 					<?php 
 
-$select_query="Select * from `account`, `doctor` WHERE type = '1'";
+$select_query="Select * from `account`, `doctor` WHERE type = '1' AND acct_id = doc_acc_id";
 $result=mysqli_query($con,$select_query);
 
 $i=1;
@@ -100,12 +100,13 @@ while ($row=mysqli_fetch_assoc($result))
  $first_name=$row['first_name'];
  $status=$row['status'];
  $specialty=$row['specialization'];
+ $avatar=$row['avatar'];
 						 
 					     
 					     echo " 
 					     
 							<tr class='clickable'>
-							<td><img src='./images/icon.png'  width='40px' height='40px'></a></td>
+							<td><img src='./avatar/".$avatar."' style='width: 70px;'></td>
 							<td>$first_name $last_name</a></td>
 							<td>$specialty</td>
 							<td>Online</td>
@@ -156,7 +157,7 @@ while ($row=mysqli_fetch_assoc($result))
 
 								
 							     
-								 $select_query="Select * from `account`, `doctor` WHERE type = '1'";
+								 $select_query="Select * from `account`, `doctor` WHERE type = '1' AND acct_id = doc_acc_id";
 						
 						$result=mysqli_query($con,$select_query);
 					$i=1;
@@ -167,12 +168,13 @@ while ($row=mysqli_fetch_assoc($result))
 					     $last_name=$row['last_name'];
 					     $first_name=$row['first_name'];
 					     $specialty=$row['specialization'];
+
 						?>
 
 							   
 							     	
 									<tr class='clickable'>
-										<td><a data-toggle='#'><img src='./images/icon.png'  width='40px' height='40px'></a></td>
+										<td><?php echo "<img src='./avatar/".$avatar."' style='width: 70px;'>"; ?></td>
 									<td><a href='doctorProfile.php?acct_id=<?php echo $row['acct_id']?>' onclick='doctorsModal1()'><?php echo " $first_name $last_name"?></a></td>
 										<td><a href='doctorProfile.php?acct_id=<?php echo $row['acct_id']?>' onclick='doctorsModal1()'><?php echo "$specialty" ?></a></td>
 										

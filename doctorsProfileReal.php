@@ -1,10 +1,6 @@
 <?php
   include('connect.php');
-	session_start();
-		
-	$user_id = $_SESSION['user_id'];
-	$type = $_SESSION['acc_type'];
-   
+  include('side.php');
    
 	if(isset($_GET['acct_id']))
 	{
@@ -79,107 +75,7 @@ if(isset($_GET['acct_id']))
     <script src="https://kit.fontawesome.com/42135a69b7.js" crossorigin="anonymous"></script>
  </head>
  <body>
- <nav>
-      <div class="logo">
-        <i class="bx bx-menu menu-icon"></i>
-        <span class="logo-name">Hi Dr.<?php echo $_SESSION['user']; ?>!</span>
-      </div>
-      <div class="sidebar">
-        <div class="logo">
-          <i class="bx bx-menu menu-icon"></i>
-          <span class="logo-name">MedHive</span>
-        </div>
-
-        <div class="sidebar-content">
-          <ul class="lists">
-            <li class="list">
-              <a <?php 
-
-                            
-
-if ($_SESSION['acc_type'] == 0){
-    echo "href='patientsDB.php?acct_id=$user_id'";
-}
-else{
-
-    echo "href='doctorDB.php?acct_id=$user_id'";
-}
-
-?> class="nav-link">
-                <i class="bx bx-home-alt icon"></i>
-                <span class="link">Dashboard</span>
-              </a>
-            </li>
-            <li class="list">
-              <a 
-                        <?php 
-
-                            if($type == 1){
-
-
-                                echo "href='doctorsProfileReal.php?acct_id=$user_id'";
-
-                            }
-
-                            elseif($type == 0){
-                                echo "href='patientProfile.php?acct_id=$user_id'";
-                            }
-                         ?>class="nav-link">
-              <i class="bx bx-user icon" ></i>
-                <span class="link">Profile</span>
-              </a>
-            </li>
-            <li class="list">
-              <a href="#" class="nav-link">
-                <i class="bx bx-bell icon"></i>
-                <span class="link">Notifications</span>
-              </a>
-            </li>
-            <li class="list">
-              <a href="#" class="nav-link">
-                <i class="bx bx-message-rounded icon"></i>
-                <span class="link">Messages</span>
-              </a>
-            </li>
-            <li class="list">
-              <a href="#" class="nav-link">
-                <i class="bx bx-pie-chart-alt-2 icon"></i>
-                <span class="link">Analytics</span>
-              </a>
-            </li>
-            <li class="list">
-              <a href="#" class="nav-link">
-                <i class="bx bx-heart icon"></i>
-                <span class="link">Likes</span>
-              </a>
-            </li>
-            <li class="list">
-              <a href="#" class="nav-link">
-                <i class="bx bx-folder-open icon"></i>
-                <span class="link">Files</span>
-              </a>
-            </li>
-          </ul>
-
-          <div class="bottom-cotent">
-            <li class="list">
-              <a href="#" class="nav-link">
-                <i class="bx bx-cog icon"></i>
-                <span class="link">Settings</span>
-              </a>
-            </li>
-			<li class="list" id ="logout">
-              <a href="#" class="nav-link">
-                <i class="bx bx-log-out icon"></i>
-                <span class="link">Logout</span>
-              </a>
-            </li>
-          </div>
-        </div>
-      </div>
-    </nav>
-	
-	<section class="overlay"></section>
+ 
 <div class="whole-container">
  	<div class="header">
  		<div class="profile-bubble">
@@ -194,6 +90,7 @@ $result=mysqli_query($con,$select_query);
      $last_name=$row['last_name'];
      $first_name=$row['first_name'];
      $specialization=$row['specialization'];
+     $avatar=$row['avatar'];
 
 
      /*PROFILE BUBBLE*/
@@ -204,7 +101,7 @@ $result=mysqli_query($con,$select_query);
 
     <div class='container-profile'>
   <div class='avatar'>
-    <!-- INSERT AVATAR HERE -->
+    <img src='./avatar/".$avatar."' id='avatar' onclick='changeAv()'>
   </div>
 
   <div class='wrapper-profile'>
@@ -442,6 +339,58 @@ $result=mysqli_query($con,$select_query);
     
   </div>
 </div>
+
+
+
+<!-- CHANGE AVATAR MODAL -->
+
+<div class="changeAvatar" id="changeAvatar">
+  
+<?php 
+
+ if (isset($_POST['upload'])) {
+    // Get image name
+    $image = $_FILES['image']['name'];
+
+    // image file directory
+    $target = "avatar/".basename($image);
+
+    $sql = "UPDATE `account` SET `avatar`='$image' WHERE acct_id = $user_id";
+    // execute query
+    mysqli_query($con, $sql);
+
+    if (move_uploaded_file($_FILES['image']['tmp_name'], $target)) {
+      echo "<script>alert('Upload Successful')</script>";
+      echo "<script> window.open('doctorsProfileReal.php?acct_id=$user_id', '_self')</script>";
+    }
+
+  }
+
+
+
+ ?>
+
+
+
+  <div class="confirmation" enctype='multipart/form-data'>
+    <h4>Change your Icon</h4>
+    <div class="avatar-wrapper">
+      <form method="POST" enctype='multipart/form-data'>
+      <label for="uploadIcon">Upload</label>
+      <input type="file" name="image" id="uploadIcon" required>
+      <br>
+      <br>
+      <input type="submit" name="upload" class="waves-effect btn">
+
+      </form>
+      <button class="waves-effect btn" onclick="changeAv()">Cancel</button>
+
+    </div>
+
+</div>
+</div>
+
+
 
 <script src="js/events.js"></script>
  </body>

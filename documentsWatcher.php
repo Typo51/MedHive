@@ -3,7 +3,6 @@
 	include ('connect.php');
 	include ('side.php');
 
-  	$user_id = $_SESSION['user_id'];
 
 	if(isset($_GET['passer_id']))
 	{
@@ -53,29 +52,26 @@
 
 
 	 	<!-- BOOTSTRAP -->
- 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+	 
     <script src="https://kit.fontawesome.com/42135a69b7.js" crossorigin="anonymous">
     </script>
+     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+     <link rel="stylesheet" href="./css/sidebars.css">
+  <link
+      href="https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css"
+      rel="stylesheet">
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 </head>
 <body>
 <div class="doc-container">
 	<div class="nav">
+		<a href="documentsCenter.php?acct_id=<?php echo $user_id ?>"><i class="fa-solid fa-arrow-left"></i> </a>
 		<h4>Files from Dr. <?php echo "$firstname"; ?></h4>
 	</div>
 
 		      <!-- BUTTONS FOR DOCUMENTS-->
-   		
-		<form  method="POST" enctype="multipart/form-data">
-			<div class="header">
-	        	<div>
-	        		<button class="waves-effect waves-light btn" type="submit" name="upload">Upload</button>
-	        	</div>
-	        	<div>
-					<a href="#" > <button class="waves-effect waves-light btn">Delete</button></a> 
-	    		</div>
-    		</div>
-    	</form>
+   	
 
 <div class="file-container">
 <?php 
@@ -90,8 +86,9 @@
 
 		 	echo"
 
-		 		<a style='margin-left: 20px;' class='waves-effect waves-light btn' type='button' target='_blank' href='prescriptionWatcher.php?acct_id=$id&&date_id=$dates'>$dates Prescription </a>
-		 		<a style='margin-left: 20px;' class='waves-effect waves-light btn' type='button' target='_blank' href='diagnosisWatcher.php?acct_id=$id&&date_id=$dates'>$dates Diagnosis </a>
+		 		<a style='margin-left: 20px;' class='waves-effect waves-light btn' type='button' target='_blank' href='prescriptionWatcher.php?acct_id=$id&&date_id=$dates'><div class='card'> $dates Prescription </div></a> 
+
+		 		<a style='margin-left: 20px;' class='waves-effect waves-light btn' type='button' target='_blank' href='diagnosisWatcher.php?acct_id=$id&&date_id=$dates'><div class='card'>$dates Diagnosis </div></a> 
 
 
 
@@ -103,11 +100,8 @@
 
 
  ?>
- 	
-
-
 </div>
 
-
+<script type="text/javascript" src="js/events.js"></script>
 </body>
 </html>

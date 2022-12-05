@@ -92,6 +92,7 @@
           <span class="logo-name">MedHive</span>
         </div>
 
+
         <div class="sidebar-content">
           <ul class="lists">
             <li class="list">

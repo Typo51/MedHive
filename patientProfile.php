@@ -20,33 +20,7 @@
 		 }
    
 	}
-
-
  
-
-
-  // If upload button is clicked ...
-  if (isset($_POST['upload'])) {
-  	// Get image name
-  	$image = $_FILES['image']['name'];
-
-  	// image file directory
-  	$target = "images/".basename($image);
-
-  	$sql = "INSERT INTO image (doc_img_id, pat_img_id, image) VALUES ('$doctorID', '$id', '$image')";
-  	// execute query
-  	mysqli_query($con, $sql);
-
-  	if (move_uploaded_file($_FILES['image']['tmp_name'], $target)) {
-  		echo "<script>alert('Upload Successful')</script>";
-      echo "<script>window.open('doctorViewToPatient.php?acct_id=$id','_self')</script>";
-  	}
-
-  }
-
-  
-  $resultar = mysqli_query($con, "SELECT * FROM `image`, `account` where pat_img_id = $id AND doc_img_id = acct_id GROUP BY doc_img_id");
-
  ?>
 
 
@@ -85,6 +59,7 @@ $result=mysqli_query($con,$select_query);
    {
      $last_name=$row['last_name'];
      $first_name=$row['first_name'];
+     $avatar=$row['avatar'];
 
 
      /*PROFILE BUBBLE*/
@@ -94,7 +69,9 @@ $result=mysqli_query($con,$select_query);
 
 
     <div class='container-profile'>
-     <div class='image'> <img src='images/icon.png '></div>
+     <div class='image'> 
+      <img src='./avatar/".$avatar."' id='avatar' onclick='changeAv()'>
+     </div>
       <div class='patient-profile'>
       <h2>$first_name $last_name</h2>
         <div class='profile'>
@@ -200,25 +177,57 @@ if (isset($_POST['confirm'])) {
 
  ?>
 
-  
 
+<!-- CHANGE AVATAR MODAL -->
 
-<div class="confirm" id="confirm">
+<div class="changeAvatar" id="changeAvatar">
   
-  <div class="confirmation">
-    <h4>Enter your Password</h4>
-    <form method="POST">
-    <input type="password" required="required" name="password">
-    <div>
-      <button class="waves-effect btn" onclick="confirmPw()">Cancel</button>
+<?php 
+
+ if (isset($_POST['upload'])) {
+    // Get image name
+    $image = $_FILES['image']['name'];
+
+    // image file directory
+    $target = "avatar/".basename($image);
+
+    $sql = "UPDATE `account` SET `avatar`='$image' WHERE acct_id = $user_id";
+    // execute query
+    mysqli_query($con, $sql);
+
+    if (move_uploaded_file($_FILES['image']['tmp_name'], $target)) {
+      echo "<script>alert('Upload Successful')</script>";
+      echo "<script> window.open('patientprofile.php?acct_id=$user_id', '_self')</script>";
       
-        <input type="submit" name="confirm" value="Confirm" class="waves-effect btn">
-      </form>
-    </div>
-    </div>
 
+    }
+
+  }
+
+
+
+ ?>
+
+
+
+<div class="confirmation">
+    <h4>Change your Icon</h4>
+    <div class="avatar-wrapper">
+      <form method="POST" enctype='multipart/form-data'>
+      <label for="uploadIcon">Upload</label>
+      <input type="file" name="image" id="uploadIcon" required>
+      <br>
+      <br>
+      <input type="submit" name="upload" class="waves-effect btn">
+
+      </form>
+      <button class="waves-effect btn" onclick="changeAv()">Cancel</button>
+    </div>
 
 </div>
+
+
+
 
 
   

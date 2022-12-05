@@ -1,14 +1,12 @@
 <?php 
 
-	include ('connect.php');
-  session_start();
+  include ('connect.php');
+	include ('side.php');
+  
 
   ob_start();
 
 
-		
-	$user_id = $_SESSION['user_id'];
-	$type = $_SESSION['acc_type'];
    
    
 
@@ -52,135 +50,6 @@
      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 <body style="margin-left: 65px;">
-<nav>
-      <div class="logo">
-        <i class="bx bx-menu menu-icon"></i>
-        <span class="logo-name">Hi <?php echo $_SESSION['user']; ?>!</span>
-      </div>
-      <div class="sidebar">
-        <div class="logo">
-          <i class="bx bx-menu menu-icon"></i>
-          <span class="logo-name">MedHive</span>
-        </div>
-
-        <div class="sidebar-content">
-          <ul class="lists">
-            <li class="list">
-              <a <?php 
-
-                            
-
-if ($_SESSION['acc_type'] == 0){
-    echo "href='patientsDB.php?acct_id=$user_id'";
-}
-else{
-
-    echo "href='doctorDB.php?acct_id=$user_id'";
-}
-
-?> class="nav-link">
-                <i class="bx bx-home-alt icon"></i>
-                <span class="link">Dashboard</span>
-              </a>
-            </li>
-            <li class="list" >
-              <a 
-                        <?php 
-
-                            if($type == 1){
-
-
-                                echo "href='doctorsProfileReal.php?acct_id=$user_id'";
-
-                            }
-
-                            elseif($type == 0){
-                                echo "href='patientProfile.php?acct_id=$user_id'";
-                            }
-                         ?>class="nav-link">
-              <i class="bx bx-user icon" ></i>
-                <span class="link">Profile</span>
-              </a>
-            </li>
-            <li class="list" onclick="confirmPw()">
-              <a <?php 
-
-
-if (isset($_POST['confirm'])) {
-  
-  $password = $_POST['password'];
-
-
-   $sql = "SELECT * FROM account WHERE acct_id = $user_id AND password ='$password'";
-  $result = mysqli_query($con, $sql);
-
-  if ($result->num_rows > 0) {
-
-    header ("Location: documentsCenter.php?acct_id=$user_id");
-    ob_end_flush();
-
-
-  }
-
-  else {
-            echo "<script>alert('Woops! Username or Password is Wrong.')</script>";
-        }
-
-}
-
- 
-
-
- ?> class="nav-link">
-               <i class='bx bx-folder-open icon' ></i>
-                <span class="link">Files</span>
-              </a>
-            </li>
-            <li class="list">
-              <a href="#" class="nav-link">
-                <i class="bx bx-message-rounded icon"></i>
-                <span class="link">Messages</span>
-              </a>
-            </li>
-            <li class="list">
-              <a href="#" class="nav-link">
-                <i class="bx bx-pie-chart-alt-2 icon"></i>
-                <span class="link">Analytics</span>
-              </a>
-            </li>
-            <li class="list">
-              <a href="#" class="nav-link">
-                <i class="bx bx-heart icon"></i>
-                <span class="link">Likes</span>
-              </a>
-            </li>
-            <li class="list">
-              <a href="#"  class="nav-link">
-                <i class="bx bx-folder-open icon"></i>
-                <span class="link">Files</span>
-              </a>
-            </li>
-          </ul>
-
-          <div class="bottom-cotent">
-            <li class="list">
-              <a href="#" class="nav-link">
-                <i class="bx bx-cog icon"></i>
-                <span class="link">Settings</span>
-              </a>
-            </li>
-			<li class="list" id ="logout">
-              <a href="#" class="nav-link">
-                <i class="bx bx-log-out icon"></i>
-                <span class="link">Logout</span>
-              </a>
-            </li>
-          </div>
-        </div>
-      </div>
-    </nav>
-	
-	<section class="overlay"></section>
 
 <div class="doc-container">
 	<div class="nav">
@@ -206,8 +75,8 @@ if (isset($_POST['confirm'])) {
               $lastname= $row['last_name'];
 
               ?>
-             <a href='documentsWatcher.php?passer_id=<?php echo $row['acct_id']?>' class='waves-effect waves-light btn'>
-              <?php echo " Dr. $firstname $lastname </a> <br>";
+             <a href='documentsWatcher.php?passer_id=<?php echo $row['acct_id']?>' class='waves-effect waves-light btn'><div class='card'>
+              <?php echo " Dr. $firstname $lastname </div></a> <br>";
               }
               }
               $i++;

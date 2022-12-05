@@ -96,16 +96,19 @@
 					   while ($row=mysqli_fetch_assoc($result)) 
 					   {
 					    $id=$row['pat_id'];
-						$fullname = $row['Fullname'];
+						$first_name = $row['first_name'];
+						$last_name = $row['last_name'];
 					     $date=$row['sched_date'];
 					     $time=$row['sched_time'];
+					     	$avatar=$row['avatar'];
 					     
 					     
 					     echo " 
 					     
 							<tr class=''>
-							<td><img src='./images/icon.png'  width='40px' height='40px'></a></td>
-							<td>$fullname</a></td>
+							<td><img src='./avatar/".$avatar."' style='width: 70px;'></td>
+							<td>$first_name</td>
+							<td>$last_name</td>
 							<td>$date</a></td>
 							<td>$time</a></td>
 							<td> ";?>
@@ -187,15 +190,16 @@
 						     $time=$row['sched_time'];
 							 $date=$row['sched_date'];
 					     	$status=$row['status'];
+					     	$avatar=$row['avatar'];
+
 
 
 						      
 						     	?>
 
 								<tr class='table'>
-								<td><a data-toggle='#'><img src='./images/icon.png'  width='40px' height='40px'></a></td>
-
-
+								<td><a data-toggle='#'><?php echo "
+											<img src='./avatar/".$avatar."' style='width: 70px;'>"; ?></a></td>
 								<td><a href='doctorViewToPatient.php?acct_id=<?php echo $row['acct_id'];?>&&date_id=<?php echo $row['sched_date'];?>'> <?php echo "$firstname $surname"; ?></a></td>
 
 								<td><a href='#' onclick='patientModal1()'><?php echo"$date $time";?></a></td>

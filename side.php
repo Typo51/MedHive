@@ -24,6 +24,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="./css/sidebars.css">
+  <link rel="stylesheet" type="text/css" href="./css/recordsCenter.css">
+
+
+
   <link
       href="https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css"
       rel="stylesheet">
@@ -38,6 +42,8 @@
     
 </head>
 <body>
+
+<!-- SIDEBAR STARTS HERE -->
 
 <nav>
       <div class="logo">
@@ -89,10 +95,9 @@ else{
                 <span class="link">Profile</span>
               </a>
             </li>
-            <li class="list" onclick="confirmPw()">
-              <a <?php 
 
 
+  <?php
 if (isset($_POST['confirm'])) {
   
   $password = $_POST['password'];
@@ -105,48 +110,26 @@ if (isset($_POST['confirm'])) {
 
     header ("Location: documentsCenter.php?acct_id=$user_id");
     ob_end_flush();
-
-
   }
 
   else {
             echo "<script>alert('Woops! Username or Password is Wrong.')</script>";
         }
-
 }
+  if($type == 0){
 
- 
+      echo "<li class='list' onclick='confirmPw()''>
+              <a class='nav-link'>
+                <i class='bx bx-folder-open icon' ></i>
+                <span class='link'>Files</span> 
+              </a>
+            </li>
+      ";
+  }
+  elseif($type == 1){
+  }
 
-
- ?> class="nav-link">
-               <i class='bx bx-folder-open icon' ></i>
-                <span class="link">Files</span>
-              </a>
-            </li>
-            <li class="list">
-              <a href="#" class="nav-link">
-                <i class="bx bx-message-rounded icon"></i>
-                <span class="link">Messages</span>
-              </a>
-            </li>
-            <li class="list">
-              <a href="#" class="nav-link">
-                <i class="bx bx-pie-chart-alt-2 icon"></i>
-                <span class="link">Analytics</span>
-              </a>
-            </li>
-            <li class="list">
-              <a href="#" class="nav-link">
-                <i class="bx bx-heart icon"></i>
-                <span class="link">Likes</span>
-              </a>
-            </li>
-            <li class="list">
-              <a href="#"  class="nav-link">
-                <i class="bx bx-folder-open icon"></i>
-                <span class="link">Files</span>
-              </a>
-            </li>
+?>    
           </ul>
 
           <div class="bottom-cotent">
@@ -168,5 +151,30 @@ if (isset($_POST['confirm'])) {
     </nav>
     
     <section class="overlay"></section>
+
+
+<!-- SIDEBAR ENDS HERE -->
+
+
+
+<div class="confirm" id="confirm">
+  
+  <div class="confirmation">
+    <h4>Enter your Password</h4>
+    <form method="POST">
+    <input type="password" required="required" name="password">
+    <div>
+      <button class="waves-effect btn" onclick="confirmPw()">Cancel</button>
+      
+        <input type="submit" name="confirm" value="Confirm" class="waves-effect btn">
+      </form>
+    </div>
+    </div>
+
+
+</div>
+
+
+<script type="text/javascript" src="js/events.js"></script>
 </body>
 </html>

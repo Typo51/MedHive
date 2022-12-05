@@ -1,10 +1,6 @@
 <?php
   include('connect.php');
-
-  session_start();
-
-$user_id = $_SESSION['user_id'];
-$type = $_SESSION['acc_type'];                        
+  include('side.php');                      
 
 if(isset($_SESSION['user']) && $_SESSION['user'] != ''){
 
@@ -86,115 +82,6 @@ if(isset($_GET['acct_id']))
  <body>
 
 
-<!-- SIDEBAR STARTS HERE -->
-
- <nav>
-      <div class="logo">
-        <i class="bx bx-menu menu-icon"></i>
-        <span class="logo-name">Hi <?php echo $_SESSION['user']; ?>!</span>
-      </div>
-      <div class="sidebar">
-        <div class="logo">
-          <i class="bx bx-menu menu-icon"></i>
-          <span class="logo-name">MedHive</span>
-        </div>
-
-        <div class="sidebar-content">
-          <ul class="lists">
-            <li class="list">
-              <a 
-
-              <?php 
-
-
-if ($_SESSION['acc_type'] == 0){
-    echo "href='patientsDB.php?acct_id=$user_id'";
-}
-else{
-
-    echo "href='doctorDB.php?acct_id=$user_id'";
-}
-
-?> class="nav-link">
-                <i class="bx bx-home-alt icon"></i>
-                <span class="link">Dashboard</span>
-              </a>
-            </li>
-            <li class="list">
-              <a 
-                        <?php 
-
-                            if($type == 1){
-
-
-                                echo "href='doctorsProfileReal.php?acct_id=$user_id'";
-
-                            }
-
-                            elseif($type == 0){
-                                echo "href='patientProfile.php?acct_id=$user_id'";
-                            }
-                         ?>class="nav-link">
-              <i class="bx bx-user icon" ></i>
-                <span class="link">Profile</span>
-              </a>
-            </li>
-            <li class="list">
-              <a href="#" class="nav-link">
-                <i class="bx bx-bell icon"></i>
-                <span class="link">Notifications</span>
-              </a>
-            </li>
-            <li class="list">
-              <a href="#" class="nav-link">
-                <i class="bx bx-message-rounded icon"></i>
-                <span class="link">Messages</span>
-              </a>
-            </li>
-            <li class="list">
-              <a href="#" class="nav-link">
-                <i class="bx bx-pie-chart-alt-2 icon"></i>
-                <span class="link">Analytics</span>
-              </a>
-            </li>
-            <li class="list">
-              <a href="#" class="nav-link">
-                <i class="bx bx-heart icon"></i>
-                <span class="link">Likes</span>
-              </a>
-            </li>
-            <li class="list">
-              <a href="#" class="nav-link">
-                <i class="bx bx-folder-open icon"></i>
-                <span class="link">Files</span>
-              </a>
-            </li>
-          </ul>
-
-          <div class="bottom-cotent">
-            <li class="list">
-              <a href="#" class="nav-link">
-                <i class="bx bx-cog icon"></i>
-                <span class="link">Settings</span>
-              </a>
-            </li>
-			<li class="list" id ="logout">
-              <a href="#" class="nav-link">
-                <i class="bx bx-log-out icon"></i>
-                <span class="link">Logout</span>
-              </a>
-            </li>
-          </div>
-        </div>
-      </div>
-    </nav>
-	
-	<section class="overlay"></section>
-
-<!-- SIDEBAR ENDS HERE -->
-
-
-
 <div class="whole-container">
  	<div class="header">
  			<?php 
@@ -208,6 +95,7 @@ $result=mysqli_query($con,$select_query);
      $last_name=$row['last_name'];
      $first_name=$row['first_name'];
      $specialization=$row['specialization'];
+     $avatar=$row['avatar'];
 
    }
      /*PROFILE BUBBLE*/
@@ -215,8 +103,8 @@ $result=mysqli_query($con,$select_query);
      echo " 
      
      <div class='container-profile'>
-  <div class='avatar'>
-    <!-- INSERT AVATAR HERE -->
+   <div class='avatar'>
+    <img src='./avatar/".$avatar."'>
   </div>
 
   <div class='wrapper-profile'>

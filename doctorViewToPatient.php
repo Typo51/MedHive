@@ -52,6 +52,7 @@ $result=mysqli_query($con,$select_query);
      $last_name=$row['last_name'];
      $first_name=$row['first_name'];
      $sex=$row['sex'];
+      $avatar=$row['avatar'];
     }
 
      /*PROFILE BUBBLE*/
@@ -60,7 +61,7 @@ $result=mysqli_query($con,$select_query);
      echo " 
      
     <div class='container-profile'>
-      <img src='images/icon.png '>
+      <img src='./avatar/".$avatar."'>
       <div class='patient-profile'>
       <h5>$first_name $last_name</h5>
         <div class='profile'>
