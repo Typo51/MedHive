@@ -149,6 +149,25 @@ overlay.addEventListener("click", () => {
  } 
 
 
+  function terms()
+ {
+    var modal2 = document.getElementById('terms');
+    modal2.classList.toggle('active');
+    var blur = document.getElementById('blur');
+    blur.classList.toggle('active');
+ } 
+
+   function success()
+ {
+    var modal2 = document.getElementById('success');
+    modal2.classList.toggle('active');
+    var blur = document.getElementById('blur');
+    blur.classList.toggle('active');
+ } 
+
+
+
+
 document.getElementById('logout').addEventListener('click', ()=>{
    console.log("here")
    $.ajax({
