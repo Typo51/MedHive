@@ -165,6 +165,13 @@ overlay.addEventListener("click", () => {
     blur.classList.toggle('active');
  } 
 
+ function queue()
+ {
+    var modal2 = document.getElementById('queue');
+    modal2.classList.toggle('active');
+    var blur = document.getElementById('blur');
+    blur.classList.toggle('active');
+ } 
 
 
 
