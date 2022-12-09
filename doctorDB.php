@@ -61,7 +61,7 @@
         	
 
 			
-        		<a href="#" onclick="appointment()"> <button class="btn btn-primary">List of Appointment </button></a> 
+        		<a href="#" onclick="queue()"> <button class="btn btn-primary">List of Appointment </button></a> 
         	
 			
         	
@@ -165,7 +165,9 @@
 						<tr>
 							<th style="width: 70px;"> </th>
 							<th>Name</th>
-							<th>Appointment Schedule</th>
+							<th>Appointment Date</th>
+					   		<th>Time</th>
+							   <th>Type</th>
 							<th>Accept/Decline</th>
 						</tr>
 					</thead>
@@ -174,10 +176,12 @@
 							
 							
 						<?php 
-
 						$doctorID = $_SESSION['user_id'];
+						
+						
 						$select_query="Select * from `appointment`, `account` WHERE `doc_id` = '$doctorID' AND pat_id =acct_id ORDER BY `sched_date`";
 							$result=mysqli_query($con,$select_query);
+							
 						$i=1;
 						if($result)
 						{
@@ -189,7 +193,7 @@
 						     $status=$row['status'];
 						     $time=$row['sched_time'];
 							 $date=$row['sched_date'];
-					     	$status=$row['status'];
+					     	$typeapp=$row['typeapp'];
 					     	$avatar=$row['avatar'];
 
 
@@ -201,28 +205,12 @@
 								<td><a data-toggle='#'><?php echo "
 											<img src='./avatar/".$avatar."' style='width: 70px;'>"; ?></a></td>
 								<td><a href='doctorViewToPatient.php?acct_id=<?php echo $row['acct_id'];?>&&date_id=<?php echo $row['sched_date'];?>'> <?php echo "$firstname $surname"; ?></a></td>
-
-								<td><a href='#' onclick='patientModal1()'><?php echo"$date $time";?></a></td>
-								<td><a href='#' onclick='patientsModal1()'><?php 
-
-								 
-
-
-							if ($row['status'] == '0') {
-								echo"Offline";
-							}
-							else{
-								echo"Online";
-							}
-
-
-							 
-
-
-
-
-
-							?></a></td>
+								<td><a href='#' onclick='patientModal1()' name="date"><?php echo"$date";?></a></td>
+								<td><a href='#' onclick='patientModal1()' name="time"><?php echo"$time";?></a></td>
+								<td><a href='#' onclick='patientModal1()' name="typeapp"><?php echo"$typeapp";?></a></td>
+								<form method="post"><td><input type='submit' name='accept' class="btn btn-primary" value="Accept"/></form>
+							
+							</td>
 								</tr>
 <?php 
 						    $i++;
@@ -232,7 +220,19 @@
 						else{
 						    die(mysqli_error($con));
 						   }
+						   if (isset($_POST['accept'])) {
+							$insertquery = "INSERT INTO `appointment_queue`(`doc_id`, `pat_id`, `sched_date`, `sched_time`, `typeapp`) VALUES ('$doctorID','$id','$date','$time','$typeapp')";
+							$insertresult = mysqli_query($con,$insertquery);
+							if($insertresult){
+							$deletequery = "DELETE FROM `appointment` WHERE doc_id='$doctorID' AND pat_id='$id' AND sched_date='$date'";
+							$deleteresult = mysqli_query($con,$deletequery);
+							if($deleteresult){
+								echo "<script> window.open('doctorDB.php', '_self')</script>";
+							}
 
+							}
+							}
+					
 						?>	
 					</tbody>
 				</table>
@@ -242,6 +242,96 @@
 	</div>
 </div>
 </div>
+
+
+	<!--List of appointment -->
+	<div class="popup" id="queue" >
+	<div class="container">
+		<h5>Please select a Patient</h5>
+			<div class="patient-list-container-inside">
+				<table class="table table-striped">
+					<thead>
+						<tr>
+							<th style="width: 70px;"> </th>
+							<th>Name</th>
+							<th>Appointment Date</th>
+					   		<th>Time</th>
+							   <th>Type</th>
+							<th>Accept/Decline</th>
+						</tr>
+					</thead>
+		
+					<tbody>
+							
+							
+						<?php 
+						$doctorID = $_SESSION['user_id'];
+						
+						
+						$select_query="Select * from `appointment_queue`, `account` WHERE `doc_id` = '$doctorID' AND pat_id =acct_id   ORDER BY `sched_date`";
+							$resultqueue=mysqli_query($con,$select_query);
+							
+						$i=1;
+						if($resultqueue)
+						{
+						   while ($row=mysqli_fetch_assoc($resultqueue)) 
+						   {
+						    $id=$row['acct_id'];
+						     $surname=$row['last_name'];
+						     $firstname=$row['first_name'];
+						     $status=$row['status'];
+						     $time=$row['sched_time'];
+							 $date=$row['sched_date'];
+					     	$typeapp=$row['typeapp'];
+					     	$avatar=$row['avatar'];
+
+
+
+						      
+						     	?>
+
+								<tr class='table'>
+								<td><a data-toggle='#'><?php echo "
+											<img src='./avatar/".$avatar."' style='width: 70px;'>"; ?></a></td>
+								<td><a href='doctorViewToPatient.php?acct_id=<?php echo $row['acct_id'];?>&&date_id=<?php echo $row['sched_date'];?>'> <?php echo "$firstname $surname"; ?></a></td>
+								<td><a href='#' onclick='patientModal1()' name="date"><?php echo"$date";?></a></td>
+								<td><a href='#' onclick='patientModal1()' name="time"><?php echo"$time";?></a></td>
+								<td><a href='#' onclick='patientModal1()' name="typeapp"><?php echo"$typeapp";?></a></td>
+								<form method="post"><td><input type='submit' name='cancel' class="btn btn-primary" value="Cancel Appointment"/></form>
+							
+							</td>
+								</tr>
+<?php 
+						    $i++;
+						   }
+						}
+
+						else{
+						    die(mysqli_error($con));
+						   }
+						   if (isset($_POST['cancel'])) {
+				
+							$deletequery = "DELETE FROM `appointment_queue` WHERE doc_id='$doctorID' AND pat_id='$id' AND sched_date='$date'";
+							$deleteresult = mysqli_query($con,$deletequery);
+							if($deleteresult){
+								echo "<script> window.open('doctorDB.php', '_self')</script>";
+							}
+
+							}
+							
+					
+						?>	
+					</tbody>
+				</table>
+	</div>
+	<div class="blurbg">
+		<a href="#" onclick="queue()"> <button class="buttons" id="cancel">Cancel</button></a> 
+	</div>
+</div>
+</div>
+
+
+
 
 	<!-- APPOINTMENT LOG MODAL -->
 <div class="popup3" id="modal3" >
