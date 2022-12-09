@@ -48,7 +48,19 @@
 <nav>
       <div class="logo">
         <i class="bx bx-menu menu-icon"></i>
-        <span class="logo-name">Hi <?php echo $_SESSION['user']; ?>!</span>
+        <span class="logo-name">Hi <?php 
+
+                            
+
+if ($_SESSION['acc_type'] == 1){
+  echo 'Dr. '.$_SESSION['user'];
+}
+else{
+
+  echo $_SESSION['user'];
+}
+
+?>!</span>
       </div>
       <div class="sidebar">
         <div class="logo">
