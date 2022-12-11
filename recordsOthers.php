@@ -2,6 +2,8 @@
 
 	include ('connect.php');
 	include ('side.php');
+	include ('newModals.php');
+
 	 
 	  if(isset($_GET['acct_id']))
 	  {
@@ -45,7 +47,9 @@
   	mysqli_query($con, $sql);
 
   	if (move_uploaded_file($_FILES['image']['tmp_name'], $target)) {
-  		echo "<script>alert('Upload Successful')</script>";
+  		echo "<script>
+  			success();
+  		</script>";
   	}
 
   }
@@ -63,16 +67,12 @@
 	<link rel="stylesheet" type="text/css" href="css/modals.css">
 	<link rel="stylesheet" type="text/css" href="css/recordsCenter.css">
 	<link rel="stylesheet" href="./css/sidebars.css">
-	<link
-      href="https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css"
-      rel="stylesheet"
-    > <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
-
-   <script src="https://kit.fontawesome.com/42135a69b7.js" crossorigin="anonymous">
-    </script>
+	<!-- CSS only -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+<!-- JavaScript Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
 
 </head>
 <body>
@@ -109,10 +109,6 @@
 
 
 <div class="file-container">
-	<div class='docu'></div>
-  	<div class="popupBtn">
-  		<button class="popupDelete"><i class="fa-solid fa-xmark"></i></button>
-	</div>
 <?php 
 
   	$type = '3';
@@ -122,10 +118,12 @@
      $i=1;
    	if($result){
    		while ($row=mysqli_fetch_assoc($result)){
+   				$image_id = $row['img_id'];
        		$file_name = $row['image'];
 
        		echo "
        		<div class='docu'>
+       		<a href='deletefunction.php?img_id=$image_id'><i class='fa-solid fa-xmark' style='color: red;'></i>|</a>
        		<a href='./images/".$file_name."' target='_blank'> $file_name </a> <br><hr>";
         }
     	$i++;
@@ -239,7 +237,7 @@ if (isset($_POST['confirm'])) {
 		$doctorName = $_POST['doctor-share'];
 	
 
-		$insert_share = "INSERT INTO `shared_docs`(`share_doc_id`, `share_pat_id`, `image`) VALUES ('$doctorName','$user_id','$imageName')";
+		$insert_share = "INSERT INTO `shared_docs`(`share_doc_id`, `share_pat_id`, `image`) VALUES ('$doc_id','$user_id','$docuName')";
 		$insert_query = mysqli_query($con, $insert_share);
 
    
