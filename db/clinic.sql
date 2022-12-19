@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.4
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 19, 2022 at 01:54 AM
--- Server version: 10.4.17-MariaDB
--- PHP Version: 7.4.15
+-- Generation Time: Dec 19, 2022 at 05:37 AM
+-- Server version: 10.4.27-MariaDB
+-- PHP Version: 7.4.33
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `clinics`
+-- Database: `clinic`
 --
 
 -- --------------------------------------------------------
@@ -30,6 +30,7 @@ SET time_zone = "+00:00";
 CREATE TABLE `account` (
   `acct_id` int(11) NOT NULL,
   `last_name` varchar(100) NOT NULL,
+  `mid_name` varchar(20) NOT NULL,
   `first_name` varchar(100) NOT NULL,
   `username` varchar(50) NOT NULL,
   `password` varchar(50) NOT NULL,
@@ -37,21 +38,15 @@ CREATE TABLE `account` (
   `status` enum('0','1') NOT NULL,
   `type` enum('0','1') NOT NULL,
   `avatar` varchar(100) DEFAULT 'icon.png'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `account`
 --
 
-INSERT INTO `account` (`acct_id`, `last_name`, `first_name`, `username`, `password`, `email`, `status`, `type`, `avatar`) VALUES
-(1, 'Mahilum', 'Earl Jake', 'earl jake', 'earljake', 'earljakemahilum123@gmail.com', '0', '1', 'icon.png'),
-(2, 'Solmayor', 'Francis', 'franz', 'franz', 'franz@gmail.com', '0', '0', 'icon.png'),
-(3, 'Dela Cruz', 'Chris Jan', 'jeyjey', 'jeyjey', 'jeyjey@gmail.com', '0', '1', 'icon.png'),
-(4, 'Paulo', 'Kernel Fritz', 'kerker', 'kerker', 'playingmoonlord@gmail.com', '0', '1', 'icon.png'),
-(5, '', '', '', '', '', '0', '0', 'icon.png'),
-(6, 'Mahilum', 'Delight', 'delite', 'delite', 'delite@gmail.com', '0', '0', 'icon.png'),
-(7, 'Dela Cruz', 'Juan', 'juan', 'juan', 'juandelacruz@gmail.com', '0', '1', 'icon.png'),
-(8, 'Dela Cruz', 'Juana', 'juana', 'juana', 'juanadelacruz@gmail.com', '0', '0', 'icon.png');
+INSERT INTO `account` (`acct_id`, `last_name`, `mid_name`, `first_name`, `username`, `password`, `email`, `status`, `type`, `avatar`) VALUES
+(13, 'Paulo', 'Fritz', 'Kernel', 'kerker', 'kerker', 'asd@gmail.com', '0', '1', 'icon.png'),
+(15, 'Mahilum', 'Julian', 'Marcus', 'macmac', 'macmac', 'asd@gmail.com', '0', '0', 'icon.png');
 
 -- --------------------------------------------------------
 
@@ -66,7 +61,7 @@ CREATE TABLE `appointment` (
   `sched_date` date NOT NULL,
   `sched_time` time NOT NULL,
   `typeapp` varchar(250) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -81,7 +76,7 @@ CREATE TABLE `appointment_log` (
   `sched_date` date NOT NULL,
   `sched_time` time NOT NULL,
   `typeapp` varchar(250) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `appointment_log`
@@ -105,14 +100,15 @@ CREATE TABLE `appointment_queue` (
   `sched_date` date NOT NULL,
   `sched_time` time NOT NULL,
   `typeapp` varchar(250) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `appointment_queue`
 --
 
 INSERT INTO `appointment_queue` (`transaction_id`, `doc_id`, `pat_id`, `sched_date`, `sched_time`, `typeapp`) VALUES
-(3, 7, 8, '2022-12-15', '08:00:00', 'Face to face');
+(3, 7, 8, '2022-12-15', '08:00:00', 'Face to face'),
+(4, 7, 8, '2022-12-18', '11:00:00', 'Face to face');
 
 -- --------------------------------------------------------
 
@@ -127,7 +123,7 @@ CREATE TABLE `clinic_info` (
   `office_days` varchar(100) DEFAULT NULL,
   `office_time` varchar(100) DEFAULT NULL,
   `contact_info` varchar(15) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `clinic_info`
@@ -137,7 +133,12 @@ INSERT INTO `clinic_info` (`clinic_id`, `doc_clinic_id`, `clinic_address`, `offi
 (1, 1, 'Agreda Phase 1', 'Monday-Friday', '8:00am - 5:00pm', '09076351998'),
 (2, 3, 'Agreda Phase 1', NULL, NULL, '09071234565'),
 (3, 4, 'Brgy. GPS', NULL, NULL, '09071234565'),
-(4, 7, 'Brgy. Sta. Cruz', 'Monday-Friday', '8:00am - 5:00pm', '09071234565');
+(4, 7, 'Brgy. Sta. Cruz', 'Monday-Friday', '8:00am - 5:00pm', '09071234565'),
+(5, 9, 'San Antonio Phase 1', NULL, NULL, '09265010400'),
+(6, 10, 'Alunan Ave.', NULL, NULL, '09265010400'),
+(7, 11, 'Alunan Ave.', NULL, NULL, '09265010400'),
+(8, 12, 'Alunan Ave.', NULL, NULL, '09265010400'),
+(9, 13, 'Alunan Ave.', 'Saturday - Sunday', '9:00 AM - 5:00 PM', '09265010400');
 
 -- --------------------------------------------------------
 
@@ -157,7 +158,7 @@ CREATE TABLE `consultation` (
   `alcohol` varchar(250) NOT NULL,
   `history` varchar(250) NOT NULL,
   `meds` varchar(250) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -171,7 +172,7 @@ CREATE TABLE `diagnosis` (
   `diag_pat_id` int(11) NOT NULL,
   `diag_sched_date` date NOT NULL,
   `diagnosis` varchar(500) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `diagnosis`
@@ -192,7 +193,7 @@ CREATE TABLE `doctor` (
   `doc_acc_id` int(11) DEFAULT NULL,
   `specialization` varchar(50) DEFAULT NULL,
   `bio` varchar(200) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `doctor`
@@ -202,7 +203,12 @@ INSERT INTO `doctor` (`doctor_id`, `doc_acc_id`, `specialization`, `bio`) VALUES
 (1, 1, 'Psychiatrist', ''),
 (2, 3, 'Pediatrician', NULL),
 (3, 4, 'Orthopedic surgeon ', NULL),
-(4, 7, 'Neurologist', NULL);
+(4, 7, 'Neurologist', NULL),
+(5, 9, 'Psychiatrist', NULL),
+(6, 10, 'Psychiatrist', NULL),
+(7, 11, 'Psychiatrist', NULL),
+(8, 12, 'Psychiatrist', NULL),
+(9, 13, 'Psychiatrist', 'I like to help people');
 
 -- --------------------------------------------------------
 
@@ -216,7 +222,7 @@ CREATE TABLE `doctors_availability` (
   `avail_date` date NOT NULL,
   `avail_time` varchar(100) NOT NULL,
   `status` enum('1','0') NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `doctors_availability`
@@ -242,7 +248,17 @@ INSERT INTO `doctors_availability` (`avail_id`, `doctor_id`, `avail_date`, `avai
 (17, 7, '2022-12-15', '2:00', '1'),
 (18, 7, '2022-12-15', '3:00', '1'),
 (19, 7, '2022-12-15', '4:00', '1'),
-(20, 7, '2022-12-15', '5:00pm', '1');
+(20, 7, '2022-12-15', '5:00pm', '1'),
+(21, 7, '2022-12-18', '8:00', '1'),
+(22, 7, '2022-12-18', '9:00', '1'),
+(23, 7, '2022-12-18', '10:00', '1'),
+(24, 7, '2022-12-18', '11:00', '0'),
+(25, 7, '2022-12-18', '12:00pm', '1'),
+(26, 7, '2022-12-18', '1:00', '1'),
+(27, 7, '2022-12-18', '2:00', '1'),
+(28, 7, '2022-12-18', '3:00', '1'),
+(29, 7, '2022-12-18', '4:00', '1'),
+(30, 7, '2022-12-18', '5:00pm', '1');
 
 -- --------------------------------------------------------
 
@@ -255,7 +271,7 @@ CREATE TABLE `document_sessions` (
   `sess_doc_id` int(11) NOT NULL,
   `sess_pat_id` int(11) NOT NULL,
   `sess_sched_date` date NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `document_sessions`
@@ -276,8 +292,8 @@ CREATE TABLE `image` (
   `doc_img_id` int(11) NOT NULL,
   `pat_img_id` int(11) NOT NULL,
   `image` varchar(100) NOT NULL,
-  `type` enum('1','2','3','') NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `type` enum('1','2','3','4') NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `image`
@@ -286,7 +302,10 @@ CREATE TABLE `image` (
 INSERT INTO `image` (`img_id`, `doc_img_id`, `pat_img_id`, `image`, `type`) VALUES
 (1, 0, 2, 'WIN_20221028_11_06_56_Pro.jpg', '1'),
 (2, 0, 8, '5620845.jpg', '1'),
-(3, 0, 8, 'wp5633985.jpg', '1');
+(3, 0, 8, 'wp5633985.jpg', '1'),
+(4, 0, 13, '12.jpg', '1'),
+(7, 13, 0, 'icon.png', '4'),
+(8, 13, 0, 'SPACE-MISSION-2-DESKTOP-HD.png', '4');
 
 -- --------------------------------------------------------
 
@@ -304,7 +323,7 @@ CREATE TABLE `patient` (
   `height` int(3) DEFAULT NULL,
   `weight` int(3) DEFAULT NULL,
   `sex` enum('Male','Female') DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `patient`
@@ -314,7 +333,9 @@ INSERT INTO `patient` (`patient_id`, `pat_acc_id`, `bio`, `birthday`, `address`,
 (1, 2, '', '2000-12-12', 'Prk. Upper Valley', '09076351998', 123, 69, 'Male'),
 (2, 5, NULL, '0000-00-00', '', '', 0, 0, ''),
 (3, 6, NULL, '1978-02-05', 'Agreda Phase 1', '09123456789', 156, 50, 'Female'),
-(4, 8, NULL, '2000-12-12', 'Agreda Phase 1', '09276340273', 123, 45, 'Female');
+(4, 8, NULL, '2000-12-12', 'Agreda Phase 1', '09276340273', 123, 45, 'Female'),
+(5, 14, NULL, '2000-09-26', '5143 Rudy Lane', '09265010400', 160, 60, 'Male'),
+(6, 15, NULL, '2000-09-26', '5143 Rudy Lane', '09265010400', 160, 60, 'Male');
 
 -- --------------------------------------------------------
 
@@ -331,7 +352,7 @@ CREATE TABLE `prescription` (
   `med_name` varchar(100) NOT NULL,
   `milligrams` varchar(100) NOT NULL,
   `every_hour` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `prescription`
@@ -352,6 +373,7 @@ INSERT INTO `prescription` (`id`, `pres_doc_id`, `pres_pat_id`, `pres_sched_date
 CREATE TABLE `screening` (
   `screening_id` int(11) NOT NULL,
   `last_name` varchar(100) NOT NULL,
+  `mid_name` varchar(20) NOT NULL,
   `first_name` varchar(100) NOT NULL,
   `specialization` varchar(100) DEFAULT NULL,
   `username` varchar(100) NOT NULL,
@@ -365,7 +387,7 @@ CREATE TABLE `screening` (
   `weight` int(3) DEFAULT NULL,
   `sex` enum('Male','Female') DEFAULT NULL,
   `id` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -378,7 +400,7 @@ CREATE TABLE `shared_docs` (
   `share_doc_id` int(11) NOT NULL,
   `share_pat_id` int(11) NOT NULL,
   `image` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `shared_docs`
@@ -502,13 +524,13 @@ ALTER TABLE `shared_docs`
 -- AUTO_INCREMENT for table `account`
 --
 ALTER TABLE `account`
-  MODIFY `acct_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `acct_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `appointment`
 --
 ALTER TABLE `appointment`
-  MODIFY `transaction_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `transaction_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `appointment_log`
@@ -520,13 +542,13 @@ ALTER TABLE `appointment_log`
 -- AUTO_INCREMENT for table `appointment_queue`
 --
 ALTER TABLE `appointment_queue`
-  MODIFY `transaction_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `transaction_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `clinic_info`
 --
 ALTER TABLE `clinic_info`
-  MODIFY `clinic_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `clinic_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `consultation`
@@ -544,13 +566,13 @@ ALTER TABLE `diagnosis`
 -- AUTO_INCREMENT for table `doctor`
 --
 ALTER TABLE `doctor`
-  MODIFY `doctor_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `doctor_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `doctors_availability`
 --
 ALTER TABLE `doctors_availability`
-  MODIFY `avail_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `avail_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT for table `document_sessions`
@@ -562,13 +584,13 @@ ALTER TABLE `document_sessions`
 -- AUTO_INCREMENT for table `image`
 --
 ALTER TABLE `image`
-  MODIFY `img_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `img_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `patient`
 --
 ALTER TABLE `patient`
-  MODIFY `patient_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `patient_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `prescription`
@@ -580,7 +602,7 @@ ALTER TABLE `prescription`
 -- AUTO_INCREMENT for table `screening`
 --
 ALTER TABLE `screening`
-  MODIFY `screening_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `screening_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `shared_docs`
